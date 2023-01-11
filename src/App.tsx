@@ -1,23 +1,25 @@
-import React from 'react';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className='flex flex-col justify-between h-screen bg-background-black'>
+        <Header />
+        <main className='container mx-auto'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/*' element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div >
+    </BrowserRouter >
   );
 }
 
