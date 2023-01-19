@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IoMdSettings as Settings } from "react-icons/io";
+import { FaSearch } from "react-icons/fa";
 
 function Header() {
   const [text, setText] = useState("");
@@ -110,10 +111,11 @@ function Header() {
                 type="text"
                 className="pr-10 bg-gray-200 input text-black"
                 value={text}
+                placeholder="Search movies..."
                 onChange={handleChange}
               />
               <button className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg">
-                Go
+                <FaSearch />
               </button>
             </div>
           </div>
