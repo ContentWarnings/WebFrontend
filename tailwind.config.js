@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       colors: {
         'background-black': '#222222',
+        'light-pink': '#7e57c2',
+        'dark-pink': '#4d2c91',
       },
     },
   },

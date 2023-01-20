@@ -12,7 +12,7 @@ function Header() {
     e.preventDefault();
   };
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-[#7e57c2] p-4 text-white">
+    <nav className="flex items-center justify-between flex-wrap bg-light-pink p-4 text-white">
       <div className="flex items-center flex-shrink mr-6">
         <Link to="/" className="text-lg font-bold align-middle">
           <svg
@@ -104,26 +104,25 @@ function Header() {
         </Link>
       </div>
       <div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <div className="relative">
-              <input
-                type="text"
-                className="pr-10 bg-gray-200 input text-black"
-                value={text}
-                placeholder="Search movies..."
-                onChange={handleChange}
-              />
-              <button className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg">
-                <FaSearch />
-              </button>
-            </div>
+        <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+          <div className="flex items-center py-2">
+            <input
+              type="text"
+              className="appearance-none border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none rounded-l-lg"
+              placeholder="Search movies..."
+              value={text}
+              onChange={handleChange}
+            />
+            {/* Make sure to add hover colors!!! */}
+            <button className="flex-shrink-0 bg-dark-pink hover:bg-light-pink border-dark-pink hover:border-light-pink text-sm border-4 text-white py-1 px-2 rounded-r-lg">
+              <FaSearch />
+            </button>
           </div>
         </form>
       </div>
       <div>
         <Link to="/settings">
-          <Settings />
+          <Settings className="w-10 h-10" />
         </Link>
       </div>
     </nav>
