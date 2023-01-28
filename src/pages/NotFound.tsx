@@ -1,7 +1,5 @@
 function NotFound() {
-    return (
-        <div>404 - Page Not Found!</div>
-    )
+  return <div className="text-white">404 - Page Not Found!</div>;
 }
 
-export default NotFound
+export default NotFound;
