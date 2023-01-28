@@ -7,7 +7,8 @@ function Home() {
   };
 
   return (
-    <div className="items-center">
+    <div className="">
+      <div className="text-6xl text-light-1 font-bold">Find movies for you</div>
       <Primary2Button name="Search" icon={<FaSearch />} onClick={handleClick} />
     </div>
   );
