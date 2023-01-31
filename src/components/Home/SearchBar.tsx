@@ -35,7 +35,7 @@ function SearchBar() {
         <Primary2Button
           name="Search"
           icon={<FaSearch />}
-          onClick={handleClick}
+          handleClick={handleClick}
         />
       </div>
     </form>
