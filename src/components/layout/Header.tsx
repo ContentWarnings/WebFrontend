@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-light-pink p-2 text-white">
+    <nav className="flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
       <div className="flex items-center justify-left flex-shrink lg:ml-20">
         <Link to="/" className="text-lg font-bold align-middle">
           <MMLogo />
@@ -38,7 +38,7 @@ function Header() {
                 onChange={handleChange}
               />
               {/* Make sure to add hover colors!!! */}
-              <button className="flex-shrink-0 bg-dark-pink hover:bg-light-pink border-dark-pink hover:border-light-pink text-sm border-4 text-white py-1 px-2 rounded-r-lg">
+              <button className="transition ease-in-out delay-100 bg-primary-3 hover:bg-primary-1 border-primary-3 hover:border-primary-1 text-sm border-4 text-white py-1 px-2 rounded-r-lg">
                 <FaSearch />
               </button>
             </div>
@@ -46,12 +46,12 @@ function Header() {
         </div>
         <div className="p-2">
           <Link to="/settings">
-            <Settings className="w-8 h-8 rounded-full hover:bg-dark-pink hover:border-dark-pink" />
+            <Settings className="w-8 h-8 rounded-full hover:bg-primary-3 hover:border-primary-3" />
           </Link>
         </div>
         <div className="p-2">
           <Link to="/settings/profile">
-            <CgProfile className="w-8 h-8 rounded-full hover:bg-dark-pink hover:border-dark-pink" />
+            <CgProfile className="w-8 h-8 rounded-full hover:bg-primary-3 hover:border-primary-3" />
           </Link>
         </div>
       </div>
