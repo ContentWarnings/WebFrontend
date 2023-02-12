@@ -1,5 +1,7 @@
 import SearchBar from "../components/Home/SearchBar";
 import Primary2Button from "../components/shared/Primary2Button";
+// import MovieButton from "../components/Home/MovieButton";
+import GenreButton from "../components/Home/GenreButton";
 
 function Home() {
   const handleClick = () => {
@@ -22,6 +24,11 @@ function Home() {
           Trending Movies For You
         </h1>
         <Primary2Button name="View More" handleClick={handleClick} />
+      </div>
+      {/* Movie Buttons Go here */}
+      <div className="flex">
+        {/* <MovieButton name="DC League of Super-Pets" /> */}
+        <GenreButton img="bg-action-image" name="Action" />
       </div>
     </div>
   );
