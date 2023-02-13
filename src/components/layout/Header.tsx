@@ -37,7 +37,6 @@ function Header() {
                 value={text}
                 onChange={handleChange}
               />
-              {/* Make sure to add hover colors!!! */}
               <button className="transition ease-in-out delay-100 bg-primary-3 hover:bg-primary-1 border-primary-3 hover:border-primary-1 text-sm border-4 text-white py-1 px-2 rounded-r-lg">
                 <FaSearch />
               </button>
