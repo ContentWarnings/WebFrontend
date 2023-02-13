@@ -19,7 +19,7 @@ function TrendingMoviesSection(props: any) {
       </div>
       <div className="flex grid grid-cols-1 gap-8 xl:grid-cols-4 lg:-grid-cols-3 md:grid-cols-2">
         {/* {movies.map((movie) => (
-          <MovieButton name={movie.name} image={movie.image} />
+          <MovieButton name={movie.name} link={movie.link} image={movie.image} />
         ))} */}
         <MovieButton name="DC League of Super-Pets" />
       </div>

@@ -3,7 +3,7 @@ import GreyMMLogo from "./assets/GreyMMLogo";
 
 function Footer() {
   return (
-    <div className="relative bg-dark-2 mb-4 flex justify-center">
+    <div className="flex flex-wrap bg-dark-2 justify-center mb-4">
       <div className="flex flex-col text-light-3 text-right pr-10">
         <div className="flex font-bold font-sans text-2xl ml-20">
           <div className="mr-2">

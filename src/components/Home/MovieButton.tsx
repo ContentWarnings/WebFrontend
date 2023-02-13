@@ -1,8 +1,11 @@
 function MovieButton(props: any) {
-  // Need absolute size?
+  const handleClick = () => {
+    console.log(`${props.link} Button was clicked`);
+  };
+
   return (
     <button
-      onClick={props.handleClick}
+      onClick={handleClick}
       className="transition ease-in-out delay-100 bg-neutral hover:border-primary-1 text-light-1 py-1 px-2 rounded"
     >
       <div className="items-center px-1">
