@@ -5,7 +5,7 @@ import GenresSection from "../components/Home/GenresSection";
 
 function Home() {
   return (
-    <div className="relative px-6 h-screen">
+    <div className="relative px-6 h-fit mb-10">
       <div className="text-center">
         {/* Header */}
         <h1 className="text-6xl text-light-1 font-bold mt-20">
