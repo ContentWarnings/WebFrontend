@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
+    <nav className="fixed left-0 right-0 z-10 flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
       <div className="flex items-center justify-left flex-shrink lg:ml-20">
         <Link to="/" className="text-lg font-bold align-middle">
           <MMLogo />
