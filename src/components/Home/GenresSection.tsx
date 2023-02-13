@@ -1,6 +1,6 @@
 import GenreButton from "./GenreButton";
 
-function GenresSection(props: any) {
+function GenresSection() {
   return (
     <div className="px-10">
       <h1 className="text-2xl text-light-1 font-bold mt-20 mb-5">Genres</h1>

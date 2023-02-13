@@ -2,7 +2,7 @@ import Primary2Button from "../shared/Primary2Button";
 import MovieButton from "./MovieButton";
 import { useState } from "react";
 
-function TrendingMoviesSection(props: any) {
+function TrendingMoviesSection() {
   const [movies, setMovies] = useState([]);
 
   const handleClick = () => {
@@ -17,7 +17,7 @@ function TrendingMoviesSection(props: any) {
         </h1>
         <Primary2Button name="View More" handleClick={handleClick} />
       </div>
-      <div className="flex grid gap-3 grid-cols-1 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3">
+      <div className="flex grid gap-3 grid-cols-1 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2">
         {/* {movies.map((movie) => (
           <MovieButton name={movie.name} link={movie.link} image={movie.image} />
         ))} */}
