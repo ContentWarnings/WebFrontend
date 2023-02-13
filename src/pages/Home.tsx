@@ -1,7 +1,6 @@
 import SearchBar from "../components/Home/SearchBar";
 import TrendingMovieSection from "../components/Home/TrendingMoviesSection";
 import GenresSection from "../components/Home/GenresSection";
-// import GenreButton from "../components/Home/GenreButton";
 
 function Home() {
   return (
