@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
+    <nav className="fixed left-0 right-0 z-10 flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
       <div className="flex items-center justify-left flex-shrink lg:ml-20">
         <Link to="/" className="text-lg font-bold align-middle">
           <MMLogo />
@@ -37,7 +37,6 @@ function Header() {
                 value={text}
                 onChange={handleChange}
               />
-              {/* Make sure to add hover colors!!! */}
               <button className="transition ease-in-out delay-100 bg-primary-3 hover:bg-primary-1 border-primary-3 hover:border-primary-1 text-sm border-4 text-white py-1 px-2 rounded-r-lg">
                 <FaSearch />
               </button>

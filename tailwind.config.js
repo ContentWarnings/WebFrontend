@@ -24,6 +24,9 @@ module.exports = {
       fontFamily: {
         'sans': ['Roboto', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'action-image': "url('/public/logo192.png')",
+      }
     },
   },
   plugins: [],
