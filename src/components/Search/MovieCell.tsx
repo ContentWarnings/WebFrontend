@@ -1,5 +1,5 @@
-import GenreCell from "./GenreCell";
-import CWCell from "./CWCell";
+import GenreCell from "../shared/GenreCell";
+import CWCell from "../shared/CWCell";
 import { useState } from "react";
 
 function MovieCell(props: any) {
@@ -32,7 +32,7 @@ function MovieCell(props: any) {
   }
 
   return (
-    <div className="flex">
+    <a href={"/movie/" + props.id} className="flex transition ease-in-out delay-100 hover:opacity-60 my-5">
       <div className="flex-none w-36 pr-5">
         <img className="rounded-md" src={props.img} alt={"Movie poster for " + props.name}/>
       </div>
@@ -47,7 +47,7 @@ function MovieCell(props: any) {
         </div>
         <p>{props.desc}</p>
       </div>
-    </div>
+    </a>
   );
 }
 

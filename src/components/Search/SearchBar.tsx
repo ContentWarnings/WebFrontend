@@ -1,4 +1,5 @@
 import Primary2Button from "../shared/Primary2Button";
+import Dropdown from "../shared/Dropdown";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import { useState } from "react";
 
@@ -37,26 +38,61 @@ function SearchBar() {
       <div className="flex items-center py-2 box-border">
         <input
           type="text"
-          className="appearance-none border-none w-2/3 text-gray-700 py-2 px-4 leading-tight focus:outline-none rounded-lg flex-auto"
+          className="appearance-none bg-light-2 border-none w-2/3 text-gray-700 py-2 px-4 leading-tight focus:outline-none rounded-lg flex-auto"
           placeholder="Search movies..."
           value={text}
           onChange={handleChange}
         />
         <span className="flex-none ml-2 mr-2">
           <Primary2Button
-            name="Filter"
-            icon={<FaFilter />}
-            handleClick={handleFilterClick}
-          />
-          <Primary2Button
             name="Search"
             icon={<FaSearch />}
             handleClick={handleClick}
           />
+          <Primary2Button
+            name="Filter"
+            icon={<FaFilter />}
+            handleClick={handleFilterClick}
+          />
         </span>
       </div>
       <div id="filters" className="w-full hidden bg-primary-2 rounded-lg p-2 text-white">
-        <i>Insert genre filters here.</i>
+        <Dropdown
+          id="genre"
+          options={[
+              {"display":"All Genres","value":"Disregard"},
+              {"display":"Action","value":"Action"},
+              {"display":"Adventure","value":"Adventure"},
+              {"display":"Animation","value":"Animation"},
+              {"display":"Comedy","value":"Comedy"},
+              {"display":"Crime","value":"Crime"},
+              {"display":"Documentary","value":"Documentary"},
+              {"display":"Drama","value":"Drama"},
+              {"display":"Family","value":"Family"},
+              {"display":"Fantasy","value":"Fantasy"},
+              {"display":"History","value":"History"},
+              {"display":"Horror","value":"Horror"},
+              {"display":"Music","value":"Music"},
+              {"display":"Mystery","value":"Mystery"},
+              {"display":"Romance","value":"Romance"},
+              {"display":"Science Fiction","value":"Science Fiction"},
+              {"display":"TV Movie","value":"TV Movie"},
+              {"display":"Thriller","value":"Thriller"},
+              {"display":"War","value":"War"},
+              {"display":"Western","value":"Western"}
+          ]}
+          label="Filter by Genre:"
+        />
+        <Dropdown
+          id="sort"
+          options={[
+            {"display": "Title", "value": "title"},
+            {"display": "Release Date", "value": "release"},
+            {"display": "Content Rating (MPA)", "value": "mpa"},
+            {"display": "Reviews", "value": "rating"}
+          ]}
+          label="Sort By:"
+        />
       </div>
     </form>
   );
