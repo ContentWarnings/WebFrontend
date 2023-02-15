@@ -8,15 +8,22 @@ function Dropdown(props: any) {
     id = props.id;
 
   for (let i = 0; i < props.options.length; i++) {
-    options.push(
-      <option value={props.options[i].value}>{props.options[i].display}</option>
-    )
+
+    if (props.default === props.options[i].value) {
+      options.push(
+        <option selected value={props.options[i].value}>{props.options[i].display}</option>
+      )
+    } else {
+      options.push(
+        <option value={props.options[i].value}>{props.options[i].display}</option>
+      )
+    }
   }
 
   return (
     <label>
       {props.label}
-      <select id={id} className="bg-light-2 text-gray-700 rounded-lg mx-auto text-lg px-2 py-1 mx-2">{options}</select>
+      <select id={id} onChange={props.handleChange} className="bg-light-2 text-gray-700 rounded-lg mx-auto text-lg px-2 py-1 mx-2">{options}</select>
     </label>
   );
 }
