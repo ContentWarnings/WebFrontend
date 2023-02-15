@@ -1,3 +1,6 @@
+// References
+// https://stackoverflow.com/a/64253626
+
 import GenreCell from "../shared/GenreCell";
 import CWCell from "../shared/CWCell";
 import { useState } from "react";
@@ -39,13 +42,20 @@ function MovieCell(props: any) {
       <div className="flex-auto">
         <h2 className="text-2xl">{props.name}</h2>
         <p className="opacity-75">{date_str} - {time_str}</p>
-        <div className="flex py-1">
+        <div className="flex flex-wrap pt-1">
           {genre_list}
         </div>
-        <div className="flex py-1">
+        <div className="flex flex-wrap pt-1">
           {cw_list}
         </div>
-        <p>{props.desc}</p>
+        <p style={{
+          maxWidth: '100%',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 2,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}>{props.desc}</p>
       </div>
     </a>
   );
