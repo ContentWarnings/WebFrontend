@@ -14,7 +14,7 @@ function getData(page: number) {
       arr.push(<MovieCell
           id="42069"
           name={"Movie Name " + page.toString() + " : #" + i.toString()}
-          desc="This is the story of a fake movie."
+          desc="This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. This is the story of a fake movie. "
           img="https://www.themoviedb.org/t/p/w440_and_h660_face/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg"
           genres={["Action", "Adventure"]}
           normalTriggers={["Trigger 1", "Trigger 2"]}
