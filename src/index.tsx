@@ -12,9 +12,8 @@ root.render(
   </React.StrictMode>
 );
 
-// Bitmask-based CW importer
-let current_url: URL = new URL(window.location.href);
-let import_str = current_url.searchParams.get("import");
+// Bitmask-based CW importer. Is plcaed here since it should run on every MM page.
+let import_str = (new URL(window.location.href)).searchParams.get("import");
 if (import_str !== null && import_str !== "") {
     // let final;
     // // TODO: Get CWs from API

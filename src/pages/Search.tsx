@@ -54,6 +54,7 @@ function Search() {
     }
  
     useEffect(() => {
+    // Infinite scroll
       window.addEventListener('scroll', onScroll)
       return () => window.removeEventListener('scroll', onScroll)
     }, [items, page])

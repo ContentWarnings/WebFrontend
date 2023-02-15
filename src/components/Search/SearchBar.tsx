@@ -1,14 +1,46 @@
+// References
+// https://developer.mozilla.org/en-US/docs/Web/API/History_API
+
 import Primary2Button from "../shared/Primary2Button";
 import Dropdown from "../shared/Dropdown";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import { useState } from "react";
 
+function populateDefaultFromURL(param: string, def: string) {
+  let url_param = (new URL(window.location.href)).searchParams.get(param);
+  let text_default = def;
+  if (url_param)
+    text_default = url_param;
+
+  return text_default
+}
+
+function editURLByParam(param: string, value: string) {
+  let url: URL = new URL(window.location.href);
+  url.searchParams.set(param, value);
+
+  window.history.pushState({}, document.title, url.search);
+}
+
 function SearchBar() {
-  const [text, setText] = useState("");
+  // Populate from GET queries
+  let text_default: string = populateDefaultFromURL("q", "");
+  let genre_default: string = populateDefaultFromURL("genre", "Disregard");
+  let sort_default: string = populateDefaultFromURL("sort", "title");
+
+  const [text, setText] = useState(text_default);
 
   const handleClick = () => {
     console.log("Button was clicked");
   };
+
+  const handleChangeGenre = (evt: any) => {
+    editURLByParam("genre", evt.target.value);
+  }
+
+  const handleChangeSort = (evt: any) => {
+    editURLByParam("sort", evt.target.value);
+  }
 
   const handleFilterClick = () => {
     let filterDiv = document.getElementById("filters");
@@ -28,8 +60,9 @@ function SearchBar() {
     e.preventDefault();
 
     if (text !== "") {
+      editURLByParam("q", text);
       // @todo - search for that movie on search page
-      setText("");
+      // setText("");
     }
   };
 
@@ -51,6 +84,7 @@ function SearchBar() {
           />
           <Primary2Button
             name="Filter"
+            role="button"
             icon={<FaFilter />}
             handleClick={handleFilterClick}
           />
@@ -82,6 +116,8 @@ function SearchBar() {
               {"display":"Western","value":"Western"}
           ]}
           label="Filter by Genre:"
+          default={genre_default}
+          handleChange={handleChangeGenre}
         />
         <Dropdown
           id="sort"
@@ -92,6 +128,8 @@ function SearchBar() {
             {"display": "Reviews", "value": "rating"}
           ]}
           label="Sort By:"
+          default={sort_default}
+          handleChange={handleChangeSort}
         />
       </div>
     </form>
