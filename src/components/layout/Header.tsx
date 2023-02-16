@@ -45,7 +45,7 @@ function Header() {
         </div>
         <div className="p-2">
           <Link to="/settings">
-            <Settings className="w-8 h-8 rounded-full hover:bg-primary-3 hover:border-primary-3" />
+            <Settings className="transition ease-in-out delay-100 w-8 h-8 rounded-full hover:rotate-45" />
           </Link>
         </div>
         <div className="p-2">
