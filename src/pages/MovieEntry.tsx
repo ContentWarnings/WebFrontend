@@ -1,4 +1,5 @@
 import { IoIosWarning } from "react-icons/io";
+import Rating from "@mui/material/Rating";
 
 function MovieEntry() {
   return (
@@ -24,7 +25,7 @@ function MovieEntry() {
             <h6 className="text-white">Trigger 3</h6>
             <h6 className="text-white">Trigger 4</h6>
           </div>
-          <div>STAR RATING HERE </div>
+          <Rating />
           <div className="flex grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
             <h6 className="text-white">Genre 1</h6>
             <h6 className="text-white">Genre 2</h6>
