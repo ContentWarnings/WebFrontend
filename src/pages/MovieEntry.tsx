@@ -1,7 +1,16 @@
 import { IoIosWarning } from "react-icons/io";
 import Rating from "@mui/material/Rating";
+import { useState } from "react";
 
 function MovieEntry() {
+  const [rating, setRating] = useState(3.5);
+  const [flagged, setFlagged] = useState(true);
+  const [contentWarnings, setContentWarnings] = useState([
+    "Trigger 1",
+    "Trigger 2",
+    "Trigger 3",
+  ]);
+
   return (
     <div className="relative lg:mx-20 h-screen mb-10 mt-32">
       <div className="flex">
@@ -20,25 +29,49 @@ function MovieEntry() {
             July 27, 2022 - 1 hr 24min
           </h2>
           <div className="flex grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
-            <h6 className="text-white">Trigger 1</h6>
-            <h6 className="text-white">Trigger 2</h6>
-            <h6 className="text-white">Trigger 3</h6>
-            <h6 className="text-white">Trigger 4</h6>
-          </div>
-          <Rating />
-          <div className="flex grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
             <h6 className="text-white">Genre 1</h6>
             <h6 className="text-white">Genre 2</h6>
             <h6 className="text-white">Genre 3</h6>
             <h6 className="text-white">Genre 4</h6>
           </div>
-          <div className="flex mt-5">
-            <IoIosWarning className="text-5xl text-light-1" />
-            <div className="flex flex-col text-light-1">
-              <h3 className="font-bold">Proceed with caution.</h3>
-              <p>This contains material you previously flagged.</p>
-            </div>
+          <div className="pt-2">
+            <Rating
+              precision={0.5}
+              readOnly={true}
+              size={"large"}
+              value={rating}
+              sx={{
+                width: 300,
+                color: "white",
+                "& .MuiRating-iconEmpty": {
+                  color: "white",
+                },
+              }}
+            />
           </div>
+          {contentWarnings.length === 0 ? (
+            <h6 className="text-white">
+              There are no content warnings associated with this film in our
+              database.
+              <br />
+              Please proceed with caution while watching this movie.
+            </h6>
+          ) : (
+            <div className="flex grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
+              {contentWarnings.map((contentWarning) => (
+                <h6 className="text-white">{contentWarning}</h6>
+              ))}
+            </div>
+          )}
+          {flagged && (
+            <div className="flex mt-5">
+              <IoIosWarning className="text-5xl text-light-1" />
+              <div className="flex flex-col text-light-1">
+                <h3 className="font-bold">Proceed with caution.</h3>
+                <p>This contains material you previously flagged.</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="mt-5 text-light-1">
