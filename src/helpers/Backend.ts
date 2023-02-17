@@ -34,6 +34,7 @@ class Backend {
      */
     public static async getRequest(path: string, bearerToken: string = "") {
         const reqHeaders = this.getAuthHeader(bearerToken);
+        reqHeaders["Access-Control-Allow-Origin"] = "*";
 
         const requestResponse = await fetch(this.MAIN_ENDPOINT + path, {
             method: "get",
@@ -60,6 +61,8 @@ class Backend {
     public static async postRequest(path: string, bearerToken: string = "", jsonBody?: any) {
         var reqHeaders = this.getAuthHeader(bearerToken);
         reqHeaders["Content-Type"] = "application/json";
+        reqHeaders["Access-Control-Allow-Origin"] = "*";
+        
         const reqBody = (jsonBody === undefined) ? null : JSON.stringify(jsonBody);
         
         const requestResponse = await fetch(this.MAIN_ENDPOINT + path, {
