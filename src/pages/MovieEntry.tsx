@@ -63,11 +63,14 @@ function MovieEntry() {
           {flagged && <FlaggedContent />}
         </div>
       </div>
-      <StreamingButton
-        link="https://netflix.com"
-        icon="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png"
-        streamType="Stream"
-      />
+      <div className="mt-6 flex">
+        <StreamingButton
+          link="https://netflix.com"
+          icon="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png"
+          streamType="Stream"
+        />
+      </div>
+
       <div className="mt-5 text-light-1">
         <h1 className="text-3xl font-bold">Summary</h1>
         <p className="text-1xl">{summary}</p>
