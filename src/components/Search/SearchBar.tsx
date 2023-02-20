@@ -1,32 +1,15 @@
-// References
-// https://developer.mozilla.org/en-US/docs/Web/API/History_API
-
 import Primary2Button from "../shared/Primary2Button";
 import Dropdown from "../shared/Dropdown";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import { useState } from "react";
+import URLHelper from "../../helpers/URLHelper";
 
-function populateDefaultFromURL(param: string, def: string) {
-  let url_param = (new URL(window.location.href)).searchParams.get(param);
-  let text_default = def;
-  if (url_param)
-    text_default = url_param;
 
-  return text_default
-}
-
-function editURLByParam(param: string, value: string) {
-  let url: URL = new URL(window.location.href);
-  url.searchParams.set(param, value);
-
-  window.history.pushState({}, document.title, url.search);
-}
-
-function SearchBar() {
+function SearchBar(props: any) {
   // Populate from GET queries
-  let text_default: string = populateDefaultFromURL("q", "");
-  let genre_default: string = populateDefaultFromURL("genre", "Disregard");
-  let sort_default: string = populateDefaultFromURL("sort", "title");
+  let text_default: string = URLHelper.populateDefaultFromURL("q", "");
+  let genre_default: string = URLHelper.populateDefaultFromURL("genre", "Disregard");
+  let sort_default: string = URLHelper.populateDefaultFromURL("sort", "title");
 
   const [text, setText] = useState(text_default);
 
@@ -35,14 +18,20 @@ function SearchBar() {
   };
 
   const handleChangeGenre = (evt: any) => {
-    editURLByParam("genre", evt.target.value);
+    URLHelper.editURLByParam("genre", evt.target.value);
+
+    props.handleSubmit();
   }
 
   const handleChangeSort = (evt: any) => {
-    editURLByParam("sort", evt.target.value);
+    URLHelper.editURLByParam("sort", evt.target.value);
+
+    props.handleSubmit();
   }
 
-  const handleFilterClick = () => {
+  const handleFilterClick = (e: any) => {
+    e.preventDefault();
+
     let filterDiv = document.getElementById("filters");
 
     if (filterDiv !== null) {
@@ -54,20 +43,23 @@ function SearchBar() {
     }
   };
 
-  const handleChange = (e: any) => setText(e.target.value);
+  const handleChange = (evt: any) => {
+    URLHelper.editURLByParam("q", evt.target.value);
+    setText(evt.target.value);
+  }
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
 
-    if (text !== "") {
-      editURLByParam("q", text);
-      // @todo - search for that movie on search page
-      // setText("");
-    }
-  };
+  //   if (text !== "") {
+  //     URLHelper.editURLByParam("q", text);
+  //     // @todo - search for that movie on search page
+  //     // setText("");
+  //   }
+  // };
 
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
+    <form className="w-full" onSubmit={props.handleSubmit}>
       <div className="flex items-center py-2 box-border">
         <input
           type="text"

@@ -34,14 +34,19 @@ function MovieCell(props: any) {
     cw_list.push(<CWCell genre={props.normalTriggers[i]} />);
   }
 
+  let if_we_have_mpa = ""
+  if (props.mpa && props.mpa !== "Unknown") {
+    if_we_have_mpa = " - " + props.mpa;
+  }
+
   return (
-    <a href={"/movie/" + props.id} className="flex transition ease-in-out delay-100 hover:opacity-60 my-5">
+    <a href={"/movie/" + props.id} className="flex transition ease-in-out delay-100 hover:border-white rounded-md border-2 border-transparent my-5">
       <div className="flex-none w-36 pr-5">
         <img className="rounded-md" src={props.img} alt={"Movie poster for " + props.name}/>
       </div>
       <div className="flex-auto">
         <h2 className="text-2xl">{props.name}</h2>
-        <p className="opacity-75">{date_str} - {time_str}</p>
+        <p className="opacity-75">{date_str} - {time_str}{if_we_have_mpa}</p>
         <div className="flex flex-wrap pt-1">
           {genre_list}
         </div>
