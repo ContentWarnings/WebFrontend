@@ -19,25 +19,55 @@ async function getData(page: number) {
 
     let path = `/search?p=${page}&genre=${genre}&sort=${sort}`;
 
-    if (q !== "")
+    if (q !== "") {
       path += `&q=${q}`;
+    } else if (page > 1) {
+      return [];
+    }
 
     const resp = await Backend.getRequest(path);
     const data = resp.jsonResponse.results;
 
-    for (let i = 0; i < data.length; i++) {
-      arr.push(<MovieCell
-          id={data[i].id}
-          name={data[i].title}
-          desc={data[i].overview}
-          img={data[i].img}
-          genres={data[i].genres}
-          normalTriggers={["Trigger 1", "Trigger 2"]}
-          flaggedTriggers={["Trigger 3"]}
-          releaseDate={data[i].release}
-          runtime={data[i].runtime}
-          mpa={data[i].mpa}
-      />);
+    // Get CW preferences
+    const prefs_raw = localStorage.getItem("cw");
+    let prefs: any = {};
+    if (prefs_raw)
+      prefs = JSON.parse(prefs_raw);
+
+    for (let i = 0; i < data.length; i++) {   
+      // CW filtering 
+      let all_triggers = data[i].cw;
+      let normal_triggers = [];
+      let flagged_triggers = [];
+      let block = false;
+
+      // Logic that takes CWs and sorts them 'normal' and 'flagged'.
+      // If 'hide', block render of movie.
+      for (let j = 0; j < all_triggers.length; j++) {
+        if (prefs[all_triggers[j]] === "flag") {
+          flagged_triggers.push(all_triggers[j]);
+        } else if (prefs[all_triggers[j]] === "show") {
+          normal_triggers.push(all_triggers[j]);
+        } else {
+          block = true;
+        }
+      }
+
+      // Element -> list
+      if (!block) {
+        arr.push(<MovieCell
+            id={data[i].id}
+            name={data[i].title}
+            desc={data[i].overview}
+            img={data[i].img}
+            genres={data[i].genres}
+            normalTriggers={normal_triggers}
+            flaggedTriggers={flagged_triggers}
+            releaseDate={data[i].release}
+            runtime={data[i].runtime}
+            mpa={data[i].mpa}
+        />);
+      }
     }
 
   return arr;
@@ -52,8 +82,11 @@ async function loadNext(items: any, setItems: any, hasMore: any, setHasMore: any
 
   if (newItems.length == 0) {
     setHasMore(false);
-    setPage(page + 1);
-    return;
+    if (page == 0) {
+      newItems.push(<p className="text-center my-10 text-2xl">No results found!</p>)
+    } else {
+      newItems.push(<p className="text-center my-10 text-2xl">No more results!</p>)
+    }
   }
 
   setItems([...items, ...newItems])

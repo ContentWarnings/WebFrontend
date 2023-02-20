@@ -14,8 +14,7 @@ function Header() {
     e.preventDefault();
 
     if (text !== "") {
-      // @todo - search for that movie on search page
-      setText("");
+      window.location.href = `/search?q=${text}`;
     }
   };
 

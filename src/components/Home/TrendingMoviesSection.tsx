@@ -15,7 +15,7 @@ function TrendingMoviesSection() {
         <h1 className="text-2xl text-light-1 font-bold">
           Trending Movies For You
         </h1>
-        <Primary2Button name="View More" handleClick={handleClick} />
+        <Primary2Button href="/search" name="View More" />
       </div>
       <div className="flex grid gap-3 grid-cols-1 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2">
         {/* {movies.map((movie) => (

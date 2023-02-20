@@ -3,7 +3,6 @@
 
 import GenreCell from "../shared/GenreCell";
 import CWCell from "../shared/CWCell";
-import { useState } from "react";
 
 function MovieCell(props: any) {
   const handleClick = () => {
