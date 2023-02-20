@@ -6,13 +6,11 @@ import CWCell from "../shared/CWCell";
 import { FaExclamationTriangle } from "react-icons/fa";
 
 function MovieCell(props: any) {
-  const handleClick = () => {
-    console.log("Button was clicked");
-  };
-
   let date: Date = new Date(props.releaseDate);
   let opts: Object = { year: 'numeric', month: 'short', day: 'numeric' };
-  let date_str = date.toLocaleDateString("en-us", opts);
+  let date_str: string = date.toLocaleDateString("en-us", opts);
+  if (date_str === "Invalid Date")
+    date_str = "Unknown Release Date";
 
   let hours: Number = Math.floor(props.runtime / 60);
   let mins: Number = props.runtime % 60;
@@ -20,6 +18,10 @@ function MovieCell(props: any) {
   let time_str = mins + "min";
   if (hours > 0)
     time_str = hours + "hr " + time_str;
+  if (time_str === "0min")
+    time_str = "";
+  else
+    time_str = " - " + time_str;
 
   let genre_list = [];
   for (let i = 0; i < props.genres.length; i++) {
@@ -51,7 +53,7 @@ function MovieCell(props: any) {
       </div>
       <div className="flex-auto">
         <h2 className="text-2xl">{exclaim}{props.name}</h2>
-        <p className="opacity-75">{date_str} - {time_str}{if_we_have_mpa}</p>
+        <p className="opacity-75">{date_str}{time_str}{if_we_have_mpa}</p>
         <div className="flex flex-wrap pt-1">
           {genre_list}
         </div>
