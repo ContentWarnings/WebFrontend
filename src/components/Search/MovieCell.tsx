@@ -3,6 +3,7 @@
 
 import GenreCell from "../shared/GenreCell";
 import CWCell from "../shared/CWCell";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 function MovieCell(props: any) {
   const handleClick = () => {
@@ -38,13 +39,18 @@ function MovieCell(props: any) {
     if_we_have_mpa = " - " + props.mpa;
   }
 
+  let exclaim = <span></span>;
+  if (props.flaggedTriggers.length !== 0)
+    exclaim = <FaExclamationTriangle className="inline mr-3 -translate-y-0.5" />;
+
+
   return (
     <a href={"/movie/" + props.id} className="flex transition ease-in-out delay-100 hover:border-white rounded-md border-2 border-transparent my-5">
       <div className="flex-none w-36 pr-5">
         <img className="rounded-md" src={props.img} alt={"Movie poster for " + props.name}/>
       </div>
       <div className="flex-auto">
-        <h2 className="text-2xl">{props.name}</h2>
+        <h2 className="text-2xl">{exclaim}{props.name}</h2>
         <p className="opacity-75">{date_str} - {time_str}{if_we_have_mpa}</p>
         <div className="flex flex-wrap pt-1">
           {genre_list}

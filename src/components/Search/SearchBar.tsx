@@ -48,16 +48,6 @@ function SearchBar(props: any) {
     setText(evt.target.value);
   }
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-
-  //   if (text !== "") {
-  //     URLHelper.editURLByParam("q", text);
-  //     // @todo - search for that movie on search page
-  //     // setText("");
-  //   }
-  // };
-
   return (
     <form className="w-full" onSubmit={props.handleSubmit}>
       <div className="flex items-center py-2 box-border">
