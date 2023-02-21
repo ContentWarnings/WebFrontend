@@ -20,7 +20,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="mx-auto max-w-2xl mt-20">
+    <div data-testid="search-bar" className="mx-auto max-w-2xl mt-20">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="items-center py-2">
           <input
