@@ -104,10 +104,16 @@ function SearchBar(props: any) {
         <Dropdown
           id="sort"
           options={[
-            {"display": "Title", "value": "title"},
-            {"display": "Release Date", "value": "release"},
-            {"display": "Content Rating (MPA)", "value": "mpa"},
-            {"display": "Reviews", "value": "rating"}
+            {"display": "Default (Ascending)", "value": "default_ascending"},
+            {"display": "Default (Descending)", "value": "default_descending"},
+            {"display": "Title (Ascending)", "value": "title_ascending"},
+            {"display": "Title (Descending)", "value": "title_descending"},
+            {"display": "Release Date (Ascending)", "value": "release_ascending"},
+            {"display": "Release Date (Descending)", "value": "release_descending"},
+            {"display": "Content Rating (Ascending)", "value": "mpa_ascending"},
+            {"display": "Content Rating (Descending)", "value": "mpa_descending"},
+            {"display": "Reviews (Ascending)", "value": "rating_ascending"},
+            {"display": "Reviews (Descending)", "value": "rating_descending"}
           ]}
           label="Sort By:"
           default={sort_default}
