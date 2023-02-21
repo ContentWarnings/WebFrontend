@@ -14,8 +14,7 @@ function Header() {
     e.preventDefault();
 
     if (text !== "") {
-      // @todo - search for that movie on search page
-      setText("");
+      window.location.href = `/search?q=${text}`;
     }
   };
 
@@ -32,7 +31,7 @@ function Header() {
             <div className="flex items-center py-2">
               <input
                 type="text"
-                className="appearance-none border-none w-full text-gray-700 py-1 px-2 leading-tight focus:outline-none rounded-l-lg"
+                className="appearance-none border-none w-full text-gray-700 bg-light-2 py-1 px-2 leading-tight focus:outline-none rounded-l-lg"
                 placeholder="Search movies..."
                 value={text}
                 onChange={handleChange}

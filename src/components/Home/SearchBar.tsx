@@ -15,8 +15,7 @@ function SearchBar() {
     e.preventDefault();
 
     if (text !== "") {
-      // @todo - search for that movie on search page
-      setText("");
+      window.location.href = `/search?q=${text}`;
     }
   };
 
@@ -26,7 +25,7 @@ function SearchBar() {
         <div className="items-center py-2">
           <input
             type="text"
-            className="appearance-none border-none w-full text-gray-700 py-2 px-4 leading-tight focus:outline-none rounded-lg"
+            className="appearance-none border-none w-full text-gray-700 py-2 px-4 leading-tight focus:outline-none rounded-lg bg-light-2"
             placeholder="Search movies..."
             value={text}
             onChange={handleChange}

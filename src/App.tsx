@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col justify-between bg-dark-2">
+      <div className="flex flex-col justify-between bg-dark-2 min-h-screen">
         <Header />
         <main className="container mx-auto">
           <Routes>
