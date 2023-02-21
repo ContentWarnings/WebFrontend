@@ -1,0 +1,27 @@
+# References
+# https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci
+
+name: React Tests
+
+on:
+  push:
+    paths:
+      - 'src/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install
+        run: npm ci
+
+      - name: Test
+        run: npm test
