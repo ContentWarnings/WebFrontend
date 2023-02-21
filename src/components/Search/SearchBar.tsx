@@ -9,7 +9,7 @@ function SearchBar(props: any) {
   // Populate from GET queries
   let text_default: string = URLHelper.populateDefaultFromURL("q", "");
   let genre_default: string = URLHelper.populateDefaultFromURL("genre", "Disregard");
-  let sort_default: string = URLHelper.populateDefaultFromURL("sort", "title");
+  let sort_default: string = URLHelper.populateDefaultFromURL("sort", "default_ascending");
 
   const [text, setText] = useState(text_default);
 
