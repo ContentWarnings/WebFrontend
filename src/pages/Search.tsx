@@ -35,7 +35,7 @@ async function getData(page: number) {
     if (prefs_raw)
       prefs = JSON.parse(prefs_raw);
 
-    for (let i = 0; i < data.length; i++) {   
+    for (let i = 0; i < data.length; i++) {
       // CW filtering 
       let all_triggers = data[i].cw;
       let normal_triggers = [];

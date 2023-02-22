@@ -65,9 +65,9 @@ class Importer {
 
                 // If something goes wrong, we default to 'flag'.
                 let action = "flag";
-                if (current_value == "0")
+                if (current_value === "0")
                     action = "show";
-                else if (current_value == "2")
+                else if (current_value === "2")
                     action = "hide";
 
                 final[current_cw] = action;
@@ -126,7 +126,7 @@ class Importer {
         for (let i = 0; i < raw.length; i++) {
             output += raw[i];
 
-            if (i % period == period - 1)
+            if (i % period === period - 1)
                 output += "-";
         }
 
