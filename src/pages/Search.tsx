@@ -16,7 +16,7 @@ async function getData(page: number) {
     // Gets data from inputs by stealing them from the URL (since the values are synced, teehee)
     const q = URLHelper.populateDefaultFromURL("q", "");
     const genre = URLHelper.populateDefaultFromURL("genre", "Disregard");
-    const sort = URLHelper.populateDefaultFromURL("sort", "title");
+    const sort = URLHelper.populateDefaultFromURL("sort", "default_ascending");
 
     let path = `/search?p=${page}&genre=${genre}&sort=${sort}`;
 
