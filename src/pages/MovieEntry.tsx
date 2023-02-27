@@ -1,3 +1,6 @@
+// References
+// https://daily-dev-tips.com/posts/center-elements-with-tailwind-css/
+
 import { useState } from "react";
 import StarRating from "../components/MovieEntry/StarRating";
 import FlaggedContent from "../components/MovieEntry/FlaggedContent";
@@ -5,6 +8,7 @@ import StreamingButton from "../components/MovieEntry/StreamingButton";
 import Backend from "../helpers/Backend";
 import { FaSpinner } from "react-icons/fa";
 import GenreCell from "../components/shared/CWCell";
+import CWCell from "../components/shared/CWCell";
 
 async function getData(
   setIsLoading: any,
@@ -13,12 +17,12 @@ async function getData(
   setDate: any,
   setRating: any,
   setGenres: any,
+  setWarnings: any,
+  setContentWarnings: any,
   setStreaming: any,
   setSummary: any
 ) {
   let path = window.location.pathname;
-  console.log(path);
-
   const resp = await Backend.getRequest(path);
   const data = resp.jsonResponse;
 
@@ -31,31 +35,36 @@ async function getData(
   let all_triggers = data.cw;
   let normal_triggers = [];
   let flagged_triggers = [];
-  let block = false;
 
   // Logic that takes CWs and sorts them 'normal' and 'flagged'.
   // If 'hide', block render of movie.
-  for (let j = 0; j < all_triggers.length; j++) {
-    if (prefs[all_triggers[j]] === "flag") {
-      flagged_triggers.push(all_triggers[j]);
-    } else if (prefs[all_triggers[j]] === "show") {
-      normal_triggers.push(all_triggers[j]);
+  for (let i = 0; i < all_triggers.length; i++) {
+    if (prefs[all_triggers[i].name] === "flag") {
+      flagged_triggers.push(all_triggers[i]);
+    } else if (prefs[all_triggers[i].name] === "show") {
+      normal_triggers.push(all_triggers[i]);
     } else {
-      block = true;
+      normal_triggers.push(all_triggers[i]);
     }
   }
+
+  let date: Date = new Date(data.release);
+  let opts: Object = { year: "numeric", month: "short", day: "numeric" };
+  let date_str: string = date.toLocaleDateString("en-us", opts);
+  if (date_str === "Invalid Date") date_str = "Unknown Release Date";
+
   setTitle(data.title);
   setSummary(data.overview);
   setPoster(data.img);
   setGenres(data.genres);
-  setDate(data.release);
+  setDate(date_str);
   setRating(data.rating / 2);
-  setStreaming(data.streaming_info.providers);
+  if (data.streaming_info.providers !== null)
+    setStreaming(data.streaming_info.providers);
+  setWarnings(normal_triggers);
+  setContentWarnings(flagged_triggers);
   // setTime();
   // id={data[i].id}
-  // normalTriggers={normal_triggers}
-  // flaggedTriggers={flagged_triggers}
-  // runtime={data[i].runtime}
   // mpa={data[i].mpa}
   setIsLoading(false);
 }
@@ -68,6 +77,7 @@ function MovieEntry() {
   const [rating, setRating] = useState(null);
   const [flagged, setFlagged] = useState(false);
   const [genres, setGenres] = useState([]);
+  const [warnings, setWarnings] = useState([]);
   const [contentWarnings, setContentWarnings] = useState([]);
   const [summary, setSummary] = useState("Plot Unknown");
   const [isLoading, setIsLoading] = useState(true);
@@ -82,12 +92,14 @@ function MovieEntry() {
       setDate,
       setRating,
       setGenres,
+      setWarnings,
+      setContentWarnings,
       setStreaming,
       setSummary
     );
     return (
-      <div className={"w-full h-screen"}>
-        <FaSpinner className="mt-40 inline text-center text-white text-6xl animate-spin" />
+      <div className={"grid place-items-center h-screen"}>
+        <FaSpinner className="inline text-center text-white text-6xl animate-spin" />
       </div>
     );
   } else {
@@ -110,7 +122,7 @@ function MovieEntry() {
               ))}
             </div>
             <StarRating value={rating} />
-            {contentWarnings.length === 0 ? (
+            {contentWarnings.length === 0 && warnings.length === 0 ? (
               <h6 className="text-white">
                 There are no content warnings associated with this film in our
                 database.
@@ -118,9 +130,12 @@ function MovieEntry() {
                 Please proceed with caution while watching this movie.
               </h6>
             ) : (
-              <div className="flex grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
-                {contentWarnings.map((contentWarning) => (
-                  <h6 className="text-white">{contentWarning}</h6>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {contentWarnings.map((contentWarning: any) => (
+                  <CWCell flag={true} genre={contentWarning.name} />
+                ))}
+                {warnings.map((warning: any) => (
+                  <CWCell genre={warning.name} />
                 ))}
               </div>
             )}
@@ -128,9 +143,9 @@ function MovieEntry() {
           </div>
         </div>
         <div className="mt-6 flex">
-          <div className="flex flex-wrap gap-2">
-            {streaming.map((streamer) => (
-              <StreamingButton icon={streamer[1]} streamType="Stream" />
+          <div className="flex grid grid-cols-2 xl:grid-cols-9 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-2">
+            {streaming.map((streamer: any) => (
+              <StreamingButton icon={streamer[1]} streamer={streamer[0]} />
             ))}
           </div>
         </div>
