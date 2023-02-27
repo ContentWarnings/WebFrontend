@@ -15,10 +15,12 @@ async function getData(
   setTitle: any,
   setPoster: any,
   setDate: any,
+  setTime: any,
   setRating: any,
   setGenres: any,
   setWarnings: any,
   setContentWarnings: any,
+  setMpa: any,
   setStreaming: any,
   setSummary: any
 ) {
@@ -53,17 +55,26 @@ async function getData(
   let date_str: string = date.toLocaleDateString("en-us", opts);
   if (date_str === "Invalid Date") date_str = "Unknown Release Date";
 
+  let hours: Number = Math.floor(data.runtime / 60);
+  let mins: Number = data.runtime % 60;
+
+  let time_str = mins + "min";
+  if (hours > 0) time_str = hours + "hr " + time_str;
+  if (time_str === "0min") time_str = "";
+  else time_str = " - " + time_str;
+
   setTitle(data.title);
   setSummary(data.overview);
   setPoster(data.img);
   setGenres(data.genres);
   setDate(date_str);
   setRating(data.rating / 2);
-  if (data.streaming_info.providers !== null)
-    setStreaming(data.streaming_info.providers);
+  // if (data.streaming_info.providers !== null)
+  //   setStreaming(data.streaming_info.providers);
   setWarnings(normal_triggers);
   setContentWarnings(flagged_triggers);
-  // setTime();
+  setTime(time_str);
+  setMpa(data.mpa);
   // id={data[i].id}
   // mpa={data[i].mpa}
   setIsLoading(false);
@@ -82,6 +93,7 @@ function MovieEntry() {
   const [summary, setSummary] = useState("Plot Unknown");
   const [isLoading, setIsLoading] = useState(true);
   const [streaming, setStreaming] = useState([]);
+  const [mpa, setMpa] = useState("Unknown");
 
   // Initial load of data
   if (isLoading) {
@@ -90,10 +102,12 @@ function MovieEntry() {
       setTitle,
       setPoster,
       setDate,
+      setTime,
       setRating,
       setGenres,
       setWarnings,
       setContentWarnings,
+      setMpa,
       setStreaming,
       setSummary
     );
@@ -103,6 +117,7 @@ function MovieEntry() {
       </div>
     );
   } else {
+    // if (warnings.length > 0) setFlagged(true);
     return (
       <div className="relative lg:mx-20 h-fit mb-10 mt-32">
         <div className="flex">
@@ -112,9 +127,10 @@ function MovieEntry() {
             alt={title}
           />
           <div className="flex flex-col">
-            <h1 className="text-7xl text-light-1 font-bold">{title}</h1>
-            <h2 className="text-3xl text-light-3 my-3">
-              {date} - {time}
+            <h1 className="text-6xl text-light-1 font-bold">{title}</h1>
+            <h2 className="text-2xl text-light-3 my-3">
+              {date}
+              {time}
             </h2>
             <div className="flex flex-wrap gap-2">
               {genres.map((genre) => (
@@ -137,6 +153,11 @@ function MovieEntry() {
                 {warnings.map((warning: any) => (
                   <CWCell genre={warning.name} />
                 ))}
+              </div>
+            )}
+            {mpa !== "Unknown" && (
+              <div className="w-fit text-3xl text-light-1 font-bold border-light-1 border-4 p-1 my-2">
+                {mpa}
               </div>
             )}
             {flagged && <FlaggedContent />}
