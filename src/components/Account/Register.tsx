@@ -9,9 +9,9 @@ function Register() {
 
   const register = (e: any) => {
     e.preventDefault();
-    const form_data: any = document.forms[1];
-    const username: string = form_data.username.value;
-    const password: string = form_data.password.value;
+    const formData: any = document.forms[1];
+    const username: string = formData.username.value;
+    const password: string = formData.password.value;
 
     const req: object = {
       "email": username,

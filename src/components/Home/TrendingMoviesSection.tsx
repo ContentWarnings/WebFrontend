@@ -11,20 +11,20 @@ async function getData(setMovies: any) {
   const data = resp.jsonResponse.results;
 
   // Get CW data from memory
-  const prefs_raw = localStorage.getItem("cw");
+  const prefsRaw = localStorage.getItem("cw");
   let prefs: any = {};
-  if (prefs_raw)
-    prefs = JSON.parse(prefs_raw);
+  if (prefsRaw)
+    prefs = JSON.parse(prefsRaw);
 
   let output = [];
 
   for (let i = 0; i < data.length; i++) {
-    let all_triggers = data[i].cw;
+    let allTriggers = data[i].cw;
     let block: boolean = false;
 
     // See if we need to hide this CW...
-    for (let j = 0; j < all_triggers.length; j++) {
-      if (prefs[all_triggers[j]] !== "show") {
+    for (let j = 0; j < allTriggers.length; j++) {
+      if (prefs[allTriggers[j]] !== "show") {
         block = true;
       }
     }

@@ -9,8 +9,8 @@ function PasswordReset() {
 
   const resetPassword = (e: any) => {
     e.preventDefault();
-    const form_data: any = document.forms[1];
-    const username: string = form_data.username.value;
+    const formData: any = document.forms[1];
+    const username: string = formData.username.value;
 
     Backend.getRequest(`user/password-reset-request?email=${username}`).then((resp: any) => {
       const data: number = resp.statusCode;

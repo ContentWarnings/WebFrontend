@@ -11,14 +11,14 @@ function PasswordResetCommit() {
 
   const token = URLHelper.populateDefaultFromURL("token", "");
 
-  const verifyElGen = (title: string, text: string, link?: string, link_txt?: string) => {
-    let btn_link: string = "/";
+  const verifyElGen = (title: string, text: string, link?: string, linkTxt?: string) => {
+    let btnLink: string = "/";
     if (link && link !== "")
-      btn_link = link;
+      btnLink = link;
 
-    let btn_link_txt: string = "Go Home";
-    if (link_txt && link_txt !== "")
-      btn_link_txt = link_txt;
+    let btnLinkTxt: string = "Go Home";
+    if (linkTxt && linkTxt !== "")
+      btnLinkTxt = linkTxt;
 
     return (
       <div className="flex dark-1 bg-dark-1 rounded-lg p-4 text-white text-center flex-col">
@@ -28,7 +28,7 @@ function PasswordResetCommit() {
         <h1 className="text-2xl font-bold">{title}</h1>
         <p className="m-2">{text}</p>
         <div className="flex m-auto" id="owo">
-          <Primary2Button name={btn_link_txt} href={btn_link}/>
+          <Primary2Button name={btnLinkTxt} href={btnLink}/>
         </div>
       </div>
     );
@@ -37,8 +37,8 @@ function PasswordResetCommit() {
   // Reset password logic.
   const resetPassword = (e: any) => {
     e.preventDefault();
-    const form_data: any = document.forms[1];
-    const password: string = form_data.password.value;
+    const formData: any = document.forms[1];
+    const password: string = formData.password.value;
 
     let data = {
       "email": email,

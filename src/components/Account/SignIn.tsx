@@ -10,9 +10,9 @@ function SignIn() {
 
   const signIn = (e: any) => {
     e.preventDefault();
-    const form_data: any = document.forms[1];
-    const username: string = form_data.username.value;
-    const password: string = form_data.password.value;
+    const formData: any = document.forms[1];
+    const username: string = formData.username.value;
+    const password: string = formData.password.value;
 
     const req: object = {
       "email": username,
@@ -25,9 +25,9 @@ function SignIn() {
       if (data['token'] && typeof(data['token']) === "string") {
           const token = data['token']; 
           localStorage.setItem("token", token);
-          let url_str: string = window.location.origin + URLHelper.populateDefaultFromURL("ref", "/settings/profile");
+          let urlStr: string = window.location.origin + URLHelper.populateDefaultFromURL("ref", "/settings/profile");
           
-          window.location.href = url_str;
+          window.location.href = urlStr;
 
       } else {
           setError(data['detail']);
