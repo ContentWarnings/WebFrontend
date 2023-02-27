@@ -67,6 +67,7 @@ function Verify() {
           const data: number = resp.statusCode;
 
           if (data < 400) {
+              localStorage.setItem("token", "");
               setVerEl(verifyElGen("Account Deleted", "It's sad to see you go, but we have deleted your account for you. Thank you for using MovieMentor!"));
           } else {
               setVerEl(verifyElGen("Error", "Something went wrong. Please confirm the URL is the same from the verification email."));

@@ -18,3 +18,8 @@ let import_str: string = URLHelper.populateDefaultFromURL("in", "");
 if (import_str !== "") {
     Importer.import(import_str);
 }
+
+// Initialize empty CW database.
+if (!localStorage.getItem("cw") || localStorage.getItem("cw") === "") {
+    Importer.init();
+}

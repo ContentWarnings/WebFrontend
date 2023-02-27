@@ -57,8 +57,6 @@ class Importer {
             // Data given -> JSON object
             let import_base3: string = this.base36_to_base3(import_str);
 
-            console.log(import_base3);
-
             for (let i = 0; i < import_base3.length; i++) {
                 let current_value = import_base3[i];
                 let current_cw: string = cws[i];
@@ -71,6 +69,28 @@ class Importer {
                     action = "hide";
 
                 final[current_cw] = action;
+            }
+
+            // Set JSON to LocalStorage
+            localStorage.setItem("cw", JSON.stringify(final));
+        });
+    }
+
+
+    /**
+     * Initialize CW localStorage.
+     */
+    public static init() {
+        // Get current CW list
+        let req: Promise<any> = Backend.getRequest("/names");
+
+        req.then(resp => {
+            let final: any = {};
+            const cws: Array<string> = resp.jsonResponse.cws;
+
+            for (let i = 0; i < cws.length; i++) {
+                let current_cw: string = cws[i];
+                final[current_cw] = "show";
             }
 
             console.log(final);

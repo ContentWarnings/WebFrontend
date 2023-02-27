@@ -34,32 +34,32 @@ function PasswordResetCommit() {
     );
   }
 
-  // Reset password logic.
-  const resetPassword = (e: any) => {
-    e.preventDefault();
-    const formData: any = document.forms[1];
-    const password: string = formData.password.value;
+  useEffect(() => {
+    // Reset password logic.
+    const resetPassword = (e: any) => {
+      e.preventDefault();
+      const formData: any = document.forms[1];
+      const password: string = formData.password.value;
 
-    let data = {
-      "email": email,
-      "new_password": password,
-      "code": token
+      let data = {
+        "email": email,
+        "new_password": password,
+        "code": token
+      }
+
+      Backend.postRequest("user/password-reset-op", data).then((resp: any) => {
+        const data: number = resp.statusCode;
+
+        if (data < 400) {
+            setVerEl(verifyElGen("Password Reset!", "Your password was successfully changed.", "/account/signin/", "Log In"));
+        } else {
+            setVerEl(verifyElGen("Error", "Something went wrong. Please confirm the URL is the same from the verification email.", window.location.href, "Go Back"));
+        }
+      }).catch((err: any) => {
+          setVerEl(verifyElGen("Error", "Could not connect to the server. Please try again in a few minutes!", window.location.href, "Go Back"));
+      });
     }
 
-    Backend.postRequest("user/password-reset-op", data).then((resp: any) => {
-      const data: number = resp.statusCode;
-
-      if (data < 400) {
-          setVerEl(verifyElGen("Password Reset!", "Your password was successfully changed.", "/account/signin/", "Log In"));
-      } else {
-          setVerEl(verifyElGen("Error", "Something went wrong. Please confirm the URL is the same from the verification email.", window.location.href, "Go Back"));
-      }
-    }).catch((err: any) => {
-        setVerEl(verifyElGen("Error", "Could not connect to the server. Please try again in a few minutes!", window.location.href, "Go Back"));
-    });
-  }
-
-  useEffect(() => {
     // Check if we can reset the password
     if (email !== "" && token !== "")
       setVerEl(
@@ -77,7 +77,7 @@ function PasswordResetCommit() {
       );
     else
       setVerEl(verifyElGen("Error", "Something went wrong. Please confirm the URL is the same from the verification email."));
-  }, ['email', 'resetPassword', 'token'])
+  }, [email, token])
 
 
   return (

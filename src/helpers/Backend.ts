@@ -25,8 +25,13 @@ class Backend {
     private static getAuthHeader(bearerToken: string): any {
         if (bearerToken === "") {
             const getFromStorage = localStorage.getItem("token");
-            if (getFromStorage)
+            if (getFromStorage) {
+                // If the token expired, delete it.
+                if (JSON.parse(atob(getFromStorage.split(".")[1])).issued > (Date.now()/1000)) {
+                    localStorage.setItem("token", "");
+                }
                 bearerToken = getFromStorage;
+            }
         }
         
         return (bearerToken === "") ? {} : {"Authorization": `Bearer ${bearerToken}`};
