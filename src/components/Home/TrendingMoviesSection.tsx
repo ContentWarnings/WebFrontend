@@ -4,6 +4,7 @@
 import Primary2Button from "../shared/Primary2Button";
 import MovieButton from "./MovieButton";
 import Backend from "../../helpers/Backend";
+import { FaSpinner } from "react-icons/fa";
 import {useState, useEffect} from 'react';
 
 async function getData(setMovies: any) {
@@ -38,7 +39,12 @@ async function getData(setMovies: any) {
 }
 
 function TrendingMoviesSection() {
-  const [movies, setMovies] = useState([]);
+  let spinner = (
+    <div className="width-full text-center m-4">
+      <FaSpinner className="inline text-white text-2xl animate-spin " />
+    </div>
+  );
+  const [movies, setMovies] = useState([spinner]);
 
   useEffect(() => {
     getData(setMovies);
@@ -52,7 +58,7 @@ function TrendingMoviesSection() {
         </h1>
         <Primary2Button href="/search" name="View More" />
       </div>
-      <div className="flex grid gap-3 grid-cols-1 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2">
+      <div className={"flex grid gap-3 " + (movies.length > 1 ? "grid-cols-1 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2" : "")}>
         {movies}
       </div>
     </div>

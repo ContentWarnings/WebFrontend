@@ -4,6 +4,8 @@ import { IoMdSettings as Settings } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import MMLogo from "./assets/MMLogo";
+import md5 from "js-md5";
+
 
 function Header() {
   const [text, setText] = useState("");
@@ -17,6 +19,22 @@ function Header() {
       window.location.href = `/search?q=${text}`;
     }
   };
+
+  let pfp = (
+    <Link to="/account/signin">
+        <CgProfile className="rounded-full w-8 h-8 hover:opacity-50 ease-in-out" />
+    </Link>
+  );
+
+  if (localStorage.getItem("token") && localStorage.getItem("token") !== "") {
+    const gravatar_hash = md5(" Meow@shuga.co".trim().toLowerCase());
+    const gravatar_url = `https://www.gravatar.com/avatar/${gravatar_hash}?d=retro`;
+    pfp = (
+      <Link to="/settings/profile">
+          <img className="rounded-full w-8 h-8 hover:opacity-50 ease-in-out" src={gravatar_url} alt="Account Settings"/>
+      </Link>
+    );
+  }
 
   return (
     <nav className="fixed left-0 right-0 z-10 flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
@@ -48,9 +66,7 @@ function Header() {
           </Link>
         </div>
         <div className="p-2">
-          <Link to="/settings/profile">
-            <CgProfile className="w-8 h-8 rounded-full hover:bg-primary-3 hover:border-primary-3" />
-          </Link>
+          {pfp}
         </div>
       </div>
     </nav>
