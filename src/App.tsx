@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
+import Account from "./pages/Account";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/account/*" element={<Account />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
