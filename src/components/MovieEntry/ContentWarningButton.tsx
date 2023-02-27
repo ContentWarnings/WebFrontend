@@ -1,5 +1,3 @@
-import { BsFillPlayFill } from "react-icons/bs";
-
 function StreamingButton(props: any) {
   const handleClick = () => {
     console.log(`${props.link} Button was clicked`);
@@ -21,10 +19,7 @@ function StreamingButton(props: any) {
         <div className="font-sans text-sm font-bold my-2">
           {props.streamType}
         </div>
-        <BsFillPlayFill className="text-3xl" />
       </div>
     </button>
   );
 }
-
-export default StreamingButton;
