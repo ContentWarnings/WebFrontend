@@ -9,6 +9,7 @@ import Backend from "../helpers/Backend";
 import { FaSpinner } from "react-icons/fa";
 import GenreCell from "../components/shared/CWCell";
 import CWCell from "../components/shared/CWCell";
+import ContentWarningButton from "../components/MovieEntry/ContentWarningButton";
 
 async function getData(
   setIsLoading: any,
@@ -123,7 +124,7 @@ function MovieEntry() {
         <div className="flex">
           <img
             src={poster}
-            className="h-fit w-60 rounded-lg hover:border-2 mr-10"
+            className="h-fit w-60 rounded-lg mr-10"
             alt={title}
           />
           <div className="flex flex-col">
@@ -170,13 +171,15 @@ function MovieEntry() {
             ))}
           </div>
         </div>
-
         <div className="mt-5 text-light-1">
           <h1 className="text-3xl font-bold">Summary</h1>
           <p className="text-1xl">{summary}</p>
         </div>
-        <div className="mt-5 text-light-1">
+        <div className="my-5 text-light-1">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
+        </div>
+        <div className="flex grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2">
+          <ContentWarningButton flag={true} cw={warnings[0]} />
         </div>
       </div>
     );
