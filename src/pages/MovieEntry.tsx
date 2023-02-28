@@ -76,8 +76,6 @@ async function getData(
   setContentWarnings(flagged_triggers);
   setTime(time_str);
   setMpa(data.mpa);
-  // id={data[i].id}
-  // mpa={data[i].mpa}
   setIsLoading(false);
 }
 
@@ -179,7 +177,12 @@ function MovieEntry() {
           <h1 className="text-3xl font-bold">Content Warnings</h1>
         </div>
         <div className="flex grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2">
-          <ContentWarningButton flag={true} cw={warnings[0]} />
+          {contentWarnings.map((contentWarning: any) => (
+            <ContentWarningButton flag={true} cw={contentWarning} />
+          ))}
+          {warnings.map((warning: any) => (
+            <ContentWarningButton flag={false} cw={warning} />
+          ))}
         </div>
       </div>
     );

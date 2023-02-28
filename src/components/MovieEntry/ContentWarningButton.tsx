@@ -6,7 +6,7 @@ import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
 import { BsCheckLg } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import { Fragment, useState } from "react";
-// import Backend from "../../helpers/Backend";
+import Backend from "../../helpers/Backend";
 
 function getTime(time: number): String {
   let hours: number = Math.floor(time / 60);
@@ -32,20 +32,21 @@ function examineTime(cw: any): string {
   return getStartAndEnd(cw.time[0]);
 }
 
-// function giveKarma(vote: boolean) {
-//   if (vote === true) {
-//     Backend.getRequest();
-//   } else {
-//     Backend.getRequest();
-//   }
-// }
+async function handleFeedback(id: string, vote: boolean, setIsOpen: any) {
+  let path = `/cw/${id}/`;
+  if (vote === true) {
+    path += "upvote";
+  } else {
+    path += "downvote";
+  }
+  const resp = await Backend.getRequest(path);
+  console.log("ID: " + id + " Response: " + resp.statusCode);
+  setIsOpen(false);
+}
 
 function ContentWarningButton(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const time = examineTime(props.cw);
-  // const handleClick = () => {
-  //   console.log(`${props.link} Button was clicked`);
-  // };
   const headerColor = props.flag ? "bg-secondary-3" : "bg-dark-3";
 
   return (
@@ -60,7 +61,7 @@ function ContentWarningButton(props: any) {
         <div className="flex items-center justify-between px-2 mb-">
           <div className="flex items-center">
             {props.flag && <IoIosWarning className="text-5xl text-light-1" />}
-            <div className="text-md font-bold ml-1 my-5">{props.cw.name}</div>
+            <div className="text-lg font-bold ml-1 my-5">{props.cw.name}</div>
           </div>
           <div className="text-light-3">{time}</div>
         </div>
@@ -102,12 +103,12 @@ function ContentWarningButton(props: any) {
                     <div
                       className={`${headerColor} text-light-1 h-2 w-full rounded-t-lg`}
                     />
-                    <div className="flex items-center justify-between px-2 mb-">
+                    <div className="flex items-center justify-between px-2">
                       <div className="flex items-center">
                         {props.flag && (
                           <IoIosWarning className="text-5xl text-light-1" />
                         )}
-                        <div className="text-md font-bold ml-1 my-5">
+                        <div className="text-lg font-bold ml-1 my-5">
                           {props.cw.name}
                         </div>
                       </div>
@@ -132,14 +133,18 @@ function ContentWarningButton(props: any) {
                     <h1 className="text-md mt-2 font-bold">Submit Feedback</h1>
                     <div className="my-2 flex w-full justify-between">
                       <button
-                        onClick={() => console.log("This is true.")}
+                        onClick={() =>
+                          handleFeedback(props.cw.id, true, setIsOpen)
+                        }
                         className="transition ease-in-out delay-100 flex w-full mr-6 bg-green-700 justify-center rounded text-light-1 py-2 border border-transparent hover:border-light-1"
                       >
                         <BsCheckLg className="font-bold text-2xl mr-2" />
                         This was accurate.
                       </button>
                       <button
-                        onClick={() => console.log("This is true.")}
+                        onClick={() =>
+                          handleFeedback(props.cw.id, false, setIsOpen)
+                        }
                         className="transition ease-in-out delay-100 flex w-full bg-red-700 justify-center rounded text-light-1 py-2 border border-transparent hover:border-light-1"
                       >
                         <ImCross className="font-bold text-2xl mr-2" />
