@@ -4,8 +4,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
 import { BsCheckLg } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
 import { Fragment, useState } from "react";
-import Backend from "../../helpers/Backend";
+// import Backend from "../../helpers/Backend";
 
 function getTime(time: number): String {
   let hours: number = Math.floor(time / 60);
@@ -120,22 +121,29 @@ function ContentWarningButton(props: any) {
                       </div>
                     </div>
                   </Dialog.Title>
-                  {props.cw.desc && (
-                    <div className="mt-2 px-2">
-                      <h1 className="text-md font-bold">Summary</h1>
-                      <p className="text-sm">{props.cw.desc}</p>
-                    </div>
-                  )}
-                  <div className="mt-2 mb-5 px-2">
-                    <h1 className="text-md font-bold">Submit Feedback</h1>
-                    <div className="flex">
+
+                  <div className="mt-2 mb-5 mx-4">
+                    {props.cw.desc && (
+                      <div>
+                        <h1 className="text-md font-bold">Summary</h1>
+                        <p className="text-sm">{props.cw.desc}</p>
+                      </div>
+                    )}
+                    <h1 className="text-md mt-2 font-bold">Submit Feedback</h1>
+                    <div className="my-2 flex w-full justify-between">
                       <button
                         onClick={() => console.log("This is true.")}
-                        className="flex bg-green-500 items-center rounded text-light-1"
+                        className="transition ease-in-out delay-100 flex w-full mr-6 bg-green-700 justify-center rounded text-light-1 py-2 border border-transparent hover:border-light-1"
                       >
-                        <BsCheckLg className="font-bold" />
-                        This was <br />
-                        accurate.
+                        <BsCheckLg className="font-bold text-2xl mr-2" />
+                        This was accurate.
+                      </button>
+                      <button
+                        onClick={() => console.log("This is true.")}
+                        className="transition ease-in-out delay-100 flex w-full bg-red-700 justify-center rounded text-light-1 py-2 border border-transparent hover:border-light-1"
+                      >
+                        <ImCross className="font-bold text-2xl mr-2" />
+                        This was inaccurate.
                       </button>
                     </div>
                   </div>
