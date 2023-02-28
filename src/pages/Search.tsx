@@ -48,8 +48,11 @@ async function getData(page: number) {
           flagged_triggers.push(all_triggers[j]);
         } else if (prefs[all_triggers[j]] === "show") {
           normal_triggers.push(all_triggers[j]);
-        } else {
+        } else if (prefs[all_triggers[j]] === "hide") {
           block = true;
+        } else {
+          // If we are unaware of a CW, we will just treat as "show" (the default).
+          normal_triggers.push(all_triggers[j]);
         }
       }
 

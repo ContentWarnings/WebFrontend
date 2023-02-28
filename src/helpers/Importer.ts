@@ -17,8 +17,6 @@ class Importer {
 
             let add_to_total = current_num * (old_radix ** BigInt(exp));
 
-            // console.log(`[${input[i]}] + ${current_num} * ${old_radix}^${exp}`);
-
             output += add_to_total;
         }
 
@@ -61,10 +59,10 @@ class Importer {
                 let current_value = import_base3[i];
                 let current_cw: string = cws[i];
 
-                // If something goes wrong, we default to 'flag'.
-                let action = "flag";
-                if (current_value === "0")
-                    action = "show";
+                // If something goes wrong, we default to 'show'.
+                let action = "show";
+                if (current_value === "1")
+                    action = "flag";
                 else if (current_value === "2")
                     action = "hide";
 
@@ -118,9 +116,9 @@ class Importer {
         let output = "";
 
         for (let i = 0; i < cw_list.length; i++) {
-            let resp = "1";
-            if (cw_mappings[i] === "show")
-                resp = "0"
+            let resp = "0";
+            if (cw_mappings[i] === "flag")
+                resp = "1"
             else if (cw_mappings[i] === "hide")
                 resp = "2"
             

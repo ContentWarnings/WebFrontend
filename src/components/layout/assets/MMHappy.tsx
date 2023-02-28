@@ -1,4 +1,4 @@
-function MMLogo(props: any) {
+function MMHappy(props: any) {
   return (
     <svg className={props.className} width="162" height="181" viewBox="0 0 162 181" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="26.5171" y="161.597" width="12.9352" height="19.4028" rx="3.2338" fill="#D9D9D9"/>
@@ -16,4 +16,4 @@ function MMLogo(props: any) {
   );
 }
 
-export default MMLogo;
+export default MMHappy;

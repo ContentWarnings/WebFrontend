@@ -39,7 +39,7 @@ async function getData(setMovies: any) {
 }
 
 function TrendingMoviesSection() {
-  let spinner = (
+  const spinner = (
     <div className="width-full text-center m-4">
       <FaSpinner className="inline text-white text-2xl animate-spin" />
     </div>
