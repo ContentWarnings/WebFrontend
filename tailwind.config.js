@@ -20,6 +20,8 @@ module.exports = {
         'dark-1': '#313131',
         'dark-2': '#1e1e1e',
         'dark-3': '#000000',
+        'warning': '#bfa057',
+        'error': '#bf5757'
       },
       fontFamily: {
         'sans': ['Roboto', ...defaultTheme.fontFamily.sans],

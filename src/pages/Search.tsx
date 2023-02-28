@@ -7,8 +7,7 @@ import MovieCell from "../components/Search/MovieCell";
 import Backend from "../helpers/Backend";
 import URLHelper from "../helpers/URLHelper";
 import { FaSpinner } from "react-icons/fa";
-
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 
 async function getData(page: number) {
     let arr = [];
@@ -35,7 +34,7 @@ async function getData(page: number) {
     if (prefs_raw)
       prefs = JSON.parse(prefs_raw);
 
-    for (let i = 0; i < data.length; i++) {   
+    for (let i = 0; i < data.length; i++) {
       // CW filtering 
       let all_triggers = data[i].cw;
       let normal_triggers = [];
@@ -49,8 +48,11 @@ async function getData(page: number) {
           flagged_triggers.push(all_triggers[j]);
         } else if (prefs[all_triggers[j]] === "show") {
           normal_triggers.push(all_triggers[j]);
-        } else {
+        } else if (prefs[all_triggers[j]] === "hide") {
           block = true;
+        } else {
+          // If we are unaware of a CW, we will just treat as "show" (the default).
+          normal_triggers.push(all_triggers[j]);
         }
       }
 
