@@ -3,7 +3,9 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
+import { BsCheckLg } from "react-icons/bs";
 import { Fragment, useState } from "react";
+import Backend from "../../helpers/Backend";
 
 function getTime(time: number): String {
   let hours: number = Math.floor(time / 60);
@@ -28,6 +30,14 @@ function examineTime(cw: any): string {
   if (cw.time.length > 1) return "Multiple Instances";
   return getStartAndEnd(cw.time[0]);
 }
+
+// function giveKarma(vote: boolean) {
+//   if (vote === true) {
+//     Backend.getRequest();
+//   } else {
+//     Backend.getRequest();
+//   }
+// }
 
 function ContentWarningButton(props: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -118,6 +128,16 @@ function ContentWarningButton(props: any) {
                   )}
                   <div className="mt-2 mb-5 px-2">
                     <h1 className="text-md font-bold">Submit Feedback</h1>
+                    <div className="flex">
+                      <button
+                        onClick={() => console.log("This is true.")}
+                        className="flex bg-green-500 items-center rounded text-light-1"
+                      >
+                        <BsCheckLg className="font-bold" />
+                        This was <br />
+                        accurate.
+                      </button>
+                    </div>
                   </div>
                   <div className="my-2 flex w-full justify-center">
                     <button
