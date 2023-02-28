@@ -41,7 +41,7 @@ function Register() {
   }
 
   return (
-    <div className="mx-auto max-w-sm w-full mt-32">
+    <div data-testid="register" className="mx-auto max-w-sm w-full mt-32">
       <div className="flex dark-1 bg-dark-1 rounded-lg p-4 text-white text-center flex-col">
         <div className="w-full">
           <MMHappy className="m-auto"/>
