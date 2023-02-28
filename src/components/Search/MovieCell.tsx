@@ -47,7 +47,7 @@ function MovieCell(props: any) {
 
 
   return (
-    <a href={"/movie/" + props.id} className="flex transition ease-in-out delay-100 hover:border-white rounded-md border-2 border-transparent my-5">
+    <a data-testid="movie-cell" href={"/movie/" + props.id} className="flex transition ease-in-out delay-100 hover:border-white rounded-md border-2 border-transparent my-5">
       <div className="flex-none w-36 pr-5">
         <img className="rounded-md" src={props.img} alt={"Movie poster for " + props.name}/>
       </div>

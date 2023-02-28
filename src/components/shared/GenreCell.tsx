@@ -1,6 +1,7 @@
 function GenreCell(props: any) {
   return (
     <div
+      data-testid="genre-cell"
       onClick={props.handleClick}
       className={"bg-dark-1 text-light-1 py-1 px-2 rounded-lg mr-2 mb-2 w-fit"}
     >

@@ -107,7 +107,7 @@ function PasswordResetCommit() {
 
 
   return (
-    <div className="mx-auto max-w-sm w-full mt-32">
+    <div data-testid="password-reset-commit" className="mx-auto max-w-sm w-full mt-32">
       {verEl}
     </div>
   );
