@@ -10,6 +10,7 @@ import { FaSpinner } from "react-icons/fa";
 import GenreCell from "../components/shared/CWCell";
 import CWCell from "../components/shared/CWCell";
 import ContentWarningButton from "../components/MovieEntry/ContentWarningButton";
+import AddContentWarning from "../components/MovieEntry/AddContentWarning";
 
 async function getData(
   setIsLoading: any,
@@ -173,8 +174,9 @@ function MovieEntry() {
           <h1 className="text-3xl font-bold">Summary</h1>
           <p className="text-1xl">{summary}</p>
         </div>
-        <div className="my-5 text-light-1">
+        <div className="flex my-5 text-light-1 justify-between">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
+          <AddContentWarning />
         </div>
         <div className="flex grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2">
           {contentWarnings.map((contentWarning: any) => (
