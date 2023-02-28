@@ -26,12 +26,15 @@ function Header() {
     </Link>
   );
 
-  if (localStorage.getItem("token") && localStorage.getItem("token") !== "") {
-    const gravatar_hash = md5(" Meow@shuga.co".trim().toLowerCase());
-    const gravatar_url = `https://www.gravatar.com/avatar/${gravatar_hash}?d=retro`;
+  const jwtToken = localStorage.getItem("token");
+
+  if (jwtToken && jwtToken !== "") {
+    const email = JSON.parse(atob(jwtToken.split(".")[1])).email;
+    const gravatarHash = md5(email.trim().toLowerCase());
+    const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}?d=retro`;
     pfp = (
       <Link to="/settings/profile">
-          <img className="rounded-full w-8 h-8 hover:opacity-50 ease-in-out" src={gravatar_url} alt="Account Settings"/>
+          <img className="rounded-full w-8 h-8 hover:opacity-50 ease-in-out" src={gravatarUrl} alt="Account Settings"/>
       </Link>
     );
   }
