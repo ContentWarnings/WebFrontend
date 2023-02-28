@@ -23,6 +23,17 @@ class Backend {
     private static MAIN_ENDPOINT: string = "https://api.moviementor.app/";
 
     private static getAuthHeader(bearerToken: string): any {
+        if (bearerToken === "") {
+            const getFromStorage = localStorage.getItem("token");
+            if (getFromStorage) {
+                // If the token expired, delete it.
+                if (JSON.parse(atob(getFromStorage.split(".")[1])).issued > (Date.now()/1000)) {
+                    localStorage.setItem("token", "");
+                }
+                bearerToken = getFromStorage;
+            }
+        }
+        
         return (bearerToken === "") ? {} : {"Authorization": `Bearer ${bearerToken}`};
     }
 
@@ -30,7 +41,7 @@ class Backend {
      * Ex:
      * let response = await Backend.getRequest("user", "<bearer_token>");
      * @param path
-     * @param bearerToken pass in empty string if unneeded
+     * @param bearerToken pass in empty string if unneeded (or you wish to use value in localStorage)
      */
     public static async getRequest(path: string, bearerToken: string = "") {
         const reqHeaders = this.getAuthHeader(bearerToken);
@@ -54,15 +65,16 @@ class Backend {
      *      "time": [[1, 2], [3, 4]],
      *      "desc": "Example"
      * };
-     * let response = await Backend.postRequest("movie", "<bearer_token>", movieInfo);
+     * let response = await Backend.postRequest("movie", movieInfo, "<bearer_token>");
      * @param path
-     * @param bearerToken pass in empty string if unneeded
+     * @param jsonBody JSON response
+     * @param bearerToken pass in empty string if unneeded (or you wish to use value in localStorage)
      */
-    public static async postRequest(path: string, bearerToken: string = "", jsonBody?: any) {
+    public static async postRequest(path: string, jsonBody?: object, bearerToken: string = "") {
         var reqHeaders = this.getAuthHeader(bearerToken);
         reqHeaders["Content-Type"] = "application/json";
         reqHeaders["Access-Control-Allow-Origin"] = "*";
-        
+
         const reqBody = (jsonBody === undefined) ? null : JSON.stringify(jsonBody);
         
         const requestResponse = await fetch(this.MAIN_ENDPOINT + path, {

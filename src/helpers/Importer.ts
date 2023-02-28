@@ -17,8 +17,6 @@ class Importer {
 
             let add_to_total = current_num * (old_radix ** BigInt(exp));
 
-            // console.log(`[${input[i]}] + ${current_num} * ${old_radix}^${exp}`);
-
             output += add_to_total;
         }
 
@@ -57,20 +55,40 @@ class Importer {
             // Data given -> JSON object
             let import_base3: string = this.base36_to_base3(import_str);
 
-            console.log(import_base3);
-
             for (let i = 0; i < import_base3.length; i++) {
                 let current_value = import_base3[i];
                 let current_cw: string = cws[i];
 
-                // If something goes wrong, we default to 'flag'.
-                let action = "flag";
-                if (current_value == "0")
-                    action = "show";
-                else if (current_value == "2")
+                // If something goes wrong, we default to 'show'.
+                let action = "show";
+                if (current_value === "1")
+                    action = "flag";
+                else if (current_value === "2")
                     action = "hide";
 
                 final[current_cw] = action;
+            }
+
+            // Set JSON to LocalStorage
+            localStorage.setItem("cw", JSON.stringify(final));
+        });
+    }
+
+
+    /**
+     * Initialize CW localStorage.
+     */
+    public static init() {
+        // Get current CW list
+        let req: Promise<any> = Backend.getRequest("/names");
+
+        req.then(resp => {
+            let final: any = {};
+            const cws: Array<string> = resp.jsonResponse.cws;
+
+            for (let i = 0; i < cws.length; i++) {
+                let current_cw: string = cws[i];
+                final[current_cw] = "show";
             }
 
             console.log(final);
@@ -98,9 +116,9 @@ class Importer {
         let output = "";
 
         for (let i = 0; i < cw_list.length; i++) {
-            let resp = "1";
-            if (cw_mappings[i] === "show")
-                resp = "0"
+            let resp = "0";
+            if (cw_mappings[i] === "flag")
+                resp = "1"
             else if (cw_mappings[i] === "hide")
                 resp = "2"
             
@@ -126,7 +144,7 @@ class Importer {
         for (let i = 0; i < raw.length; i++) {
             output += raw[i];
 
-            if (i % period == period - 1)
+            if (i % period === period - 1)
                 output += "-";
         }
 
