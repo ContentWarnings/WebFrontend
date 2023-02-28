@@ -2,10 +2,15 @@ import Primary2Button from "../shared/Primary2Button";
 import MMHappy from "../layout/assets/MMHappy";
 import Backend from "../../helpers/Backend";
 import URLHelper from "../../helpers/URLHelper";
-import {useState, useEffect} from 'react';
+import { FaSpinner } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 function Verify() {
-  const [verEl, setVerEl] = useState(<div></div>)
+  const [verEl, setVerEl] = useState(
+      <div className={"width-full text-center m-4"}>
+        <FaSpinner className="inline text-white text-2xl animate-spin" />
+      </div>
+    )
 
   const verifyElGen = (title: string, text: string, link?: string, linkTxt?: string) => {
     let btnLink: string = "/";

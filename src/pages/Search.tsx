@@ -7,8 +7,7 @@ import MovieCell from "../components/Search/MovieCell";
 import Backend from "../helpers/Backend";
 import URLHelper from "../helpers/URLHelper";
 import { FaSpinner } from "react-icons/fa";
-
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 
 async function getData(page: number) {
     let arr = [];

@@ -10,7 +10,7 @@ function TextBox(props: any) {
     type = props.type;
 
   return (
-    <input type={type} id={id} name={id} onChange={props.handleChange} placeholder={props.placeholder} value={props.defaultValue} className="bg-light-2 text-gray-700 rounded-lg mx-auto text-lg px-2 py-1 w-full my-2"/>
+    <input autoComplete={props.autoComplete} type={type} id={id} name={id} onChange={props.handleChange} placeholder={props.placeholder} value={props.defaultValue} className="bg-light-2 text-gray-700 rounded-lg mx-auto text-lg px-2 py-1 w-full my-2"/>
   );
 }
 
