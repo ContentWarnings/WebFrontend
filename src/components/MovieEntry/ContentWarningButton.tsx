@@ -2,7 +2,7 @@
 // https://headlessui.com/react/dialog
 
 import { Dialog, Transition } from "@headlessui/react";
-import { IoIosWarning } from "react-icons/io";
+import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
 import { Fragment, useState } from "react";
 
 function getTime(time: number): String {
@@ -110,22 +110,22 @@ function ContentWarningButton(props: any) {
                       </div>
                     </div>
                   </Dialog.Title>
-                  <div className="mt-2">
-                    {props.cw.desc && (
-                      <>
-                        <h1>Summary</h1>
-                        <p className="text-sm">{props.cw.desc}</p>
-                      </>
-                    )}
+                  {props.cw.desc && (
+                    <div className="mt-2 px-2">
+                      <h1 className="text-md font-bold">Summary</h1>
+                      <p className="text-sm">{props.cw.desc}</p>
+                    </div>
+                  )}
+                  <div className="mt-2 mb-5 px-2">
+                    <h1 className="text-md font-bold">Submit Feedback</h1>
                   </div>
-
-                  <div className="mt-4">
+                  <div className="my-2 flex w-full justify-center">
                     <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="transition ease-in-out delay-100 flex items-center rounded-lg border border-transparent bg-dark-1 text-light-1 p-1 hover:border-light-1"
                       onClick={() => setIsOpen(false)}
                     >
-                      Got it, thanks!
+                      <IoIosArrowBack className="text-lg" />
+                      <div className="text-sm pr-1">Back</div>
                     </button>
                   </div>
                 </Dialog.Panel>
