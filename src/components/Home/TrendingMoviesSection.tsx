@@ -51,7 +51,7 @@ function TrendingMoviesSection() {
   }, [])
 
   return (
-    <div className="px-10">
+    <div className="px-10" data-testid="trending-movies">
       <div className="flex justify-between mt-20 mb-2">
         <h1 className="text-2xl text-light-1 font-bold">
           Trending Movies For You
