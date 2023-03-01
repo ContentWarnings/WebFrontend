@@ -71,8 +71,7 @@ async function getData(
   setGenres(data.genres);
   setDate(date_str);
   setRating(data.rating / 2);
-  // if (data.streaming_info.providers !== null)
-  //   setStreaming(data.streaming_info.providers);
+  if (data.streaming_info !== null) setStreaming(data.streaming_info.providers);
   setWarnings(normal_triggers);
   setContentWarnings(flagged_triggers);
   setTime(time_str);
@@ -112,23 +111,23 @@ function MovieEntry() {
       setSummary
     );
     return (
-      <div className={"grid place-items-center h-screen"}>
-        <FaSpinner className="inline text-center text-white text-6xl animate-spin" />
+      <div className={"grid h-screen place-items-center"}>
+        <FaSpinner className="inline animate-spin text-center text-6xl text-white" />
       </div>
     );
   } else {
     // if (warnings.length > 0) setFlagged(true);
     return (
-      <div className="relative lg:mx-20 h-fit mb-10 mt-32">
+      <div className="relative mb-10 mt-32 h-fit lg:mx-20">
         <div className="flex">
           <img
             src={poster}
-            className="h-fit w-60 rounded-lg mr-10"
+            className="mr-10 h-fit w-60 rounded-lg"
             alt={title}
           />
           <div className="flex flex-col">
-            <h1 className="text-6xl text-light-1 font-bold">{title}</h1>
-            <h2 className="text-2xl text-light-3 my-3">
+            <h1 className="text-6xl font-bold text-light-1">{title}</h1>
+            <h2 className="my-3 text-2xl text-light-3">
               {date}
               {time}
             </h2>
@@ -156,7 +155,7 @@ function MovieEntry() {
               </div>
             )}
             {mpa !== "Unknown" && (
-              <div className="w-fit text-3xl text-light-1 font-bold border-light-1 border-4 p-1 my-2">
+              <div className="my-2 w-fit border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
                 {mpa}
               </div>
             )}
@@ -164,9 +163,9 @@ function MovieEntry() {
           </div>
         </div>
         <div className="mt-6 flex">
-          <div className="flex grid grid-cols-2 xl:grid-cols-9 lg:grid-cols-7 md:grid-cols-5 sm:grid-cols-3 gap-2">
+          <div className="flex grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
             {streaming.map((streamer: any) => (
-              <StreamingButton icon={streamer[1]} streamer={streamer[0]} />
+              <StreamingButton streamer={streamer[0]} icon={streamer[1]} />
             ))}
           </div>
         </div>
@@ -174,11 +173,11 @@ function MovieEntry() {
           <h1 className="text-3xl font-bold">Summary</h1>
           <p className="text-1xl">{summary}</p>
         </div>
-        <div className="flex my-5 text-light-1 justify-between">
+        <div className="my-5 flex justify-between text-light-1">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
           <AddContentWarning />
         </div>
-        <div className="flex grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2">
+        <div className="flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
           {contentWarnings.map((contentWarning: any) => (
             <ContentWarningButton flag={true} cw={contentWarning} />
           ))}
