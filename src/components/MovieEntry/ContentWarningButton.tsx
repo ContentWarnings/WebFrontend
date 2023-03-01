@@ -53,15 +53,15 @@ function ContentWarningButton(props: any) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className={`h-22 transition ease-in-out delay-100 bg-dark-1 text-light-1 rounded-lg`}
+        className={`h-22 rounded-lg bg-dark-1 text-light-1 transition delay-100 ease-in-out`}
       >
         <div
-          className={`${headerColor} text-light-1 h-2 w-full rounded-t-lg`}
+          className={`${headerColor} h-2 w-full rounded-t-lg text-light-1`}
         />
-        <div className="flex items-center justify-between px-2 mb-">
+        <div className="flex items-center justify-between px-2">
           <div className="flex items-center">
             {props.flag && <IoIosWarning className="text-5xl text-light-1" />}
-            <div className="text-lg font-bold ml-1 my-5">{props.cw.name}</div>
+            <div className="my-5 ml-1 text-lg font-bold">{props.cw.name}</div>
           </div>
           <div className="text-light-3">{time}</div>
         </div>
@@ -95,20 +95,20 @@ function ContentWarningButton(props: any) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-dark-2 text-light-1 rounded-lg align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-dark-2 align-middle text-light-1 shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
-                    className="h-22 bg-dark-1 text-light-1 rounded-t-lg"
+                    className="h-22 rounded-t-lg bg-dark-1 text-light-1"
                   >
                     <div
-                      className={`${headerColor} text-light-1 h-2 w-full rounded-t-lg`}
+                      className={`${headerColor} h-2 w-full rounded-t-lg text-light-1`}
                     />
                     <div className="flex items-center justify-between px-2">
                       <div className="flex items-center">
                         {props.flag && (
                           <IoIosWarning className="text-5xl text-light-1" />
                         )}
-                        <div className="text-lg font-bold ml-1 my-5">
+                        <div className="my-5 ml-1 text-lg font-bold">
                           {props.cw.name}
                         </div>
                       </div>
@@ -123,7 +123,7 @@ function ContentWarningButton(props: any) {
                     </div>
                   </Dialog.Title>
 
-                  <div className="mt-2 mb-5 mx-4">
+                  <div className="mx-4 mt-2 mb-5">
                     {props.cw.desc && (
                       <div>
                         <h1 className="text-md font-bold">Summary</h1>
@@ -136,29 +136,29 @@ function ContentWarningButton(props: any) {
                         onClick={() =>
                           handleFeedback(props.cw.id, true, setIsOpen)
                         }
-                        className="transition ease-in-out delay-100 flex w-full mr-6 bg-green-700 justify-center rounded text-light-1 py-2 border border-transparent hover:border-light-1"
+                        className="mr-6 flex w-full justify-center rounded border border-transparent bg-green-700 py-2 text-light-1 transition delay-100 ease-in-out hover:bg-green-800"
                       >
-                        <BsCheckLg className="font-bold text-2xl mr-2" />
+                        <BsCheckLg className="mr-2 text-2xl font-bold" />
                         This was accurate.
                       </button>
                       <button
                         onClick={() =>
                           handleFeedback(props.cw.id, false, setIsOpen)
                         }
-                        className="transition ease-in-out delay-100 flex w-full bg-red-700 justify-center rounded text-light-1 py-2 border border-transparent hover:border-light-1"
+                        className="flex w-full justify-center rounded border border-transparent bg-red-700 py-2 text-light-1 transition delay-100 ease-in-out hover:bg-red-800"
                       >
-                        <ImCross className="font-bold text-2xl mr-2" />
+                        <ImCross className="mr-2 text-2xl font-bold" />
                         This was inaccurate.
                       </button>
                     </div>
                   </div>
                   <div className="my-2 flex w-full justify-center">
                     <button
-                      className="transition ease-in-out delay-100 flex items-center rounded-lg border border-transparent bg-dark-1 text-light-1 p-1 hover:border-light-1"
+                      className="flex items-center rounded-lg border border-transparent bg-dark-1 p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-1"
                       onClick={() => setIsOpen(false)}
                     >
                       <IoIosArrowBack className="text-lg" />
-                      <div className="text-sm pr-1">Back</div>
+                      <div className="pr-1 text-sm">Back</div>
                     </button>
                   </div>
                 </Dialog.Panel>
