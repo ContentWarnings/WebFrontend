@@ -53,7 +53,7 @@ function ContentWarningButton(props: any) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className={`h-22 rounded-lg bg-dark-1 text-light-1 transition delay-100 ease-in-out`}
+        className={`h-22 rounded-lg bg-dark-1 text-light-1 transition delay-100 ease-in-out hover:opacity-75 hover:shadow-md`}
       >
         <div
           className={`${headerColor} h-2 w-full rounded-t-lg text-light-1`}
