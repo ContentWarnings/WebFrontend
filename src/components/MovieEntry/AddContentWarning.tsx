@@ -21,28 +21,27 @@ async function getList(setDropdownList: any) {
   setDropdownList(dropdownList);
 }
 
-async function submitCw(movieId: number) {
-  const formData = document.forms[1];
-  const fromTime = formData.fromTime.value;
-  const ToTime = formData.fromTime.value;
-  const summary = formData.summary.value;
-  const cw = formData.selectedCw.value;
-  const movieInfo = {
-    name: cw,
-    movie_id: movieId,
-    time: [[1, 2]],
-    desc: summary,
-  };
-  console.log(summary);
-  // const response = await Backend.postRequest("movie", movieInfo);
-}
-
 function AddContentWarning(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [contentWarningName, setContentWarningName] = useState("");
   const [summary, setSummary] = useState("");
   const [dropdownList, setDropdownList] = useState([]);
   getList(setDropdownList);
+
+  const submitCw = (movieId: number) => {
+    // const fromTime = document.getElementById("fromTime")?.nodeValue;
+    // const ToTime = document.getElementById("fromTime")?.nodeValue;
+    // const summary = document.getElementById("summary")?.nodeValue;
+    // const cw = document.getElementById("selectedCw")?.nodeValue;
+    // const movieInfo = {
+    //   name: cw,
+    //   movie_id: movieId,
+    //   time: [[1, 2]],
+    //   desc: summary,
+    // };
+    // console.log(movieId);
+    // Backend.postRequest("movie", movieInfo);
+  };
 
   const handleDropdown = (e: any) => {
     handleWarningChange(e.target.value);
@@ -107,41 +106,39 @@ function AddContentWarning(props: any) {
                       <h1 className="ml-1 mb-2 text-lg font-bold">
                         Submit Content Warning
                       </h1>
-                      <form id="cwSubmission">
-                        <div className="flex w-full">
-                          <h2 className="p-2">Content</h2>
-                          <Dropdown
-                            id="selectedCw"
-                            options={dropdownList}
-                            handleChange={handleDropdown}
-                          />
-                        </div>
-                        <div className="flex">
-                          <h2 className="p-2">Timestamp</h2>
-                          <TextBox id="fromTime" type={"time"} />
-                          <div className="p-2">to</div>
-                          <TextBox id="toTime" type={"time"} />
-                        </div>
-                        <div className="flex">
-                          <h2 className="p-2">Summary</h2>
-                          <TextBox id="summary" />
-                        </div>
-                        <div className="my-2 flex w-full justify-end">
-                          <button
-                            className="mr-2 flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            <IoIosArrowBack className="text-lg" />
-                            <div className="pr-1 text-sm">Back</div>
-                          </button>
+                      <div className="flex w-full">
+                        <h2 className="p-2">Content</h2>
+                        <Dropdown
+                          id="selectedCw"
+                          options={dropdownList}
+                          handleChange={handleDropdown}
+                        />
+                      </div>
+                      <div className="flex">
+                        <h2 className="p-2">Timestamp</h2>
+                        <TextBox id="fromTime" type={"time"} />
+                        <div className="p-2">to</div>
+                        <TextBox id="toTime" type={"time"} />
+                      </div>
+                      <div className="flex">
+                        <h2 className="p-2">Summary</h2>
+                        <TextBox id="summary" />
+                      </div>
+                      <div className="my-2 flex w-full justify-end">
+                        <button
+                          className="mr-2 flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <IoIosArrowBack className="text-lg" />
+                          <div className="pr-1 text-sm">Back</div>
+                        </button>
 
-                          <Primary2Button
-                            icon={<BsPlusLg />}
-                            name="Submit"
-                            handleClick={submitCw(props.movieId)}
-                          />
-                        </div>
-                      </form>
+                        <Primary2Button
+                          icon={<BsPlusLg />}
+                          name="Submit"
+                          handleClick={submitCw(props.movieId)}
+                        />
+                      </div>
                     </div>
                     <div className="w-fit rounded-r bg-dark-1 p-2">
                       <h1 className="text-md font-bold">

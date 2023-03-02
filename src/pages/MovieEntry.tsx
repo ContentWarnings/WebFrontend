@@ -137,8 +137,8 @@ function MovieEntry() {
               {time}
             </h2>
             <div className="flex flex-wrap gap-2">
-              {genres.map((genre) => (
-                <GenreCell genre={genre} />
+              {genres.map((genre, index: any) => (
+                <GenreCell genre={genre} key={index} />
               ))}
             </div>
             <StarRating value={rating} />
@@ -151,11 +151,11 @@ function MovieEntry() {
               </h6>
             ) : (
               <div className="mt-2 flex flex-wrap gap-2">
-                {contentWarnings.map((contentWarning: any) => (
-                  <CWCell flag={true} genre={contentWarning.name} />
+                {contentWarnings.map((contentWarning: any, index: any) => (
+                  <CWCell flag={true} genre={contentWarning.name} key={index} />
                 ))}
-                {warnings.map((warning: any) => (
-                  <CWCell genre={warning.name} />
+                {warnings.map((warning: any, index: any) => (
+                  <CWCell genre={warning.name} key={index} />
                 ))}
               </div>
             )}
@@ -171,8 +171,12 @@ function MovieEntry() {
         </div>
         <div className="mt-6 flex">
           <div className="flex grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
-            {streaming.map((streamer: any) => (
-              <StreamingButton streamer={streamer[0]} icon={streamer[1]} />
+            {streaming.map((streamer: any, index: any) => (
+              <StreamingButton
+                streamer={streamer[0]}
+                icon={streamer[1]}
+                key={index}
+              />
             ))}
           </div>
         </div>
@@ -185,11 +189,11 @@ function MovieEntry() {
           <AddContentWarning movieId={movieId} />
         </div>
         <div className="flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
-          {contentWarnings.map((contentWarning: any) => (
-            <ContentWarningButton flag={true} cw={contentWarning} />
+          {contentWarnings.map((contentWarning: any, index: any) => (
+            <ContentWarningButton flag={true} cw={contentWarning} key={index} />
           ))}
-          {warnings.map((warning: any) => (
-            <ContentWarningButton flag={false} cw={warning} />
+          {warnings.map((warning: any, index: any) => (
+            <ContentWarningButton flag={false} cw={warning} key={index} />
           ))}
         </div>
       </div>

@@ -110,11 +110,11 @@ function ContentWarningButton(props: any) {
                         </div>
                       </div>
                       <div className="text-light-3">
-                        {props.cw.time.map((time: any) => (
-                          <>
+                        {props.cw.time.map((time: any, index: any) => (
+                          <div key={index}>
                             {getStartAndEnd(time)}
                             <br />
-                          </>
+                          </div>
                         ))}
                       </div>
                     </div>
