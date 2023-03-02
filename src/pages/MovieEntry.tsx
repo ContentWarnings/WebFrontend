@@ -1,7 +1,7 @@
 // References
 // https://daily-dev-tips.com/posts/center-elements-with-tailwind-css/
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarRating from "../components/MovieEntry/StarRating";
 import FlaggedContent from "../components/MovieEntry/FlaggedContent";
 import StreamingButton from "../components/MovieEntry/StreamingButton";
@@ -14,6 +14,7 @@ import AddContentWarning from "../components/MovieEntry/AddContentWarning";
 
 async function getData(
   setIsLoading: any,
+  setMovieId: any,
   setTitle: any,
   setPoster: any,
   setDate: any,
@@ -45,8 +46,6 @@ async function getData(
   for (let i = 0; i < all_triggers.length; i++) {
     if (prefs[all_triggers[i].name] === "flag") {
       flagged_triggers.push(all_triggers[i]);
-    } else if (prefs[all_triggers[i].name] === "show") {
-      normal_triggers.push(all_triggers[i]);
     } else {
       normal_triggers.push(all_triggers[i]);
     }
@@ -65,6 +64,7 @@ async function getData(
   if (time_str === "0min") time_str = "";
   else time_str = " - " + time_str;
 
+  setMovieId(data.id);
   setTitle(data.title);
   setSummary(data.overview);
   setPoster(data.img);
@@ -80,6 +80,7 @@ async function getData(
 }
 
 function MovieEntry() {
+  const [movieId, setMovieId] = useState("");
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState();
   const [date, setDate] = useState("Date Not Found");
@@ -94,10 +95,15 @@ function MovieEntry() {
   const [streaming, setStreaming] = useState([]);
   const [mpa, setMpa] = useState("Unknown");
 
+  useEffect(() => {
+    if (contentWarnings.length > 0) setFlagged(true);
+  }, [contentWarnings]);
+
   // Initial load of data
   if (isLoading) {
     getData(
       setIsLoading,
+      setMovieId,
       setTitle,
       setPoster,
       setDate,
@@ -112,11 +118,10 @@ function MovieEntry() {
     );
     return (
       <div className={"grid h-screen place-items-center"}>
-        <FaSpinner className="inline animate-spin text-center text-6xl text-white" />
+        <FaSpinner className="inline animate-spin text-center text-6xl text-light-1" />
       </div>
     );
   } else {
-    // if (warnings.length > 0) setFlagged(true);
     return (
       <div className="relative mb-10 mt-32 h-fit lg:mx-20">
         <div className="flex">
@@ -154,12 +159,14 @@ function MovieEntry() {
                 ))}
               </div>
             )}
-            {mpa !== "Unknown" && (
-              <div className="my-2 w-fit border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
-                {mpa}
-              </div>
-            )}
-            {flagged && <FlaggedContent />}
+            <div className="my-2 flex items-center">
+              {mpa !== "Unknown" && (
+                <div className="mr-5 w-fit border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
+                  {mpa}
+                </div>
+              )}
+              {flagged && <FlaggedContent />}
+            </div>
           </div>
         </div>
         <div className="mt-6 flex">
@@ -175,7 +182,7 @@ function MovieEntry() {
         </div>
         <div className="my-5 flex justify-between text-light-1">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
-          <AddContentWarning />
+          <AddContentWarning movieId={movieId} />
         </div>
         <div className="flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
           {contentWarnings.map((contentWarning: any) => (

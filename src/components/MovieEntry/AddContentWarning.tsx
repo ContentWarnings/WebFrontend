@@ -1,3 +1,6 @@
+// References
+// https://stackoverflow.com/questions/45283030/html5-input-type-time-without-am-pm-and-with-min-max
+
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsPlusLg } from "react-icons/bs";
@@ -10,7 +13,7 @@ import Backend from "../../helpers/Backend";
 async function getList(setDropdownList: any) {
   let path = "/names";
   const resp = await Backend.getRequest(path);
-  const cwList = resp.jsonResponse.cws;
+  const cwList = resp.jsonResponse.cws.sort();
   let dropdownList: any[] = [];
   cwList.map((cw: any) =>
     dropdownList.push({ display: `${cw}`, value: `${cw}` })
@@ -18,7 +21,23 @@ async function getList(setDropdownList: any) {
   setDropdownList(dropdownList);
 }
 
-function AddContentWarning() {
+async function submitCw(movieId: number) {
+  const formData = document.forms[1];
+  const fromTime = formData.fromTime.value;
+  const ToTime = formData.fromTime.value;
+  const summary = formData.summary.value;
+  const cw = formData.selectedCw.value;
+  const movieInfo = {
+    name: cw,
+    movie_id: movieId,
+    time: [[1, 2]],
+    desc: summary,
+  };
+  console.log(summary);
+  // const response = await Backend.postRequest("movie", movieInfo);
+}
+
+function AddContentWarning(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [contentWarningName, setContentWarningName] = useState("");
   const [summary, setSummary] = useState("");
@@ -38,16 +57,10 @@ function AddContentWarning() {
       setSummary(desc);
     }
     fetchData();
-    console.log("we went here!");
   };
 
   const openModal = () => {
     setIsOpen(true);
-    handleWarningChange("Abandonment");
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
     handleWarningChange("Abandonment");
   };
 
@@ -60,7 +73,11 @@ function AddContentWarning() {
         <BsPlusLg />
       </button>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={() => closeModal()}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          onClose={() => setIsOpen(false)}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -90,34 +107,41 @@ function AddContentWarning() {
                       <h1 className="ml-1 mb-2 text-lg font-bold">
                         Submit Content Warning
                       </h1>
-                      <div className="flex w-full">
-                        <h2 className="p-2">Content</h2>
-                        <Dropdown
-                          id="selectedItem"
-                          options={dropdownList}
-                          handleChange={handleDropdown}
-                        />
-                      </div>
-                      <div className="flex">
-                        <h2 className="p-2">Timestamp</h2>
-                        <TextBox />
-                        <div className="p-2">to</div>
-                        <TextBox />
-                      </div>
-                      <div className="flex">
-                        <h2 className="p-2">Summary</h2>
-                        <TextBox />
-                      </div>
-                      <div className="my-2 flex w-full justify-end">
-                        <button
-                          className="mr-2 flex items-center rounded-lg border border-transparent bg-dark-1 p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-1"
-                          onClick={() => closeModal()}
-                        >
-                          <IoIosArrowBack className="text-lg" />
-                          <div className="pr-1 text-sm">Back</div>
-                        </button>
-                        <Primary2Button icon={<BsPlusLg />} name="Submit" />
-                      </div>
+                      <form id="cwSubmission">
+                        <div className="flex w-full">
+                          <h2 className="p-2">Content</h2>
+                          <Dropdown
+                            id="selectedCw"
+                            options={dropdownList}
+                            handleChange={handleDropdown}
+                          />
+                        </div>
+                        <div className="flex">
+                          <h2 className="p-2">Timestamp</h2>
+                          <TextBox id="fromTime" type={"time"} />
+                          <div className="p-2">to</div>
+                          <TextBox id="toTime" type={"time"} />
+                        </div>
+                        <div className="flex">
+                          <h2 className="p-2">Summary</h2>
+                          <TextBox id="summary" />
+                        </div>
+                        <div className="my-2 flex w-full justify-end">
+                          <button
+                            className="mr-2 flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <IoIosArrowBack className="text-lg" />
+                            <div className="pr-1 text-sm">Back</div>
+                          </button>
+
+                          <Primary2Button
+                            icon={<BsPlusLg />}
+                            name="Submit"
+                            handleClick={submitCw(props.movieId)}
+                          />
+                        </div>
+                      </form>
                     </div>
                     <div className="w-fit rounded-r bg-dark-1 p-2">
                       <h1 className="text-md font-bold">

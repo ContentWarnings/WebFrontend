@@ -32,22 +32,21 @@ function examineTime(cw: any): string {
   return getStartAndEnd(cw.time[0]);
 }
 
-async function handleFeedback(id: string, vote: boolean, setIsOpen: any) {
-  let path = `/cw/${id}/`;
-  if (vote === true) {
-    path += "upvote";
-  } else {
-    path += "downvote";
-  }
-  const resp = await Backend.getRequest(path);
-  console.log("ID: " + id + " Response: " + resp.statusCode);
-  setIsOpen(false);
-}
-
 function ContentWarningButton(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const time = examineTime(props.cw);
   const headerColor = props.flag ? "bg-secondary-3" : "bg-dark-3";
+
+  const handleFeedback = (vote: boolean) => {
+    let path = `/cw/${props.cw.id}/`;
+    if (vote === true) {
+      path += "upvote";
+    } else {
+      path += "downvote";
+    }
+    Backend.getRequest(path);
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -55,9 +54,7 @@ function ContentWarningButton(props: any) {
         onClick={() => setIsOpen(true)}
         className={`h-22 rounded-lg bg-dark-1 text-light-1 transition delay-100 ease-in-out hover:opacity-75 hover:shadow-md`}
       >
-        <div
-          className={`${headerColor} h-2 w-full rounded-t-lg text-light-1`}
-        />
+        <div className={`${headerColor} h-2 w-full rounded-t-lg`} />
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center">
             {props.flag && <IoIosWarning className="text-5xl text-light-1" />}
@@ -133,18 +130,14 @@ function ContentWarningButton(props: any) {
                     <h1 className="text-md mt-2 font-bold">Submit Feedback</h1>
                     <div className="my-2 flex w-full justify-between">
                       <button
-                        onClick={() =>
-                          handleFeedback(props.cw.id, true, setIsOpen)
-                        }
+                        onClick={() => handleFeedback(true)}
                         className="mr-6 flex w-full justify-center rounded border border-transparent bg-green-700 py-2 text-light-1 transition delay-100 ease-in-out hover:bg-green-800"
                       >
                         <BsCheckLg className="mr-2 text-2xl font-bold" />
                         This was accurate.
                       </button>
                       <button
-                        onClick={() =>
-                          handleFeedback(props.cw.id, false, setIsOpen)
-                        }
+                        onClick={() => handleFeedback(false)}
                         className="flex w-full justify-center rounded border border-transparent bg-red-700 py-2 text-light-1 transition delay-100 ease-in-out hover:bg-red-800"
                       >
                         <ImCross className="mr-2 text-2xl font-bold" />
@@ -154,7 +147,7 @@ function ContentWarningButton(props: any) {
                   </div>
                   <div className="my-2 flex w-full justify-center">
                     <button
-                      className="flex items-center rounded-lg border border-transparent bg-dark-1 p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-1"
+                      className="flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"
                       onClick={() => setIsOpen(false)}
                     >
                       <IoIosArrowBack className="text-lg" />
