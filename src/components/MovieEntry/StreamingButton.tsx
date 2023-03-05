@@ -18,7 +18,7 @@ function StreamingButton(props: any) {
           <img
             className="my-2 mr-2 h-8 rounded-lg object-scale-down"
             src={props.icon}
-            alt="logo"
+            alt={streamer}
           />
         )}
         <div className="mx-4 my-2 font-sans text-sm font-bold">
