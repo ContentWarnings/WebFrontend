@@ -1,6 +1,8 @@
 // References
-// https://stackoverflow.com/questions/45283030/html5-input-type-time-without-am-pm-and-with-min-max
+// https://mui.com/x/react-date-pickers/time-field/
+// https://day.js.org/docs/en/get-set/minute
 
+import * as React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsPlusLg } from "react-icons/bs";
@@ -9,6 +11,10 @@ import Primary2Button from "../shared/Primary2Button";
 import TextBox from "../shared/TextBox";
 import Dropdown from "../shared/Dropdown";
 import Backend from "../../helpers/Backend";
+import dayjs, { Dayjs } from "dayjs";
+import { TimeField } from "@mui/x-date-pickers/TimeField";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 async function getList(setDropdownList: any) {
   let path = "/names";
@@ -24,24 +30,16 @@ async function getList(setDropdownList: any) {
 function AddContentWarning(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [contentWarningName, setContentWarningName] = useState("");
-  const [summary, setSummary] = useState("");
+  const [contentWarningSummary, setContentWarningSummary] = useState("");
+  const [submissionSummary, setSubmissionSummary] = useState("");
   const [dropdownList, setDropdownList] = useState([]);
+  const [fromTime, setFromTime] = React.useState<Dayjs | null>(
+    dayjs("2022-04-17T00:00")
+  );
+  const [toTime, setToTime] = React.useState<Dayjs | null>(
+    dayjs("2022-04-17T00:00")
+  );
   getList(setDropdownList);
-
-  const submitCw = (movieId: number) => {
-    // const fromTime = document.getElementById("fromTime")?.nodeValue;
-    // const ToTime = document.getElementById("fromTime")?.nodeValue;
-    // const summary = document.getElementById("summary")?.nodeValue;
-    // const cw = document.getElementById("selectedCw")?.nodeValue;
-    // const movieInfo = {
-    //   name: cw,
-    //   movie_id: movieId,
-    //   time: [[1, 2]],
-    //   desc: summary,
-    // };
-    // console.log(movieId);
-    // Backend.postRequest("movie", movieInfo);
-  };
 
   const handleDropdown = (e: any) => {
     handleWarningChange(e.target.value);
@@ -53,7 +51,7 @@ function AddContentWarning(props: any) {
       let path = `descriptions?name=${cw}`;
       const resp = await Backend.getRequest(path);
       const desc = resp.jsonResponse.response;
-      setSummary(desc);
+      setContentWarningSummary(desc);
     }
     fetchData();
   };
@@ -61,6 +59,23 @@ function AddContentWarning(props: any) {
   const openModal = () => {
     setIsOpen(true);
     handleWarningChange("Abandonment");
+  };
+
+  const submitCW = () => {
+    if (submissionSummary === "") return;
+    if (fromTime === null || toTime === null) return;
+    const firstTime = fromTime.hour() * 60 + fromTime.minute();
+    const lastTime = toTime.hour() * 60 + toTime.minute();
+    if (firstTime > lastTime) return;
+    const movieInfo = {
+      name: contentWarningName,
+      movie_id: props.movieId,
+      time: [[firstTime, lastTime]],
+      desc: submissionSummary,
+    };
+    console.log(movieInfo);
+    Backend.postRequest("movie", movieInfo);
+    setIsOpen(false);
   };
 
   return (
@@ -116,13 +131,30 @@ function AddContentWarning(props: any) {
                       </div>
                       <div className="flex">
                         <h2 className="p-2">Timestamp</h2>
-                        <TextBox id="fromTime" type={"time"} />
-                        <div className="p-2">to</div>
-                        <TextBox id="toTime" type={"time"} />
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <TimeField
+                            value={fromTime}
+                            onChange={(newValue) => setFromTime(newValue)}
+                            format="HH:mm"
+                            className="mx-auto w-full rounded-lg bg-light-2 px-2 text-lg text-gray-700"
+                          />
+                          <div className="p-2">to</div>
+                          <TimeField
+                            value={toTime}
+                            onChange={(newValue) => setToTime(newValue)}
+                            format="HH:mm"
+                            className="mx-auto w-full rounded-lg bg-light-2 px-2 text-lg text-gray-700"
+                          />
+                        </LocalizationProvider>
                       </div>
                       <div className="flex">
                         <h2 className="p-2">Summary</h2>
-                        <TextBox id="summary" />
+                        <TextBox
+                          value={submissionSummary}
+                          handleChange={(newValue: any) =>
+                            setSubmissionSummary(newValue.target.value)
+                          }
+                        />
                       </div>
                       <div className="my-2 flex w-full justify-end">
                         <button
@@ -132,11 +164,10 @@ function AddContentWarning(props: any) {
                           <IoIosArrowBack className="text-lg" />
                           <div className="pr-1 text-sm">Back</div>
                         </button>
-
                         <Primary2Button
                           icon={<BsPlusLg />}
                           name="Submit"
-                          handleClick={submitCw(props.movieId)}
+                          handleClick={() => submitCW()}
                         />
                       </div>
                     </div>
@@ -144,7 +175,7 @@ function AddContentWarning(props: any) {
                       <h1 className="text-md font-bold">
                         {contentWarningName}
                       </h1>
-                      <p>{summary}</p>
+                      <p>{contentWarningSummary}</p>
                     </div>
                   </div>
                 </Dialog.Panel>
