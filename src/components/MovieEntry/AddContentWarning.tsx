@@ -33,6 +33,7 @@ function AddContentWarning(props: any) {
   const [contentWarningSummary, setContentWarningSummary] = useState("");
   const [submissionSummary, setSubmissionSummary] = useState("");
   const [dropdownList, setDropdownList] = useState([]);
+  const [error, setError] = useState("");
   const [fromTime, setFromTime] = React.useState<Dayjs | null>(
     dayjs("2022-04-17T00:00")
   );
@@ -57,12 +58,18 @@ function AddContentWarning(props: any) {
   };
 
   const openModal = () => {
+    setError("");
     setIsOpen(true);
     handleWarningChange("Abandonment");
   };
 
   const submitCW = () => {
-    if (submissionSummary === "") return;
+    if (submissionSummary === "") {
+      setError(
+        "Please review your content submission, the summary is blank and must be added."
+      );
+      return;
+    }
     if (fromTime === null || toTime === null) return;
     const firstTime = fromTime.hour() * 60 + fromTime.minute();
     const lastTime = toTime.hour() * 60 + toTime.minute();
@@ -74,8 +81,24 @@ function AddContentWarning(props: any) {
       desc: submissionSummary,
     };
     console.log(movieInfo);
-    Backend.postRequest("movie", movieInfo);
-    setIsOpen(false);
+    Backend.postRequest("movie", movieInfo)
+      .then((resp: any) => {
+        const data: number = resp.statusCode;
+
+        if (data < 400) {
+          window.location.pathname = `/account/${props.movieId}`;
+        } else {
+          setError(
+            "Could not connect to the server. Please create and verify an account on MovieMentor if you have not done so already."
+          );
+        }
+        setIsOpen(false);
+      })
+      .catch((err: any) => {
+        setError(
+          "Could not connect to the server. Please try again in a few minutes!"
+        );
+      });
   };
 
   return (
@@ -156,6 +179,9 @@ function AddContentWarning(props: any) {
                           }
                         />
                       </div>
+                      {error !== "" && (
+                        <p className="text-error">Error: {error}</p>
+                      )}
                       <div className="my-2 flex w-full justify-end">
                         <button
                           className="mr-2 flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"

@@ -17,7 +17,7 @@ function getTime(time: number): String {
   } else {
     minString = mins.toString();
   }
-
+  if (hours > 10) return hours + ":" + minString;
   return "0" + hours + ":" + minString;
 }
 

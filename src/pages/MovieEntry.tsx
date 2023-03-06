@@ -143,12 +143,12 @@ function MovieEntry() {
             </div>
             <StarRating value={rating} />
             {contentWarnings.length === 0 && warnings.length === 0 ? (
-              <h6 className="text-white">
+              <h3 className="text-light-1">
                 There are no content warnings associated with this film in our
                 database.
                 <br />
                 Please proceed with caution while watching this movie.
-              </h6>
+              </h3>
             ) : (
               <div className="mt-2 flex flex-wrap gap-2">
                 {contentWarnings.map((contentWarning: any, index: any) => (
@@ -169,8 +169,13 @@ function MovieEntry() {
             </div>
           </div>
         </div>
-        <div className="mt-6 flex">
-          <div className="flex grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
+        <div className="mt-4">
+          {streaming.length !== 0 && (
+            <h3 className="text-sm text-light-3">
+              Streaming Information Provided by JustWatch
+            </h3>
+          )}
+          <div className="mt-2 flex grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
             {streaming.map((streamer: any, index: any) => (
               <StreamingButton
                 streamer={streamer[0]}
