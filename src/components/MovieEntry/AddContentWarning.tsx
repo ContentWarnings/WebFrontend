@@ -2,11 +2,10 @@
 // https://mui.com/x/react-date-pickers/time-field/
 // https://day.js.org/docs/en/get-set/minute
 
-import * as React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsPlusLg } from "react-icons/bs";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Primary2Button from "../shared/Primary2Button";
 import TextBox from "../shared/TextBox";
 import Dropdown from "../shared/Dropdown";
@@ -34,13 +33,14 @@ function AddContentWarning(props: any) {
   const [submissionSummary, setSubmissionSummary] = useState("");
   const [dropdownList, setDropdownList] = useState([]);
   const [error, setError] = useState("");
-  const [fromTime, setFromTime] = React.useState<Dayjs | null>(
+  const [fromTime, setFromTime] = useState<Dayjs | null>(
     dayjs("2022-04-17T00:00")
   );
-  const [toTime, setToTime] = React.useState<Dayjs | null>(
-    dayjs("2022-04-17T00:00")
-  );
-  getList(setDropdownList);
+  const [toTime, setToTime] = useState<Dayjs | null>(dayjs("2022-04-17T00:00"));
+
+  useEffect(() => {
+    getList(setDropdownList);
+  }, []);
 
   const handleDropdown = (e: any) => {
     handleWarningChange(e.target.value);
@@ -73,7 +73,12 @@ function AddContentWarning(props: any) {
     if (fromTime === null || toTime === null) return;
     const firstTime = fromTime.hour() * 60 + fromTime.minute();
     const lastTime = toTime.hour() * 60 + toTime.minute();
-    if (firstTime > lastTime) return;
+    if (firstTime > lastTime) {
+      setError(
+        "Please review your content submission, the start time is greater than the end time."
+      );
+      return;
+    }
     const movieInfo = {
       name: contentWarningName,
       movie_id: props.movieId,
@@ -86,7 +91,7 @@ function AddContentWarning(props: any) {
         const data: number = resp.statusCode;
 
         if (data < 400) {
-          window.location.pathname = `/account/${props.movieId}`;
+          window.location.pathname = `/movie/${props.movieId}&success=true`;
         } else {
           setError(
             "Could not connect to the server. Please create and verify an account on MovieMentor if you have not done so already."

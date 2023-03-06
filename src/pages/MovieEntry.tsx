@@ -28,6 +28,7 @@ async function getData(
   setSummary: any
 ) {
   let path = window.location.pathname;
+  if (path.indexOf("&") !== -1) path = path.split("&")[0];
   const resp = await Backend.getRequest(path);
   const data = resp.jsonResponse;
 
@@ -191,9 +192,12 @@ function MovieEntry() {
         </div>
         <div className="my-5 flex justify-between text-light-1">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
-          <AddContentWarning movieId={movieId} />
+          {localStorage.getItem("token") !== undefined &&
+            localStorage.getItem("token") !== "" && (
+              <AddContentWarning movieId={movieId} />
+            )}
         </div>
-        <div className="flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+        <div className="flex grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
           {contentWarnings.map((contentWarning: any, index: any) => (
             <ContentWarningButton flag={true} cw={contentWarning} key={index} />
           ))}
