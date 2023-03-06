@@ -5,6 +5,7 @@ import Account from "./pages/Account";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
+import MovieEntry from "./pages/MovieEntry";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/movie/*" element={<MovieEntry />} />
             <Route path="/account/*" element={<Account />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>

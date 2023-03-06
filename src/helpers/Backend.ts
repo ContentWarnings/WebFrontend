@@ -23,11 +23,13 @@ class Backend {
     private static MAIN_ENDPOINT: string = "https://api.moviementor.app/";
 
     private static getAuthHeader(bearerToken: string): any {
+        const userLifetime: number = 604800;
         if (bearerToken === "") {
             const getFromStorage = localStorage.getItem("token");
             if (getFromStorage) {
+                const issuedDate = JSON.parse(atob(getFromStorage.split(".")[1])).issued;
                 // If the token expired, delete it.
-                if (JSON.parse(atob(getFromStorage.split(".")[1])).issued > (Date.now()/1000)) {
+                if (issuedDate + userLifetime < Date.now()/1000 && issuedDate < Date.now()/1000) {
                     localStorage.setItem("token", "");
                 }
                 bearerToken = getFromStorage;
