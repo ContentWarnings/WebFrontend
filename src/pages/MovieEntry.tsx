@@ -161,7 +161,7 @@ function MovieEntry() {
             )}
             <div className="my-2 flex items-center">
               {mpa !== "Unknown" && (
-                <div className="mr-5 w-fit border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
+                <div className="mr-5 border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
                   {mpa}
                 </div>
               )}
@@ -175,7 +175,7 @@ function MovieEntry() {
               Streaming Information Provided by JustWatch
             </h3>
           )}
-          <div className="mt-2 flex grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9">
+          <div className="mt-2 flex grid grid-cols-3 gap-2 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11">
             {streaming.map((streamer: any, index: any) => (
               <StreamingButton
                 streamer={streamer[0]}

@@ -1,8 +1,6 @@
 // References
 // https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
 
-import { BsFillPlayFill } from "react-icons/bs";
-
 function StreamingButton(props: any) {
   const streamer = props.streamer.split(" - ")[0];
   let streamType = props.streamer.split(" - ")[1];
@@ -11,20 +9,19 @@ function StreamingButton(props: any) {
 
   return (
     <div
-      className={`w-15 rounded-lg border border-transparent bg-dark-3 text-light-1 transition delay-100 ease-in-out`}
+      className={`w-28 rounded-lg border border-transparent bg-dark-3 text-light-1 transition delay-100 ease-in-out`}
     >
       <div className="flex items-center px-1">
         {props.icon && (
           <img
-            className="my-2 mr-2 h-8 rounded-lg object-scale-down"
+            className="my-2 h-8 rounded-lg object-scale-down"
             src={props.icon}
             alt={streamer}
           />
         )}
-        <div className="mx-4 my-2 font-sans text-sm font-bold">
+        <div className="my-2 ml-4 font-sans text-sm font-bold">
           {streamType}
         </div>
-        <BsFillPlayFill className="text-3xl" />
       </div>
     </div>
   );
