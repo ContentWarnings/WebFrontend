@@ -49,7 +49,7 @@ function SearchBar(props: any) {
   }
 
   return (
-    <form className="w-full" onSubmit={props.handleSubmit}>
+    <form data-testid="search-bar-2" className="w-full" onSubmit={props.handleSubmit}>
       <div className="flex items-center py-2 box-border">
         <input
           type="text"

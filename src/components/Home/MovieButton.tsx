@@ -1,6 +1,7 @@
 function MovieButton(props: any) {
   return (
     <a
+      data-testid="movie-button"
       href={"/movie/" + props.id}
       className="transition ease-in-out delay-100 text-light-1 py-1 px-2 rounded"
     >

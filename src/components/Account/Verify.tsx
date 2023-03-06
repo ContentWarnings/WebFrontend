@@ -91,7 +91,7 @@ function Verify() {
   }, [])
 
   return (
-    <div className="mx-auto max-w-sm w-full mt-32">
+    <div data-testid="verify" className="mx-auto max-w-sm w-full mt-32">
       {verEl}
     </div>
   );

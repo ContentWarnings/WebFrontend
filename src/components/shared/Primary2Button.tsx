@@ -18,6 +18,7 @@ function Primary2Button(props: any) {
 
   return (
     <button
+      data-testid="primary2-button"
       role={role}
       onClick={props.handleClick}
       className={"transition ease-in-out delay-100 bg-primary-2 hover:bg-primary-1 border-primary-2 hover:border-primary-1 text-light-1 py-1 px-2 rounded-lg mr-1 ml-1"}

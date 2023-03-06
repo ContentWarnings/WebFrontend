@@ -21,7 +21,7 @@ function Dropdown(props: any) {
   }
 
   return (
-    <label>
+    <label data-testid="dropdown">
       {props.label}
       <select id={id} onChange={props.handleChange} className="bg-light-2 text-gray-700 rounded-lg mx-auto text-lg px-2 py-1 mx-2">{options}</select>
     </label>
