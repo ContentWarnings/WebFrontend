@@ -1,7 +1,7 @@
 {
   "name": "moviementor-fe",
   "version": "0.1.0",
-  "homepage": "https://ContentWarnings.github.io/WebFrontend",
+  "homepage": "https://moviementor.app",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
