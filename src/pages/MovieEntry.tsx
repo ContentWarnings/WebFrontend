@@ -7,7 +7,7 @@ import FlaggedContent from "../components/MovieEntry/FlaggedContent";
 import StreamingButton from "../components/MovieEntry/StreamingButton";
 import Backend from "../helpers/Backend";
 import { FaSpinner } from "react-icons/fa";
-import GenreCell from "../components/shared/CWCell";
+import GenreCell from "../components/shared/GenreCell";
 import CWCell from "../components/shared/CWCell";
 import ContentWarningButton from "../components/MovieEntry/ContentWarningButton";
 import AddContentWarning from "../components/MovieEntry/AddContentWarning";
