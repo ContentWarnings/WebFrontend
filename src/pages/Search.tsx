@@ -21,8 +21,6 @@ async function getData(page: number) {
 
     if (q !== "") {
       path += `&q=${q}`;
-    } else if (page > 1) {
-      return [];
     }
 
     const resp = await Backend.getRequest(path);
