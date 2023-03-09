@@ -79,21 +79,28 @@ async function loadNext(items: any, setItems: any, hasMore: any, setHasMore: any
   if (!hasMore)
     return;
 
-  let newItems: Array<any> = await getData(page + 1);
+  try {
+    let newItems: Array<any> = await getData(page + 1);
 
-  if (newItems.length === 0) {
-    setHasMore(false);
-    if (page === 0) {
-      newItems.push(<p className="text-center my-10 text-2xl">No results found!</p>)
-    } else {
-      newItems.push(<p className="text-center my-10 text-2xl">No more results!</p>)
+    if (newItems.length === 0) {
+      setHasMore(false);
+      if (page === 0) {
+        newItems.push(<p className="text-center my-10 text-2xl">No results found!</p>)
+      } else {
+        newItems.push(<p className="text-center my-10 text-2xl">No more results!</p>)
+      }
     }
+
+    setIsLoading(false);
+    setItems([...items, ...newItems]);
+
+    setPage(page + 1);
+  } catch(err) {
+    console.error(err);
+    setIsLoading(false);
+    setPage(page + 1);
+    loadNext(items, setItems, hasMore, setHasMore, page, setPage, isLoading, setIsLoading);
   }
-
-  setIsLoading(false);
-  setItems([...items, ...newItems]);
-
-  setPage(page + 1);
 }
 
 function Search() {
