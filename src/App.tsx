@@ -6,11 +6,12 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
 import MovieEntry from "./pages/MovieEntry";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col justify-between bg-dark-2 min-h-screen">
+      <div className="flex min-h-screen flex-col justify-between bg-dark-2">
         <Header />
         <main className="container mx-auto">
           <Routes>
@@ -18,6 +19,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/movie/*" element={<MovieEntry />} />
             <Route path="/account/*" element={<Account />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
