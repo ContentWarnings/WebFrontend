@@ -1,6 +1,3 @@
-// References
-// https://beta.reactjs.org/reference/react-dom/components/input
-
 import CWInput from "../components/Settings/CWInput";
 import Backend from "../helpers/Backend";
 import { useEffect, useState } from "react";
@@ -8,7 +5,9 @@ import { useEffect, useState } from "react";
 async function getList(setCwList: any) {
   let path = "/names";
   const resp = await Backend.getRequest(path);
-  const cwList = resp.jsonResponse.cws.sort();
+  const cwList = resp.jsonResponse.cws.sort().filter(function (cw: any) {
+    return cw !== "None";
+  });
   setCwList(cwList);
 }
 
