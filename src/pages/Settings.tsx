@@ -1,3 +1,6 @@
+// References
+// https://www.freecodecamp.org/news/how-to-remove-an-element-from-a-javascript-array-removing-a-specific-item-in-js/
+
 import CWInput from "../components/Settings/CWInput";
 import Backend from "../helpers/Backend";
 import { useEffect, useState } from "react";

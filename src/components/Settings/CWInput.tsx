@@ -1,6 +1,5 @@
 // References
 // https://beta.reactjs.org/reference/react-dom/components/input
-// https://www.freecodecamp.org/news/how-to-remove-an-element-from-a-javascript-array-removing-a-specific-item-in-js/
 // https://gomakethings.com/how-to-update-localstorage-with-vanilla-javascript/
 
 import { useEffect, useState } from "react";

@@ -7,6 +7,7 @@ import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
 import MovieEntry from "./pages/MovieEntry";
 import Settings from "./pages/Settings";
+import AccountSettings from "./pages/AccountSettings";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/movie/*" element={<MovieEntry />} />
             <Route path="/account/*" element={<Account />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings" element={<AccountSettings />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
