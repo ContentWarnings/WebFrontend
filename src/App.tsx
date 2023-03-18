@@ -20,7 +20,8 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/movie/*" element={<MovieEntry />} />
             <Route path="/account/*" element={<Account />} />
-            <Route path="/settings" element={<AccountSettings />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings/profile" element={<AccountSettings />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
