@@ -70,13 +70,11 @@ function MyProfile(props: any) {
         <div className="flex h-32 flex-col justify-between text-light-3">
           <h2>Email</h2>
           <h2>Password</h2>
-          <h2>Two-Factor</h2>
         </div>
         {!isEditing ? (
           <div className="flex h-32 flex-col justify-between">
             <p>{email}</p>
             <p>{password}</p>
-            <p>Two-Factor</p>
           </div>
         ) : (
           <div className="flex h-32 flex-col justify-between">
