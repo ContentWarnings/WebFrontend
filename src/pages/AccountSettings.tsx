@@ -1,41 +1,23 @@
-import { BsFillPersonFill } from "react-icons/bs";
 import { FaLaptopMedical } from "react-icons/fa";
 import Primary2Button from "../components/shared/Primary2Button";
-import { CgDanger, CgProfile } from "react-icons/cg";
-import md5 from "js-md5";
+import { CgDanger } from "react-icons/cg";
 import { useEffect, useState } from "react";
-import TextBox from "../components/shared/TextBox";
-import { FiEdit2 } from "react-icons/fi";
-import {
-  AiOutlineSave,
-  AiOutlineUserAdd,
-  AiOutlineLogin,
-} from "react-icons/ai";
+import { AiOutlineUserAdd, AiOutlineLogin } from "react-icons/ai";
 import Importer from "../helpers/Importer";
 import { FaFileExport } from "react-icons/fa";
 import DeleteAccountButton from "../components/Settings/DeleteAccountButton";
-import WarningButton from "../components/Settings/WarningButton";
 import ContentSubmission from "../components/Settings/ContentSubmission";
 import { IoIosWarning } from "react-icons/io";
 import Backend from "../helpers/Backend";
 import ResetAccountButton from "../components/Settings/ResetAccountButton";
+import MyProfile from "../components/Settings/MyProfile";
 
-let pfp = <CgProfile className="h-32 w-32 rounded-full" />;
 let email = "";
-let password = "************";
+
 const jwtToken = localStorage.getItem("token");
 
 if (jwtToken && jwtToken !== "") {
   email = JSON.parse(atob(jwtToken.split(".")[1])).email;
-  const gravatarHash = md5(email.trim().toLowerCase());
-  const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}?d=retro`;
-  pfp = (
-    <img
-      className="h-32 w-32 rounded-full border-4 border-dark-3"
-      src={gravatarUrl}
-      alt="Avatar"
-    />
-  );
 }
 
 async function getSubmissions(
@@ -74,31 +56,10 @@ async function getSubmissions(
 }
 
 function AccountSettings() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [buttonText, setButtonText] = useState("Edit");
-  const [buttonIcon, setButtonIcon] = useState(<FiEdit2 />);
   const [warnings, setWarnings] = useState([]);
   const [contentWarnings, setContentWarnings] = useState([]);
   const [hideMessage, setHideMessage] = useState("");
-  const exportString = "https://moviementor.app/in=" + Importer.export();
-
-  const handleEdit = () => {
-    if (isEditing) {
-      setIsEditing(false);
-      setButtonText("Edit");
-      setButtonIcon(<FiEdit2 />);
-      // window.location.pathname;
-    } else {
-      setIsEditing(true);
-      setButtonText("Save");
-      setButtonIcon(<AiOutlineSave />);
-    }
-  };
-
-  const logOut = () => {
-    localStorage.removeItem("token");
-    window.location.pathname = "/settings/profile";
-  };
+  const exportString = "https://moviementor.app/?in=" + Importer.export();
 
   useEffect(() => {
     getSubmissions(setWarnings, setContentWarnings, setHideMessage);
@@ -107,52 +68,18 @@ function AccountSettings() {
   return (
     <div className="relative mb-10 mt-32 h-fit lg:mx-20">
       <div className="rounded-lg bg-dark-1 py-4 px-8 text-light-1">
-        {email !== "" && (
-          <div>
-            <div className="flex justify-between">
-              <div className="flex items-center text-2xl">
-                <BsFillPersonFill className="mr-2" />
-                <h1 className="font-bold">My Profile</h1>
-              </div>
-              <div>
-                <Primary2Button
-                  name={buttonText}
-                  icon={buttonIcon}
-                  handleClick={handleEdit}
-                />
-                <WarningButton name="Log Out" handleClick={logOut} />
-              </div>
-            </div>
-            <div className="flex">
-              {pfp}
-              <div className="flex h-32 flex-col justify-between text-light-3">
-                <h2>Email</h2>
-                <h2>Password</h2>
-                <h2>Two-Factor</h2>
-              </div>
-              {!isEditing ? (
-                <div className="flex h-32 flex-col justify-between">
-                  <p>{email}</p>
-                  <p>{password}</p>
-                  <p>Two-Factor</p>
-                </div>
-              ) : (
-                <div className="flex h-32 flex-col justify-between">
-                  <TextBox defaultValue={email} />
-                  <TextBox defaultValue={password} />
-                  <p>Two-Factor</p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+        {email !== "" && <MyProfile email={email} />}
         <div>
           <div className="flex items-center text-2xl">
             <FaLaptopMedical className="mr-2" />
             <h1 className="font-bold">Add Device</h1>
           </div>
           <div className="flex">
-            {pfp}
+            <img
+              className="h-32 w-32 rounded-full border-4 border-dark-3"
+              src=""
+              alt="Avatar"
+            />
             <div className="flex flex-col">
               <h2>
                 Scan the QR code or type in the URL below to transfer content
