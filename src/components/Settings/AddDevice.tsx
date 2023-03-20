@@ -12,8 +12,14 @@ function AddDevice() {
         <h1 className="font-bold">Add Device</h1>
       </div>
       <div className="mt-2 flex">
-        <div className="mr-2 h-auto w-40 bg-light-1 p-2">
-          <QRCode size={256} value={exportString} className="h-auto w-full" />
+        <div className="mr-2 h-auto w-40 p-2">
+          <QRCode
+            bgColor="#313131"
+            fgColor="#FFFFFF"
+            size={256}
+            value={exportString}
+            className="h-auto w-full"
+          />
         </div>
         <div className="flex flex-col">
           <h2>

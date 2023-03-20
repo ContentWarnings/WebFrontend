@@ -6,7 +6,6 @@ import { CgProfile } from "react-icons/cg";
 import MMLogo from "./assets/MMLogo";
 import md5 from "js-md5";
 
-
 function Header() {
   const [text, setText] = useState("");
 
@@ -22,7 +21,7 @@ function Header() {
 
   let pfp = (
     <Link to="/account/signin">
-        <CgProfile className="rounded-full w-8 h-8 hover:opacity-50 ease-in-out" />
+      <CgProfile className="h-8 w-8 rounded-full ease-in-out hover:opacity-50" />
     </Link>
   );
 
@@ -34,15 +33,22 @@ function Header() {
     const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}?d=retro`;
     pfp = (
       <Link to="/settings/profile">
-          <img className="rounded-full w-8 h-8 hover:opacity-50 ease-in-out" src={gravatarUrl} alt="Account Settings"/>
+        <img
+          className="h-8 w-8 rounded-full ease-in-out hover:opacity-50"
+          src={gravatarUrl}
+          alt="Account Settings"
+        />
       </Link>
     );
   }
 
   return (
-    <nav data-testid="header" className="fixed left-0 right-0 z-10 flex items-center justify-between flex-wrap bg-primary-2 p-2 text-white">
-      <div className="flex items-center justify-left flex-shrink lg:ml-20">
-        <Link to="/" className="text-lg font-bold align-middle">
+    <nav
+      data-testid="header"
+      className="fixed left-0 right-0 z-10 flex flex-wrap items-center justify-between bg-primary-2 p-2 text-white"
+    >
+      <div className="justify-left flex flex-shrink items-center lg:ml-20">
+        <Link to="/" className="align-middle text-lg font-bold">
           <MMLogo />
         </Link>
       </div>
@@ -52,12 +58,12 @@ function Header() {
             <div className="flex items-center py-2">
               <input
                 type="text"
-                className="appearance-none border-none w-full text-gray-700 bg-light-2 py-1 px-2 leading-tight focus:outline-none rounded-l-lg"
+                className="w-full appearance-none rounded-l-lg border-none bg-light-2 py-1 px-2 leading-tight text-gray-700 focus:outline-none"
                 placeholder="Search movies..."
                 value={text}
                 onChange={handleChange}
               />
-              <button className="transition ease-in-out delay-100 bg-primary-3 hover:bg-primary-1 border-primary-3 hover:border-primary-1 text-sm border-4 text-white py-1 px-2 rounded-r-lg">
+              <button className="rounded-r-lg border-4 border-primary-3 bg-primary-3 py-1 px-2 text-sm text-white transition delay-100 ease-in-out hover:border-primary-1 hover:bg-primary-1">
                 <FaSearch />
               </button>
             </div>
@@ -65,12 +71,10 @@ function Header() {
         </div>
         <div className="p-2">
           <Link to="/settings">
-            <Settings className="transition ease-in-out delay-100 w-8 h-8 rounded-full hover:rotate-45" />
+            <Settings className="h-8 w-8 rounded-full transition delay-100 ease-in-out hover:rotate-45 hover:opacity-50" />
           </Link>
         </div>
-        <div className="p-2">
-          {pfp}
-        </div>
+        <div className="p-2">{pfp}</div>
       </div>
     </nav>
   );

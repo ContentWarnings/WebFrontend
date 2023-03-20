@@ -65,24 +65,25 @@ function MyProfile(props: any) {
           <WarningButton name="Log Out" handleClick={logOut} />
         </div>
       </div>
-      <div className="flex">
+      <div className="mt-2 flex">
         {pfp}
-        <div className="flex h-32 flex-col justify-between text-light-3">
-          <h2>Email</h2>
-          <h2>Password</h2>
+        <div className="ml-4 flex">
+          <div className="flex h-32 flex-col text-light-3">
+            <h2>Email</h2>
+            <h2>Password</h2>
+          </div>
+          {!isEditing ? (
+            <div className="flex h-32 flex-col">
+              <p>{email}</p>
+              <p>{password}</p>
+            </div>
+          ) : (
+            <div className="flex h-32 flex-col">
+              <TextBox defaultValue={email} />
+              <TextBox defaultValue={password} />
+            </div>
+          )}
         </div>
-        {!isEditing ? (
-          <div className="flex h-32 flex-col justify-between">
-            <p>{email}</p>
-            <p>{password}</p>
-          </div>
-        ) : (
-          <div className="flex h-32 flex-col justify-between">
-            <TextBox defaultValue={email} />
-            <TextBox defaultValue={password} />
-            <p>Two-Factor</p>
-          </div>
-        )}
       </div>
     </div>
   );
