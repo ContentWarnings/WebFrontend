@@ -21,7 +21,10 @@ function AddDevice() {
             warning settings between devices.{" "}
             <span className="underline">This does not log you in.</span>
           </h2>
-          <p className="text-lg font-bold">{exportString}</p>
+          <p className="text-center text-lg font-bold">
+            <br />
+            {exportString}
+          </p>
         </div>
       </div>
     </div>

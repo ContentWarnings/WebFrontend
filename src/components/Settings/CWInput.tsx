@@ -47,9 +47,9 @@ function CWInput(props: any) {
   }, [props.name, visibility]);
 
   return (
-    <div className="border-t-4 border-dark-2 py-2 ">
+    <div className="border-t-4 border-dark-2 py-2">
       <div className="flex justify-between">
-        <div>
+        <div className="w-full">
           <div className="flex">
             <h2 className="text-xl text-light-1">{props.name}</h2>
             <button

@@ -3,6 +3,7 @@ import DangerZone from "../components/Settings/DangerZone";
 import AddDevice from "../components/Settings/AddDevice";
 import MyProfileSubmission from "../components/Settings/MyProfileSubmissions";
 import NoProfile from "../components/Settings/NoProfile";
+import Tabs from "../components/Settings/Tabs";
 
 let email = "";
 
@@ -14,7 +15,8 @@ if (jwtToken && jwtToken !== "") {
 
 function AccountSettings() {
   return (
-    <div className="relative mb-10 mt-32 h-fit lg:mx-20">
+    <div className="relative mb-10 mt-32 h-fit sm:flex lg:mx-20">
+      <Tabs page="account" />
       <div className="rounded-lg bg-dark-1 py-4 px-8 text-light-1">
         {email !== "" && <MyProfile email={email} />}
         <AddDevice />
