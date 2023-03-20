@@ -50,7 +50,7 @@ function MyProfile(props: any) {
   };
 
   return (
-    <div>
+    <div className="mb-4">
       <div className="flex justify-between">
         <div className="flex items-center text-2xl">
           <BsFillPersonFill className="mr-2" />
