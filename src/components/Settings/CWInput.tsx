@@ -56,7 +56,7 @@ function CWInput(props: any) {
               type="button"
               onClick={() => handleClick()}
               className={
-                "ml-2 rounded-full border-primary-2 bg-primary-2 px-3 italic text-dark-3 transition delay-100 ease-in-out hover:border-primary-1 hover:bg-primary-1"
+                "ml-2 h-min rounded-full border-primary-2 bg-primary-2 px-3 py-1 italic text-dark-3 transition delay-100 ease-in-out hover:border-primary-1 hover:bg-primary-1"
               }
             >
               i
@@ -64,7 +64,7 @@ function CWInput(props: any) {
           </div>
           {message.length !== 0 && <p className="text-light-3">{message}</p>}
         </div>
-        <div className="flex gap-80">
+        <div className="flex w-full justify-between">
           <label>
             <input
               type="radio"

@@ -36,10 +36,15 @@ function Settings() {
       <div className="relative mb-10 mt-32 h-fit sm:flex lg:mx-20">
         <Tabs page="triggers" />
         <form className="w-full rounded-lg bg-dark-1 py-4 px-8">
-          <div className="flex justify-end gap-72 text-xl text-light-1">
-            <h1>Show</h1>
-            <h1>Warn</h1>
-            <h1>Hide</h1>
+          <div>
+            <div className="flex justify-between">
+              <h2 className="w-full text-xl text-light-1">Name</h2>
+              <div className="flex w-full justify-between text-xl text-light-1">
+                <h1>Show</h1>
+                <h1>Warn</h1>
+                <h1>Hide</h1>
+              </div>
+            </div>
           </div>
           {cwList.map((cw: any, index: any) => (
             <CWInput name={cw} key={index} />

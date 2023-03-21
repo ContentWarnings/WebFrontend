@@ -14,7 +14,7 @@ function ResetAccountButton() {
   };
 
   const handleClose = () => {
-    window.location.pathname = "/settings/profile";
+    window.location.pathname = "/settings";
   };
 
   return (
