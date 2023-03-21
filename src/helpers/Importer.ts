@@ -24,15 +24,15 @@ class Importer {
     }
 
 
-    private static base36_to_base3(input: string) {
+    private static base36_to_base4(input: string) {
         let base10 = this.bigint_any_base_to_base10(input, 36);
-        let base3 = base10.toString(3);
+        let base3 = base10.toString(4);
         return base3;
     }
 
 
-    private static base3_to_base36(input: string) {
-        let base10 = this.bigint_any_base_to_base10(input, 3);
+    private static base4_to_base36(input: string) {
+        let base10 = this.bigint_any_base_to_base10(input, 4);
         let base36 = base10.toString(36);
         return base36;
     }
@@ -53,17 +53,19 @@ class Importer {
             const cws: Array<string> = resp.jsonResponse.cws;
 
             // Data given -> JSON object
-            let import_base3: string = this.base36_to_base3(import_str);
+            let import_base4: string = this.base36_to_base4(import_str);
 
-            for (let i = 0; i < import_base3.length; i++) {
-                let current_value = import_base3[i];
+            for (let i = 0; i < cws.length; i++) {
+                let current_value = import_base4[i];
                 let current_cw: string = cws[i];
 
                 // If something goes wrong, we default to 'show'.
                 let action = "show";
                 if (current_value === "1")
-                    action = "flag";
+                    action = "show";
                 else if (current_value === "2")
+                    action = "flag";
+                else if (current_value === "3")
                     action = "hide";
 
                 final[current_cw] = action;
@@ -116,17 +118,18 @@ class Importer {
         let output = "";
 
         for (let i = 0; i < cw_list.length; i++) {
-            let resp = "0";
+            let resp = "1";
+            
             if (cw_mappings[i] === "flag")
-                resp = "1"
-            else if (cw_mappings[i] === "hide")
                 resp = "2"
+            else if (cw_mappings[i] === "hide")
+                resp = "3"
             
             output += resp;
         }
 
         // Now, we have a base3 string for export, but we need it as base36.
-        let base36 = this.base3_to_base36(output);
+        let base36 = this.base4_to_base36(output);
 
         return base36;
     }

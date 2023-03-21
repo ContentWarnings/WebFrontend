@@ -124,11 +124,16 @@ function MovieEntry() {
     );
   } else {
     return (
-      <div className="relative mb-10 mt-32 h-fit lg:mx-20">
+      <div className="relative mb-10 mx-4 mt-36 sm:mt-32 h-fit lg:mx-20">
+        <img
+          src={poster}
+          className="m-auto h-fit w-60 rounded-lg block md:hidden"
+          alt={title}
+        />
         <div className="flex">
           <img
             src={poster}
-            className="mr-10 h-fit w-60 rounded-lg"
+            className="mr-10 h-fit w-60 rounded-lg hidden md:block"
             alt={title}
           />
           <div className="flex flex-col">
