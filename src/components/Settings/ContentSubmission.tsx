@@ -128,7 +128,8 @@ function ContentSubmission(props: any) {
                   <div className="mx-4 mt-2 mb-5">
                     {props.cw.desc && (
                       <div>
-                        <h1 className="text-md font-bold">Summary</h1>
+                        <h1 className="text-lg font-bold">{title}</h1>
+                        <h2 className="text-md font-bold">Content Summary</h2>
                         <p className="text-sm">{props.cw.desc}</p>
                       </div>
                     )}

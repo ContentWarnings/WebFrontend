@@ -1,8 +1,25 @@
+// References
+// https://stackoverflow.com/questions/13405129/create-and-save-a-file-with-javascript
+// https://spin.atomicobject.com/2022/03/09/create-export-react-frontend/
+
 import { CgDanger } from "react-icons/cg";
 import { FaFileExport } from "react-icons/fa";
 import DeleteAccountButton from "./DeleteAccountButton";
 import ResetAccountButton from "./ResetAccountButton";
 import Primary2Button from "../shared/Primary2Button";
+import Backend from "../../helpers/Backend";
+
+async function exportUserData() {
+  const resp = await Backend.getRequest("user");
+  const data = resp.jsonResponse;
+  const fileData = JSON.stringify(data);
+  const blob = new Blob([fileData], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.download = "moviementor-user-info.json";
+  link.href = url;
+  link.click();
+}
 
 function DangerZone(props: any) {
   return (
@@ -25,7 +42,11 @@ function DangerZone(props: any) {
             <p className="mb-1 text-center text-light-3">
               Download a JSON text file containing your account data.
             </p>
-            <Primary2Button name="Export" icon={<FaFileExport />} />
+            <Primary2Button
+              name="Export"
+              icon={<FaFileExport />}
+              handleClick={exportUserData}
+            />
           </div>
           <div className="flex flex-col items-center">
             <h2 className="text-center font-bold">Delete Account</h2>
