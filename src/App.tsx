@@ -10,6 +10,10 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
 import MovieEntry from "./pages/MovieEntry";
+import TosPage from "./pages/Tos";
+import AboutPage from "./pages/About";
+import AttributionPage from "./pages/Attribution";
+import PrivacyPage from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/movie/*" element={<MovieEntry />} />
             <Route path="/account/*" element={<Account />} />
+            <Route path="/tos" element={<TosPage />}/>
+            <Route path="/about" element={<AboutPage />}/>
+            <Route path="/attributions" element={<AttributionPage />}/>
+            <Route path="/privacypolicy" element={<PrivacyPage />}/>
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
