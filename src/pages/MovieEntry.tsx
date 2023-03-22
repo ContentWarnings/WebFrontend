@@ -1,5 +1,6 @@
 // References
 // https://daily-dev-tips.com/posts/center-elements-with-tailwind-css/
+// https://codingbeautydev.com/blog/javascript-filter-duplicate-objects-from-array/
 
 import { useEffect, useState } from "react";
 import StarRating from "../components/MovieEntry/StarRating";
@@ -148,23 +149,28 @@ function MovieEntry() {
               ))}
             </div>
             <StarRating value={rating} />
-            {contentWarnings.length === 0 && warnings.length === 0 ? (
-              <h3 className="text-light-1">
-                There are no content warnings associated with this film in our
-                database.
-                <br />
-                Please proceed with caution while watching this movie.
-              </h3>
-            ) : (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {contentWarnings.map((contentWarning: any, index: any) => (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {contentWarnings
+                .filter(
+                  (obj: any, index: any) =>
+                    contentWarnings.findIndex(
+                      (item: any) => item.name === obj.name
+                    ) === index
+                )
+                .map((contentWarning: any, index: any) => (
                   <CWCell flag={true} genre={contentWarning.name} key={index} />
                 ))}
-                {warnings.map((warning: any, index: any) => (
+              {warnings
+                .filter(
+                  (obj: any, index: any) =>
+                    warnings.findIndex(
+                      (item: any) => item.name === obj.name
+                    ) === index
+                )
+                .map((warning: any, index: any) => (
                   <CWCell genre={warning.name} key={index} />
                 ))}
-              </div>
-            )}
+            </div>
             <div className="my-2 flex items-center">
               {mpa !== "Unknown" && (
                 <div className="mr-5 border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
@@ -181,7 +187,7 @@ function MovieEntry() {
               Streaming Information Provided by JustWatch
             </h3>
           )}
-          <div className="mt-2 flex grid grid-cols-3 gap-2 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 xl:grid-cols-11">
+          <div className="mt-2 flex flex-wrap gap-2">
             {streaming.map((streamer: any, index: any) => (
               <StreamingButton
                 streamer={streamer[0]}
@@ -210,6 +216,14 @@ function MovieEntry() {
             <ContentWarningButton flag={false} cw={warning} key={index} />
           ))}
         </div>
+        {contentWarnings.length === 0 && warnings.length === 0 && (
+          <h3 className="text-light-1">
+            There are no content warnings associated with this film in our
+            database.
+            <br />
+            Please proceed with caution while watching this movie.
+          </h3>
+        )}
       </div>
     );
   }
