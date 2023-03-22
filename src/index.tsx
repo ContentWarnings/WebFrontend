@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Importer from "./helpers/Importer";
+import Toast from "./helpers/Toast";
 import URLHelper from "./helpers/URLHelper";
 
 const root = ReactDOM.createRoot(
@@ -12,11 +13,11 @@ root.render(
     <App />
 );
 
-
 // Bitmask-based CW importer. Is plcaed here since it should run on every MM page.
 let import_str: string = URLHelper.populateDefaultFromURL("in", "");
 if (import_str !== "") {
     Importer.import(import_str);
+    Toast.toast("Trigger preferences imported successfully!");
 }
 
 // Initialize empty CW database.
