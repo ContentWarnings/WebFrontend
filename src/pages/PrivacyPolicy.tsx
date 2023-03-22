@@ -21,7 +21,7 @@ function PrivacyPage(){
                 <br />
                 <p className="text-1xl font-bold" style={{color: "#b085f5"}}>For your safety, your content warnings are NOT stored on MovieMentor's servers, rather saved in your browser on your local machine.</p>
                 <br />
-                <p className="text-1xl">In compliance with regulations such as those presented by the General Data Protection Regulation (GDPR) and California Consumer Protection Act (CCPA) all data is secured and monitored for potential data breaches. Additionally users are provided with the option to delete their account including all data stored, as well as export all of the data stored on an individual. </p>
+                <p className="text-1xl">In compliance with regulations such as those presented by the General Data Protection Regulation (GDPR) and California Consumer Protection Act (CCPA), all data is secured and monitored for potential data breaches. Additionally users are provided with the option to delete their account including all data stored, as well as export all of the data stored on an individual. </p>
                 <br />
                 <h2 className="text-2xl font-bold">Legal Compliance</h2>
                 <br />

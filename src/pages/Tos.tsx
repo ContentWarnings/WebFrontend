@@ -21,7 +21,7 @@ function TosPage(){
                 <br />
                 <p className="text-1xl">The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such use would be contrary to law or regulation or which subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services in other locations do so on their own initiative and are soley responsible for compliance with local laws, if and to the extent local laws are applicable.</p>
                 <br />
-                <p className="text-1xl">MovieMentor should not be used by government agencies where secrecy is required. MovieMentor is also not a medical application; while all user data is stored on-device, we are not beholdent to the Health Insurance Portability and Accountability Act (HIPAA).</p>
+                <p className="text-1xl">MovieMentor should not be used by government agencies where secrecy is required. MovieMentor is also not a medical application; while all user data is stored on-device, we are not beholden to the Health Insurance Portability and Accountability Act (HIPAA).</p>
                 <br />
                 <h2 className="text-2xl font-bold">Intellectual Property Rights</h2>
                 <br />
@@ -40,7 +40,7 @@ function TosPage(){
                 <p className="text-1xl">- Perform any actions that may lead us to violate our contractual agreements with The Movie Database, JustWatch, Amazon Web Services, Cloudflare, GitHub, or any other dependent parties, including data scraping or unauthorized use of our Services.</p>
                 <p className="text-1xl">- Trick, defraud, or mislead us and other users for any reason.</p>
                 <p className="text-1xl">- Circumvent, disable, or interfere with security-related features,  in line with the Computer Fraud and Abuse Act (CPAA).</p>
-                <p className="text-1xl">- Upload and transmit viruses, Trojan horses, trackers, spyware, other malware, or other illicit material, including excessive use of capital letters, abuse of Unicode characters, and other "spammy" content (posting of repetitive and/or derivative content). </p>
+                <p className="text-1xl">- Upload and transmit viruses, Trojan horses, trackers, spyware, other malware, or other illicit material, including excessive use of capital letters, abuse of Unicode characters, and other spam content (posting of repetitive and/or derivative content). </p>
                 <p className="text-1xl">- Disparage, tarnish, or otherwise harm, in our opinion, the Developers, the Site, the Apps, and/or the Services.</p>
                 <p className="text-1xl">- Engage in unauthorized framing of or linking to the Services.</p>
                 <p className="text-1xl">- Engage in any automated use of the system, including unauthorized use of APIs and reverse-engineering of the Services.</p>
@@ -68,6 +68,8 @@ function TosPage(){
                 <h2 className="text-2xl font-bold">Dispute Resolution</h2>
                 <br />
                 <p className="text-1xl">MovieMentor and the Developers are a small independently-operated project. We reserve the right to resolve disputes in any manner we see fit. To file a complaint, contact moviementor@divi.sh. Disputes have no grounding after three (3) months since the incident in question. For purposes of litigation, arbitration, and liability, we operate out of the city of Seattle in King County, Washington, United Stated of America.</p>
+                <br />
+                <p className="text-2xl font-bold">Last Updated 2023-03-11</p>
                 <br />
 
             </div>
