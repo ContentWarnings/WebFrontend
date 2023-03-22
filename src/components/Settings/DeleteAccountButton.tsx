@@ -3,16 +3,24 @@ import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
 import { Fragment, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import WarningButton from "./WarningButton";
+import Primary2Button from "../shared/Primary2Button";
+import Backend from "../../helpers/Backend";
 
 function DeleteAccountButton() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const openDeleteRequest = () => {
+    const path = "user/delete-request";
+    Backend.getRequest(path);
+    setIsOpen(true);
+  };
 
   return (
     <>
       <WarningButton
         name="Delete"
         icon={<AiFillDelete />}
-        handleClick={() => setIsOpen(true)}
+        handleClick={openDeleteRequest}
       />
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -53,15 +61,19 @@ function DeleteAccountButton() {
                       <div className="flex items-center">
                         <IoIosWarning className="text-5xl text-light-1" />
                         <div className="my-5 text-center text-lg font-bold">
-                          Are you sure you want to delete your account?
+                          Account Deletion Request Sent
                         </div>
                       </div>
                     </div>
                   </Dialog.Title>
-
                   <div className="mx-4 mt-2 mb-5">
                     <p className="text-center text-sm">
-                      This action will be permanent so please be careful.
+                      Please check email for additional details on deleting your
+                      account.
+                    </p>
+                    <p className="text-center text-sm">
+                      <span className="underline">Note:</span> Deleting your
+                      account will not delete your content submissions.
                     </p>
                   </div>
                   <div className="my-2 flex w-full justify-center">
@@ -72,11 +84,7 @@ function DeleteAccountButton() {
                       <IoIosArrowBack className="text-lg" />
                       <div className="pr-1 text-sm">Back</div>
                     </button>
-                    <WarningButton
-                      name="Delete Account"
-                      icon={<AiFillDelete />}
-                      handleClick={() => setIsOpen(false)}
-                    />
+                    <Primary2Button name="Open Mail App" href="mailto:" />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
