@@ -1,5 +1,6 @@
 // References
 // https://headlessui.com/react/dialog
+// https://stackoverflow.com/questions/72007089/passing-tailwind-class-as-a-prop-in-react
 
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
