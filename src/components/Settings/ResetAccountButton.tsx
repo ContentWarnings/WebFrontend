@@ -59,7 +59,7 @@ function ResetAccountButton() {
                       <div className="flex items-center">
                         <IoIosWarning className="text-5xl text-light-1" />
                         <div className="my-5 text-center text-lg font-bold">
-                          Content Warning Settings successfully reset
+                          Content warning settings successfully reset
                         </div>
                       </div>
                     </div>

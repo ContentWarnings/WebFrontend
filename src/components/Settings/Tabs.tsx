@@ -15,13 +15,13 @@ function Tabs(props: any) {
   return (
     <div className="mr-4 flex flex-col text-xl font-bold text-light-1">
       <a
-        className={`mb-1 items-center rounded-lg border border-transparent ${buttonColorOne} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverOne}`}
+        className={`mb-1 w-max rounded-lg border border-transparent text-center ${buttonColorOne} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverOne}`}
         href="/settings"
       >
-        Triggers
+        Content Warnings
       </a>
       <a
-        className={`w-max items-center rounded-lg border border-transparent ${buttonColorTwo} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverTwo}`}
+        className={`rounded-lg border border-transparent text-center ${buttonColorTwo} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverTwo}`}
         href="/settings/profile"
       >
         My Profile
