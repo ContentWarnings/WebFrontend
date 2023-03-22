@@ -53,6 +53,11 @@ function MyProfileSubmissions() {
         <IoIosWarning className="mr-2" />
         <h1 className="font-bold">My Submissions</h1>
       </div>
+      {contentWarnings.length === 0 && warnings.length === 0 && (
+        <p className="text-light-3">
+          You have not submitted any content warnings for movies yet.
+        </p>
+      )}
       <div className="mt-2 flex grid grid-cols-1 gap-4">
         {contentWarnings.map((contentWarning: any, index: any) => (
           <ContentSubmission flag={true} cw={contentWarning} key={index} />

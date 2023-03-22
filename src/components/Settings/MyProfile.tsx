@@ -7,6 +7,7 @@ import WarningButton from "./WarningButton";
 import Primary2Button from "../shared/Primary2Button";
 import TextBox from "../shared/TextBox";
 import md5 from "js-md5";
+import Backend from "../../helpers/Backend";
 
 function MyProfile(props: any) {
   const [isEditing, setIsEditing] = useState(false);
@@ -15,16 +16,55 @@ function MyProfile(props: any) {
   const [pfp, setPfp] = useState(
     <CgProfile className="h-32 w-32 rounded-full" />
   );
-  let password = "************";
-  const [email, setEmail] = useState("");
+  const password = "*********";
+  const email = props.email;
+  const [editedEmail, setEditedEmail] = useState("");
+  const [editedPassword, setEditedPassword] = useState(password);
+  const [message, setMessage] = useState("");
 
   const handleEdit = () => {
     if (isEditing) {
-      setIsEditing(false);
-      setButtonText("Edit");
-      setButtonIcon(<FiEdit2 />);
-      // window.location.pathname;
+      if (editedEmail !== email || editedPassword !== password) {
+        let userInfo = {};
+        if (editedEmail !== email && editedPassword !== password) {
+          userInfo = {
+            email: editedEmail,
+            password: editedPassword,
+          };
+        } else if (editedEmail !== email) {
+          console.log(email);
+          console.log(editedEmail);
+          userInfo = {
+            email: editedEmail,
+          };
+        } else if (editedPassword !== password) {
+          userInfo = {
+            password: editedPassword,
+          };
+        }
+        Backend.postRequest("user", userInfo)
+          .then((resp: any) => {
+            const data: number = resp.statusCode;
+            if (data < 400) {
+              setMessage(resp.jsonResponse.response);
+            }
+            setIsEditing(false);
+          })
+          .catch((err: any) => {
+            console.log(
+              "Could not connect to the server. Please try again in a few minutes!"
+            );
+          });
+      } else {
+        setIsEditing(false);
+        setButtonText("Edit");
+        setButtonIcon(<FiEdit2 />);
+        setMessage("No changes to user information.");
+      }
     } else {
+      setMessage("");
+      setEditedEmail(email);
+      setEditedPassword(password);
       setIsEditing(true);
       setButtonText("Save");
       setButtonIcon(<AiOutlineSave />);
@@ -32,7 +72,6 @@ function MyProfile(props: any) {
   };
 
   useEffect(() => {
-    setEmail(props.email);
     const gravatarHash = md5(email.trim().toLowerCase());
     const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}?d=retro`;
     setPfp(
@@ -42,11 +81,11 @@ function MyProfile(props: any) {
         alt="Avatar"
       />
     );
-  }, [props.email, email]);
+  }, [email]);
 
   const logOut = () => {
     localStorage.removeItem("token");
-    window.location.pathname = "/settings/profile";
+    window.location.pathname = "/";
   };
 
   return (
@@ -65,23 +104,32 @@ function MyProfile(props: any) {
           <WarningButton name="Log Out" handleClick={logOut} />
         </div>
       </div>
-      <div className="mt-2 flex">
+      <div className="mt-2 sm:flex">
         {pfp}
-        <div className="ml-4 flex">
-          <div className="flex h-32 flex-col text-light-3">
-            <h2>Email</h2>
+        <div className="flex sm:ml-4">
+          <div className="flex flex-col px-2 text-light-3">
+            <h2 className="py-4">Email</h2>
             <h2>Password</h2>
           </div>
           {!isEditing ? (
-            <div className="flex h-32 flex-col">
-              <p>{email}</p>
+            <div className="flex flex-col">
+              <p className="py-4">{email}</p>
               <p>{password}</p>
+              {message.length !== 0 && (
+                <p className="pt-4 text-warning">{message}</p>
+              )}
             </div>
           ) : (
-            <div className="flex h-32 flex-col">
-              <TextBox defaultValue={email} />
-              <TextBox defaultValue={password} />
-            </div>
+            <form onSubmit={handleEdit} className="flex flex-col">
+              <TextBox
+                defaultValue={editedEmail}
+                handleChange={(e: any) => setEditedEmail(e.target.value)}
+              />
+              <TextBox
+                defaultValue={editedPassword}
+                handleChange={(e: any) => setEditedPassword(e.target.value)}
+              />
+            </form>
           )}
         </div>
       </div>
