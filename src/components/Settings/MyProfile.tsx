@@ -32,8 +32,6 @@ function MyProfile(props: any) {
             password: editedPassword,
           };
         } else if (editedEmail !== email) {
-          console.log(email);
-          console.log(editedEmail);
           userInfo = {
             email: editedEmail,
           };
