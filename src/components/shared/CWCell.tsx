@@ -1,4 +1,4 @@
-function GenreCell(props: any) {
+function CWCell(props: any) {
   let color: string = "bg-dark-1";
   let do_bold: string = "";
   if (props.flag) {
@@ -9,7 +9,7 @@ function GenreCell(props: any) {
   return (
     <div
       onClick={props.handleClick}
-      className={color + " text-light-1 py-1 px-2 rounded-lg mr-2 mb-2 w-fit"}
+      className={color + " mr-2 mb-2 w-fit rounded-lg py-1 px-2 text-light-1"}
     >
       <div className="flex items-center px-2">
         <div className={"px-1 font-sans" + do_bold}>{props.genre}</div>
@@ -18,4 +18,4 @@ function GenreCell(props: any) {
   );
 }
 
-export default GenreCell;
+export default CWCell;

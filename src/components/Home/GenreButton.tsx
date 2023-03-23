@@ -1,11 +1,16 @@
+// References
+// https://www.hyperui.dev/blog/text-shadow-with-tailwindcss
+
 function GenreButton(props: any) {
   return (
     <a
       href={`/search?genre=${props.name}`}
-      // className={`transition ease-in-out delay-100 ${props.img} hover:light-1 hover:border-light-1 py-10 rounded border-2 border-dark-2`}
-      className={`flex transition ease-in-out delay-100 bg-gradient-to-r from-cyan-500 to-blue-500 hover:light-1 hover:border-light-1 py-10 rounded border-2 border-dark-2`}
+      className={`flex transition delay-100 ease-in-out ${props.img} rounded border border-transparent bg-cover py-10 hover:border-light-1`}
     >
-      <div data-testid="genre-button" className="m-auto text-center text-light-1 text-3xl font-bold">
+      <div
+        data-testid="genre-button"
+        className="m-auto w-80 text-center text-3xl font-bold text-light-1 [text-shadow:_0_1px_0_rgb(0_0_0_/_90%)]"
+      >
         {props.name}
       </div>
     </a>

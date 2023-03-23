@@ -1,5 +1,6 @@
 // References
 // https://headlessui.com/react/dialog
+// https://stackoverflow.com/questions/72007089/passing-tailwind-class-as-a-prop-in-react
 
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
@@ -7,6 +8,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import { Fragment, useState } from "react";
 import Backend from "../../helpers/Backend";
+import Toast from "../../helpers/Toast";
 
 function getTime(time: number): String {
   let hours: number = Math.floor(time / 60);
@@ -44,7 +46,17 @@ function ContentWarningButton(props: any) {
     } else {
       path += "downvote";
     }
-    Backend.getRequest(path);
+    Backend.getRequest(path)
+      .then((resp: any) => {
+        if (resp.jsonResponse.response) Toast.toast(resp.jsonResponse.response);
+        else if (resp.jsonResponse.detail)
+          Toast.toast(resp.jsonResponse.detail);
+      })
+      .catch((err: any) => {
+        Toast.toast(
+          "Could not connect to the server. Please try again in a few minutes!"
+        );
+      });
     setIsOpen(false);
   };
 

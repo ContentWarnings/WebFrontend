@@ -1,13 +1,16 @@
+// References
+// https://tailwindui.com/components/marketing/sections/heroes
+
 import SearchBar from "../components/Home/SearchBar";
 import TrendingMovieSection from "../components/Home/TrendingMoviesSection";
 import GenresSection from "../components/Home/GenresSection";
 
 function Home() {
   return (
-    <div className="relative px-6 h-fit mb-10">
+    <div className="relative mb-10 h-fit px-6">
       <div className="text-center">
         {/* Header */}
-        <h1 className="text-6xl text-light-1 font-bold mt-48 md:mt-32">
+        <h1 className="mt-48 text-6xl font-bold text-light-1 md:mt-32">
           Find movies for
           <span className="italic"> you</span>
         </h1>

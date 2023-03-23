@@ -14,6 +14,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { TimeField } from "@mui/x-date-pickers/TimeField";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Toast from "../../helpers/Toast";
 
 async function getList(setDropdownList: any) {
   let path = "/names";
@@ -87,19 +88,15 @@ function AddContentWarning(props: any) {
       time: [[firstTime, lastTime]],
       desc: submissionSummary,
     };
-    console.log(movieInfo);
     Backend.postRequest("movie", movieInfo)
       .then((resp: any) => {
         const data: number = resp.statusCode;
-
+        console.log(resp);
         if (data < 400) {
           window.location.pathname = `/movie/${props.movieId}&success=true`;
         } else {
-          setError(
-            "Could not connect to the server. Please create and verify an account on MovieMentor if you have not done so already."
-          );
+          setError(resp.jsonResponse.detail);
         }
-        setIsOpen(false);
       })
       .catch((err: any) => {
         setError(

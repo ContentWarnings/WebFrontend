@@ -1,3 +1,7 @@
+// References
+// https://v1.tailwindcss.com/components/navigation#
+// https://v1.tailwindcss.com/components/forms
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IoMdSettings as Settings } from "react-icons/io";
