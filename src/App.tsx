@@ -10,11 +10,12 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
 import MovieEntry from "./pages/MovieEntry";
+import Settings from "./pages/Settings";
+import AccountSettings from "./pages/AccountSettings";
 import TosPage from "./pages/Tos";
 import AboutPage from "./pages/About";
 import AttributionPage from "./pages/Attribution";
 import PrivacyPage from "./pages/PrivacyPolicy";
-
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +27,8 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/movie/*" element={<MovieEntry />} />
             <Route path="/account/*" element={<Account />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings/profile" element={<AccountSettings />} />
             <Route path="/tos" element={<TosPage />}/>
             <Route path="/about" element={<AboutPage />}/>
             <Route path="/attributions" element={<AttributionPage />}/>

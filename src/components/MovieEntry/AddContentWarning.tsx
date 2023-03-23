@@ -19,7 +19,9 @@ import Toast from "../../helpers/Toast";
 async function getList(setDropdownList: any) {
   let path = "/names";
   const resp = await Backend.getRequest(path);
-  const cwList = resp.jsonResponse.cws.sort();
+  const cwList = resp.jsonResponse.cws.sort().filter(function (cw: any) {
+    return cw !== "None";
+  });
   let dropdownList: any[] = [];
   cwList.map((cw: any) =>
     dropdownList.push({ display: `${cw}`, value: `${cw}` })

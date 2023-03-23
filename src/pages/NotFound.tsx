@@ -1,6 +1,14 @@
+import Primary2Button from "../components/shared/Primary2Button";
+import { AiFillHome } from "react-icons/ai";
+
 function NotFound() {
   return (
-    <div className="relative h-screen text-white">404 - Page Not Found!</div>
+    <div className={"grid h-screen place-items-center"}>
+      <div className="text-6xl font-bold text-light-1">
+        404 - Page Not Found!
+      </div>
+      <Primary2Button href="/" name="Return Home" icon={<AiFillHome />} />
+    </div>
   );
 }
 

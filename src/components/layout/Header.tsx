@@ -75,7 +75,7 @@ function Header() {
         </div>
         <div className="p-2">
           <Link to="/settings">
-            <Settings className="h-8 w-8 rounded-full transition delay-100 ease-in-out hover:rotate-45" />
+            <Settings className="h-8 w-8 rounded-full transition delay-100 ease-in-out hover:rotate-45 hover:opacity-50" />
           </Link>
         </div>
         <div className="p-2">{pfp}</div>
