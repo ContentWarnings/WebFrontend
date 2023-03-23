@@ -1,14 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.2028b055.css",
-    "main.js": "/static/js/main.f1f743ee.js",
-    "static/media/logo192.png": "/static/media/logo192.917f5faa4ec965026cbf.png",
+    "main.css": "/static/css/main.2439df06.css",
+    "main.js": "/static/js/main.1d152b34.js",
+    "static/media/Fantasy.png": "/static/media/Fantasy.8f66dae3f2c5061fcd83.png",
+    "static/media/Western.png": "/static/media/Western.398661a1eca6916e7c00.png",
+    "static/media/Adventure.png": "/static/media/Adventure.dadc30ef7e0615a0ec72.png",
+    "static/media/Romance.png": "/static/media/Romance.4c658bae89d9a783405a.png",
+    "static/media/Documentary.png": "/static/media/Documentary.547b9054d73226fc8a62.png",
+    "static/media/Scifi.png": "/static/media/Scifi.99e14b00925a48d3ac22.png",
+    "static/media/Family.png": "/static/media/Family.dff9696db40a212b1dc2.png",
+    "static/media/Mystery.png": "/static/media/Mystery.d7006dc6ff294921b137.png",
+    "static/media/Thriller.png": "/static/media/Thriller.21227aecfcc18e6aadda.png",
+    "static/media/Horror.png": "/static/media/Horror.c66fab24d0034a683d67.png",
+    "static/media/Drama.png": "/static/media/Drama.516c92a759b0ae9debb8.png",
+    "static/media/Comedy.png": "/static/media/Comedy.d04bdda1c4892629173f.png",
+    "static/media/War.png": "/static/media/War.3cc056e2bc3c897d2546.png",
+    "static/media/Music.png": "/static/media/Music.dfec30c2d1950acdf591.png",
+    "static/media/History.png": "/static/media/History.cf5ba0a997e06336e888.png",
+    "static/media/Action.png": "/static/media/Action.f68420ea7775fbb8de6c.png",
+    "static/media/Animation.png": "/static/media/Animation.f5ed54109c6c48155402.png",
+    "static/media/Crime.png": "/static/media/Crime.f65af22686101ee18598.png",
+    "static/media/Tvmovie.png": "/static/media/Tvmovie.bb38342163e591529f20.png",
     "index.html": "/index.html",
-    "main.2028b055.css.map": "/static/css/main.2028b055.css.map",
-    "main.f1f743ee.js.map": "/static/js/main.f1f743ee.js.map"
+    "main.2439df06.css.map": "/static/css/main.2439df06.css.map",
+    "main.1d152b34.js.map": "/static/js/main.1d152b34.js.map"
   },
   "entrypoints": [
-    "static/css/main.2028b055.css",
-    "static/js/main.f1f743ee.js"
+    "static/css/main.2439df06.css",
+    "static/js/main.1d152b34.js"
   ]
 }
