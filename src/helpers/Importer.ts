@@ -15,7 +15,8 @@ class Importer {
             let current_num = BigInt(parseInt(input[i], 36));
             let exp = input.length - i - 1;
 
-            let add_to_total = current_num * (old_radix ** BigInt(exp));
+            // Warning: This casts kinda weirdly. So I have to be specific here.
+            let add_to_total = current_num * BigInt(old_radix ** BigInt(exp));
 
             output += add_to_total;
         }
