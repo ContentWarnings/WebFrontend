@@ -63,6 +63,24 @@ function Verify() {
             setVerEl(verifyElGen("Error", "Could not connect to the server. Please try again in a few minutes!"));
         });
 
+      } else if (mode === "edit") {
+
+        let req = {
+          "email": email,
+          "code": token
+        }
+        Backend.postRequest("user/verify", req).then((resp: any) => {
+          const data: number = resp.statusCode;
+
+          if (data < 400) {
+              setVerEl(verifyElGen("Email Changed!", "Your account's new email is now verified.", "/account/signin?ref=/", "Log In"));
+          } else {
+              setVerEl(verifyElGen("Error", "Something went wrong. Please confirm the URL is the same from the verification email."));
+          }
+        }).catch((err: any) => {
+            setVerEl(verifyElGen("Error", "Could not connect to the server. Please try again in a few minutes!"));
+        });
+
       } else if (mode === "delete") {
         
         if (!localStorage.getItem("token") || localStorage.getItem("token") === "")
