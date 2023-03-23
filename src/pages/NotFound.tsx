@@ -3,7 +3,7 @@ import { AiFillHome } from "react-icons/ai";
 
 function NotFound() {
   return (
-    <div className={"grid h-screen place-items-center"}>
+    <div className="grid h-screen place-items-center">
       <div className="text-6xl font-bold text-light-1">
         404 - Page Not Found!
       </div>
