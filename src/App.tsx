@@ -1,3 +1,7 @@
+// References
+// (used in multiple spots) https://www.udemy.com/course/react-front-to-back-2022/learn/lecture/29768936#overview
+// https://stackoverflow.com/questions/59812003/tailwindcss-fixed-sticky-footer-on-the-bottom
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
@@ -14,7 +18,7 @@ import PrivacyPage from "./pages/PrivacyPolicy";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col justify-between bg-dark-2 min-h-screen">
+      <div className="flex min-h-screen flex-col justify-between bg-dark-2">
         <Header />
         <main className="container mx-auto">
           <Routes>
