@@ -14,7 +14,6 @@ import dayjs, { Dayjs } from "dayjs";
 import { TimeField } from "@mui/x-date-pickers/TimeField";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Toast from "../../helpers/Toast";
 
 async function getList(setDropdownList: any) {
   let path = "/names";
@@ -109,7 +108,7 @@ function AddContentWarning(props: any) {
     <>
       <button
         onClick={() => openModal()}
-        className="text-2xl text-light-1 transition duration-100 ease-in-out hover:opacity-50"
+        className="text-2xl text-dark-3 transition duration-100 ease-in-out hover:opacity-50 dark:text-light-1"
       >
         <BsPlusLg />
       </button>
@@ -128,7 +127,7 @@ function AddContentWarning(props: any) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-50" />
+            <div className="fixed inset-0 bg-light-1 bg-opacity-50 dark:bg-dark-3" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -142,9 +141,9 @@ function AddContentWarning(props: any) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-lg align-middle text-light-1 shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-lg align-middle text-dark-3 shadow-xl transition-all dark:text-light-1">
                   <div className="flex w-full">
-                    <div className="w-full rounded-l bg-dark-2 p-4">
+                    <div className="w-full rounded-l bg-light-1 p-4 dark:bg-dark-2">
                       <h1 className="ml-1 mb-2 text-lg font-bold">
                         Submit Content Warning
                       </h1>
@@ -188,7 +187,7 @@ function AddContentWarning(props: any) {
                       )}
                       <div className="my-2 flex w-full justify-end">
                         <button
-                          className="mr-2 flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"
+                          className="mr-2 flex items-center rounded-lg border border-transparent bg-transparent p-1 text-dark-3 transition delay-100 ease-in-out hover:border-dark-1 dark:text-light-1 dark:hover:border-light-3"
                           onClick={() => setIsOpen(false)}
                         >
                           <IoIosArrowBack className="text-lg" />
@@ -201,7 +200,7 @@ function AddContentWarning(props: any) {
                         />
                       </div>
                     </div>
-                    <div className="w-fit rounded-r bg-dark-1 p-2">
+                    <div className="w-fit rounded-r bg-light-2 p-2 dark:bg-dark-1">
                       <h1 className="text-md font-bold">
                         {contentWarningName}
                       </h1>

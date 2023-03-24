@@ -9,7 +9,7 @@ function StreamingButton(props: any) {
 
   return (
     <div
-      className={`w-28 rounded-lg border border-transparent bg-dark-3 text-light-1 transition delay-100 ease-in-out`}
+      className={`w-28 rounded-lg border border-transparent bg-light-2 text-dark-3 transition delay-100 ease-in-out dark:bg-dark-3 dark:text-light-1`}
     >
       <div className="flex items-center px-1">
         {props.icon && (
