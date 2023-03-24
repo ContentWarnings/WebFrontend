@@ -162,14 +162,14 @@ function AddContentWarning(props: any) {
                             value={fromTime}
                             onChange={(newValue) => setFromTime(newValue)}
                             format="HH:mm"
-                            className="mx-auto w-full rounded-lg bg-light-2 px-2 text-lg text-gray-700"
+                            className="mx-auto w-full rounded-lg border-2 border-light-3 px-2 text-lg text-gray-700 dark:border-none dark:bg-light-2"
                           />
                           <div className="p-2">to</div>
                           <TimeField
                             value={toTime}
                             onChange={(newValue) => setToTime(newValue)}
                             format="HH:mm"
-                            className="mx-auto w-full rounded-lg bg-light-2 px-2 text-lg text-gray-700"
+                            className="mx-auto w-full rounded-lg border-2 border-light-3 px-2 text-lg text-gray-700 dark:border-none dark:bg-light-2"
                           />
                         </LocalizationProvider>
                       </div>

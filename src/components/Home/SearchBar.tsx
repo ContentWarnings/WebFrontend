@@ -25,7 +25,7 @@ function SearchBar() {
         <div className="items-center py-2">
           <input
             type="text"
-            className="w-full appearance-none rounded-lg border-2 border-light-3 bg-light-2 py-2 px-4 leading-tight text-gray-700 focus:outline-secondary-2 dark:border-none dark:focus:outline-none"
+            className="w-full appearance-none rounded-lg border-2 border-light-3 bg-light-1 py-2 px-4 leading-tight text-gray-700 focus:outline-secondary-2 dark:border-none dark:bg-light-2 dark:focus:outline-none"
             placeholder="Search movies..."
             value={text}
             onChange={handleChange}

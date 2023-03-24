@@ -19,7 +19,7 @@ function TextBox(props: any) {
       onChange={props.handleChange}
       placeholder={props.placeholder}
       value={props.defaultValue}
-      className="mx-auto my-2 w-full rounded-lg bg-light-2 px-2 py-1 text-lg text-gray-700"
+      className="mx-auto my-2 w-full rounded-lg border-2 border-light-3 px-2 py-1 text-lg text-gray-700 dark:border-none dark:bg-light-2"
     />
   );
 }
