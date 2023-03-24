@@ -17,40 +17,61 @@ function PasswordReset() {
     const formData: any = document.forms[1];
     const username: string = formData.username.value;
 
-    Backend.getRequest(`user/password-reset-request?email=${username}`).then((resp: any) => {
-      const data: number = resp.statusCode;
+    Backend.getRequest(`user/password-reset-request?email=${username}`)
+      .then((resp: any) => {
+        const data: number = resp.statusCode;
 
-      if (data < 400) {
+        if (data < 400) {
           window.location.pathname = "/account/verify";
-      } else {
-          setError(resp.jsonResponse['detail']);
-      }
+        } else {
+          setError(resp.jsonResponse["detail"]);
+        }
 
-      setIsLoading(false);
-    }).catch((err: any) => {
         setIsLoading(false);
-        setError("Could not connect to the server. Please try again in a few minutes!");
-    });
-
-  }
+      })
+      .catch((err: any) => {
+        setIsLoading(false);
+        setError(
+          "Could not connect to the server. Please try again in a few minutes!"
+        );
+      });
+  };
 
   return (
-    <div data-testid="password-reset" className="mx-auto max-w-sm w-full mt-48 md:mt-32">
-      <div className="flex dark-1 bg-dark-1 rounded-lg p-4 text-white text-center flex-col">
+    <div
+      data-testid="password-reset"
+      className="mx-auto mt-48 w-full max-w-sm md:mt-32"
+    >
+      <div className="flex flex-col rounded-lg bg-light-2 p-4 text-center text-dark-3 dark:bg-dark-1 dark:text-light-1">
         <div className="w-full">
-          <MMHappy className="m-auto"/>
+          <MMHappy className="m-auto" />
         </div>
         <h1 className="text-2xl font-bold">Reset Password</h1>
         <form onSubmit={resetPassword} id="auth">
-          <TextBox id="username" placeholder="Email" type="email" autoComplete="email"/>
-          <Primary2Button name="Send Password Reset " role="button"/>
+          <TextBox
+            id="username"
+            placeholder="Email"
+            type="email"
+            autoComplete="email"
+          />
+          <Primary2Button name="Send Password Reset " role="button" />
           {error !== "" && <p className="text-error">Error: {error}</p>}
         </form>
-        <div className={"width-full text-center m-4 " + (isLoading ? "block" : "hidden")}>
-          <FaSpinner className="inline text-white text-2xl animate-spin " />
+        <div
+          className={
+            "width-full m-4 text-center " + (isLoading ? "block" : "hidden")
+          }
+        >
+          <FaSpinner className="inline animate-spin text-2xl text-light-3 dark:text-light-1 " />
         </div>
         <div className="mt-2">
-          Remember your password? <a href="/account/signin" className="text-secondary-2">Sign In.</a>
+          Remember your password?{" "}
+          <a
+            href="/account/signin"
+            className="text-secondary-2 hover:underline"
+          >
+            Sign In.
+          </a>
         </div>
       </div>
     </div>
