@@ -120,7 +120,7 @@ function MovieEntry() {
     );
     return (
       <div className={"grid h-screen place-items-center"}>
-        <FaSpinner className="inline animate-spin text-center text-6xl text-dark-3 dark:text-light-1" />
+        <FaSpinner className="inline animate-spin text-center text-6xl text-light-3 dark:text-light-1" />
       </div>
     );
   } else {

@@ -7,7 +7,7 @@ function MovieButton(props: any) {
     >
       <div className="h-100 m-auto w-40 items-center px-1">
         <img
-          className="rounded-lg border-2 border-transparent hover:border-primary-1 dark:hover:border-light-1"
+          className="rounded-lg border-2 border-transparent hover:border-secondary-2 dark:hover:border-light-1"
           src={props.image}
           alt={props.name}
         />

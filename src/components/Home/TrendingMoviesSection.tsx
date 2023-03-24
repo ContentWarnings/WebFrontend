@@ -42,7 +42,7 @@ async function getData(setMovies: any) {
 function TrendingMoviesSection() {
   const spinner = (
     <div className="width-full m-4 text-center">
-      <FaSpinner className="inline animate-spin text-2xl text-dark-3 dark:text-light-1" />
+      <FaSpinner className="inline animate-spin text-2xl text-light-3 dark:text-light-1" />
     </div>
   );
   const [movies, setMovies] = useState([spinner]);
