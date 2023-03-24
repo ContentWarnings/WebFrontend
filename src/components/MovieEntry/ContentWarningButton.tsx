@@ -64,7 +64,7 @@ function ContentWarningButton(props: any) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className={`h-22 rounded-lg bg-light-2 text-dark-3 transition delay-100 ease-in-out hover:opacity-75 hover:shadow-md dark:bg-dark-1 dark:text-light-1`}
+        className={`h-22 rounded-lg bg-light-2 text-dark-3 transition delay-100 ease-in-out hover:shadow-md dark:bg-dark-1 dark:text-light-1 dark:hover:opacity-75`}
       >
         <div className={`${headerColor} h-2 w-full rounded-t-lg`} />
         <div className="flex items-center justify-between px-2">
@@ -159,7 +159,7 @@ function ContentWarningButton(props: any) {
                   </div>
                   <div className="my-2 flex w-full justify-center">
                     <button
-                      className="flex items-center rounded-lg border border-transparent bg-transparent p-1 text-dark-3 transition delay-100 ease-in-out hover:border-dark-1 dark:text-light-1 dark:hover:border-light-3"
+                      className="flex items-center rounded-lg border border-transparent bg-transparent p-1 text-dark-3 transition delay-100 ease-in-out hover:border-secondary-2 dark:text-light-1 dark:hover:border-light-3"
                       onClick={() => setIsOpen(false)}
                     >
                       <IoIosArrowBack className="text-lg" />
