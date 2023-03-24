@@ -20,12 +20,12 @@ function SearchBar() {
   };
 
   return (
-    <div data-testid="search-bar" className="mx-auto max-w-2xl mt-20">
+    <div data-testid="search-bar" className="mx-auto mt-20 max-w-2xl">
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="items-center py-2">
           <input
             type="text"
-            className="appearance-none border-none w-full text-gray-700 py-2 px-4 leading-tight focus:outline-none rounded-lg bg-light-2"
+            className="w-full appearance-none rounded-lg border-2 border-light-3 bg-light-2 py-2 px-4 leading-tight text-gray-700 focus:outline-primary-2 dark:border-none dark:focus:outline-none"
             placeholder="Search movies..."
             value={text}
             onChange={handleChange}

@@ -5,7 +5,7 @@ function GenreButton(props: any) {
   return (
     <a
       href={`/search?genre=${props.name}`}
-      className={`flex transition delay-100 ease-in-out ${props.img} rounded border border-transparent bg-cover py-10 hover:border-light-1`}
+      className={`flex transition delay-100 ease-in-out ${props.img} rounded border-transparent bg-cover py-10 hover:border-primary-2 dark:hover:border-light-1`}
     >
       <div
         data-testid="genre-button"

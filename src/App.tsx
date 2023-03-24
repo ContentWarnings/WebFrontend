@@ -19,7 +19,7 @@ import PrivacyPage from "./pages/PrivacyPolicy";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col justify-between bg-dark-2">
+      <div className="flex min-h-screen flex-col justify-between bg-light-1 dark:bg-dark-2">
         <Header />
         <main className="container mx-auto">
           <Routes>
@@ -29,10 +29,10 @@ function App() {
             <Route path="/account/*" element={<Account />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/settings/profile" element={<AccountSettings />} />
-            <Route path="/tos" element={<TosPage />}/>
-            <Route path="/about" element={<AboutPage />}/>
-            <Route path="/attributions" element={<AttributionPage />}/>
-            <Route path="/privacypolicy" element={<PrivacyPage />}/>
+            <Route path="/tos" element={<TosPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/attributions" element={<AttributionPage />} />
+            <Route path="/privacypolicy" element={<PrivacyPage />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
