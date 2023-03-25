@@ -154,9 +154,8 @@ function TosPage() {
         <br />
         <h2 className="text-2xl font-bold">Privacy Policy</h2>
         <br />
-        <span>We care about data privacy and security, Please review our</span>
-        <a href="/privacypolicy" style={{ color: "#63a4ff" }}>
-          {" "}
+        <span>We care about data privacy and security, Please review our </span>
+        <a href="/privacypolicy" className="text-secondary-2 hover:underline">
           Privacy Policy
         </a>
         <span>

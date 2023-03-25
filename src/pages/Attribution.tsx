@@ -10,7 +10,7 @@ function AttributionPage() {
         <span>Source code can be found </span>
         <a
           href="https://github.com/orgs/ContentWarnings/repositories"
-          className="text-secondary-3 dark:text-secondary-1"
+          className="text-secondary-2 hover:underline"
         >
           here
         </a>
@@ -20,14 +20,14 @@ function AttributionPage() {
         <span>This application uses the </span>
         <a
           href="https://www.themoviedb.org/documentation/api"
-          className="text-secondary-3 dark:text-secondary-1"
+          className="text-secondary-2 hover:underline"
         >
           TMDB API
         </a>
         <span> and </span>
         <a
           href="https://apis.justwatch.com/docs/api/"
-          className="text-secondary-3 dark:text-secondary-1"
+          className="text-secondary-2 hover:underline"
         >
           {" "}
           JustWatch API
