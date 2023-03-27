@@ -17,7 +17,7 @@ root.render(
 let import_str: string = URLHelper.populateDefaultFromURL("in", "");
 if (import_str !== "") {
     Importer.import(import_str);
-    Toast.toast("Trigger preferences imported successfully!");
+    Toast.toast("Content warning preferences imported successfully!");
 }
 
 // Initialize empty CW database.

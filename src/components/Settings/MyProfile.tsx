@@ -93,7 +93,7 @@ function MyProfile(props: any) {
           <BsFillPersonFill className="mr-2" />
           <h1 className="font-bold">My Profile</h1>
         </div>
-        <div>
+        <div className="flex">
           <Primary2Button
             name={buttonText}
             icon={buttonIcon}

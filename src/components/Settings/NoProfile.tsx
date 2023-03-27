@@ -24,7 +24,7 @@ function NoProfile() {
         </div>
       </div>
       <p className="text-light-3">
-        (This does not effect, or enchance, searching features.)
+        (This does not affect, or enchance, searching features.)
       </p>
     </div>
   );

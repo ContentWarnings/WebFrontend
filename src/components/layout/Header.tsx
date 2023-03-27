@@ -36,7 +36,7 @@ function Header() {
     const gravatarHash = md5(email.trim().toLowerCase());
     const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}?d=retro`;
     pfp = (
-      <Link to="/settings/profile">
+      <Link to="/settings/profile/">
         <img
           className="h-8 w-8 rounded-full ease-in-out hover:opacity-50"
           src={gravatarUrl}
@@ -74,7 +74,7 @@ function Header() {
           </form>
         </div>
         <div className="p-2">
-          <Link to="/settings">
+          <Link to="/settings/">
             <Settings className="h-8 w-8 rounded-full transition delay-100 ease-in-out hover:rotate-45 hover:opacity-50" />
           </Link>
         </div>

@@ -16,13 +16,13 @@ function Tabs(props: any) {
     <div className="mr-4 flex flex-col text-xl font-bold text-light-1">
       <a
         className={`mb-1 w-max rounded-lg border border-transparent text-center ${buttonColorOne} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverOne}`}
-        href="/settings"
+        href="/settings/"
       >
         Content Warnings
       </a>
       <a
         className={`rounded-lg border border-transparent text-center ${buttonColorTwo} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverTwo}`}
-        href="/settings/profile"
+        href="/settings/profile/"
       >
         My Profile
       </a>
