@@ -74,7 +74,7 @@ function MyProfile(props: any) {
     const gravatarUrl = `https://www.gravatar.com/avatar/${gravatarHash}?d=retro`;
     setPfp(
       <img
-        className="h-32 w-32 rounded-full border-4 border-dark-3"
+        className="h-32 w-32 rounded-full border-4 border-light-3 dark:border-dark-3"
         src={gravatarUrl}
         alt="Avatar"
       />
@@ -105,7 +105,7 @@ function MyProfile(props: any) {
       <div className="mt-2 sm:flex">
         {pfp}
         <div className="flex sm:ml-4">
-          <div className="flex flex-col px-2 text-light-3">
+          <div className="flex flex-col px-2 text-dark-1 dark:text-light-3">
             <h2 className="py-4">Email</h2>
             <h2>Password</h2>
           </div>

@@ -120,26 +120,28 @@ function MovieEntry() {
     );
     return (
       <div className={"grid h-screen place-items-center"}>
-        <FaSpinner className="inline animate-spin text-center text-6xl text-light-1" />
+        <FaSpinner className="inline animate-spin text-center text-6xl text-light-3 dark:text-light-1" />
       </div>
     );
   } else {
     return (
-      <div className="relative mb-10 mx-4 mt-36 sm:mt-32 h-fit lg:mx-20">
+      <div className="relative mx-4 mb-10 mt-36 h-fit sm:mt-32 lg:mx-20">
         <img
           src={poster}
-          className="m-auto h-fit w-60 rounded-lg block md:hidden"
+          className="m-auto block h-fit w-60 rounded-lg md:hidden"
           alt={title}
         />
         <div className="flex">
           <img
             src={poster}
-            className="mr-10 h-fit w-60 rounded-lg hidden md:block"
+            className="mr-10 hidden h-fit w-60 rounded-lg md:block"
             alt={title}
           />
           <div className="flex flex-col">
-            <h1 className="text-6xl font-bold text-light-1">{title}</h1>
-            <h2 className="my-3 text-2xl text-light-3">
+            <h1 className="text-6xl font-bold text-dark-3 dark:text-light-1">
+              {title}
+            </h1>
+            <h2 className="my-3 text-2xl text-dark-1 dark:text-light-3">
               {date}
               {time}
             </h2>
@@ -173,7 +175,7 @@ function MovieEntry() {
             </div>
             <div className="my-2 flex items-center">
               {mpa !== "Unknown" && (
-                <div className="mr-5 border-4 border-light-1 p-1 text-3xl font-bold text-light-1">
+                <div className="mr-5 border-4 border-dark-3 p-1 text-3xl font-bold text-dark-3 dark:border-light-1 dark:text-light-1">
                   {mpa}
                 </div>
               )}
@@ -197,11 +199,11 @@ function MovieEntry() {
             ))}
           </div>
         </div>
-        <div className="mt-5 text-light-1">
+        <div className="mt-5 text-dark-3 dark:text-light-1">
           <h1 className="text-3xl font-bold">Summary</h1>
-          <p className="text-1xl">{summary}</p>
+          <p>{summary}</p>
         </div>
-        <div className="my-5 flex justify-between text-light-1">
+        <div className="my-5 flex justify-between text-dark-3 dark:text-light-1">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
           {localStorage.getItem("token") !== undefined &&
             localStorage.getItem("token") !== "" && (
@@ -217,7 +219,7 @@ function MovieEntry() {
           ))}
         </div>
         {contentWarnings.length === 0 && warnings.length === 0 && (
-          <h3 className="text-light-1">
+          <h3 className="text-dark-3 dark:text-light-1">
             There are no content warnings associated with this film in our
             database.
             <br />

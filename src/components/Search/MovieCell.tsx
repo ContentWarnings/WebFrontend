@@ -58,7 +58,7 @@ function MovieCell(props: any) {
     <a
       data-testid="movie-cell"
       href={"/movie/" + props.id}
-      className="my-5 flex rounded-md border-2 border-transparent transition delay-100 ease-in-out hover:border-white"
+      className="my-5 flex rounded-md border-2 border-transparent transition delay-100 ease-in-out hover:shadow-lg dark:hover:border-light-1 dark:hover:shadow-none"
     >
       <div className="w-36 flex-none pr-5">
         <img

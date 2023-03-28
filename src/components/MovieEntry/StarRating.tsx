@@ -8,12 +8,6 @@ function StarRating(props: any) {
         readOnly={true}
         size={"large"}
         value={props.value}
-        sx={{
-          color: "white",
-          "& .MuiRating-iconEmpty": {
-            color: "white",
-          },
-        }}
       />
     </div>
   );

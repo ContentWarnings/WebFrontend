@@ -47,11 +47,13 @@ function CWInput(props: any) {
   }, [props.name, visibility]);
 
   return (
-    <div className="border-t-4 border-dark-2 py-2">
+    <div className="border-t-4 border-light-1 py-2 dark:border-dark-2">
       <div className="flex justify-between">
         <div className="w-full">
           <div className="flex">
-            <h2 className="text-xl text-light-1">{props.name}</h2>
+            <h2 className="text-xl text-dark-3 dark:text-light-1">
+              {props.name}
+            </h2>
             <button
               type="button"
               onClick={() => handleClick()}

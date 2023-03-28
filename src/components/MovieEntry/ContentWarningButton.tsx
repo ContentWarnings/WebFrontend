@@ -64,15 +64,17 @@ function ContentWarningButton(props: any) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className={`h-22 rounded-lg bg-dark-1 text-light-1 transition delay-100 ease-in-out hover:opacity-75 hover:shadow-md`}
+        className={`h-22 rounded-lg bg-light-2 text-dark-3 transition delay-100 ease-in-out hover:shadow-md dark:bg-dark-1 dark:text-light-1 dark:hover:opacity-75`}
       >
         <div className={`${headerColor} h-2 w-full rounded-t-lg`} />
         <div className="flex items-center justify-between px-2">
           <div className="flex items-center">
-            {props.flag && <IoIosWarning className="text-5xl text-light-1" />}
+            {props.flag && (
+              <IoIosWarning className="text-5xl text-dark-3 dark:text-light-1" />
+            )}
             <div className="my-5 ml-1 text-lg font-bold">{props.cw.name}</div>
           </div>
-          <div className="text-light-3">{time}</div>
+          <div className="text-dark-1 dark:text-light-3">{time}</div>
         </div>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
@@ -90,7 +92,7 @@ function ContentWarningButton(props: any) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-50" />
+            <div className="fixed inset-0 bg-light-1 bg-opacity-50 dark:bg-dark-3" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -104,24 +106,22 @@ function ContentWarningButton(props: any) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-dark-2 align-middle text-light-1 shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-light-1 align-middle text-dark-3 shadow-xl transition-all dark:bg-dark-2 dark:text-light-1">
                   <Dialog.Title
                     as="div"
-                    className="h-22 rounded-t-lg bg-dark-1 text-light-1"
+                    className="h-22 rounded-t-lg bg-light-2 text-dark-3 dark:bg-dark-1 dark:text-light-1"
                   >
-                    <div
-                      className={`${headerColor} h-2 w-full rounded-t-lg text-light-1`}
-                    />
+                    <div className={`${headerColor} h-2 w-full rounded-t-lg`} />
                     <div className="flex items-center justify-between px-2">
                       <div className="flex items-center">
                         {props.flag && (
-                          <IoIosWarning className="text-5xl text-light-1" />
+                          <IoIosWarning className="text-5xl text-dark-3 dark:text-light-1" />
                         )}
                         <div className="my-5 ml-1 text-lg font-bold">
                           {props.cw.name}
                         </div>
                       </div>
-                      <div className="text-light-3">
+                      <div className="text-dark-1 dark:text-light-3">
                         {props.cw.time.map((time: any, index: any) => (
                           <div key={index}>
                             {getStartAndEnd(time)}
@@ -159,7 +159,7 @@ function ContentWarningButton(props: any) {
                   </div>
                   <div className="my-2 flex w-full justify-center">
                     <button
-                      className="flex items-center rounded-lg border border-transparent bg-transparent p-1 text-light-1 transition delay-100 ease-in-out hover:border-light-3"
+                      className="flex items-center rounded-lg border border-transparent bg-transparent p-1 text-dark-3 transition delay-100 ease-in-out hover:border-secondary-2 dark:text-light-1 dark:hover:border-light-3"
                       onClick={() => setIsOpen(false)}
                     >
                       <IoIosArrowBack className="text-lg" />

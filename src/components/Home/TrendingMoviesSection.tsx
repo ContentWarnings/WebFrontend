@@ -14,8 +14,7 @@ async function getData(setMovies: any) {
   // Get CW data from memory
   const prefsRaw = localStorage.getItem("cw");
   let prefs: any = {};
-  if (prefsRaw)
-    prefs = JSON.parse(prefsRaw);
+  if (prefsRaw) prefs = JSON.parse(prefsRaw);
 
   let output = [];
 
@@ -31,7 +30,9 @@ async function getData(setMovies: any) {
     }
 
     if (!block) {
-      output.push(<MovieButton name={data[i].title} id={data[i].id} image={data[i].img}/>);
+      output.push(
+        <MovieButton name={data[i].title} id={data[i].id} image={data[i].img} />
+      );
     }
   }
 
@@ -40,25 +41,32 @@ async function getData(setMovies: any) {
 
 function TrendingMoviesSection() {
   const spinner = (
-    <div className="width-full text-center m-4">
-      <FaSpinner className="inline text-white text-2xl animate-spin" />
+    <div className="width-full m-4 text-center">
+      <FaSpinner className="inline animate-spin text-2xl text-light-3 dark:text-light-1" />
     </div>
   );
   const [movies, setMovies] = useState([spinner]);
 
   useEffect(() => {
-    getData(setMovies);
-  }, [])
+    getData(setMovies);
+  }, []);
 
   return (
     <div className="px-10" data-testid="trending-movies">
-      <div className="flex justify-between mt-20 mb-2">
-        <h1 className="text-2xl text-light-1 font-bold">
+      <div className="mt-20 mb-2 flex justify-between">
+        <h1 className="text-2xl font-bold text-dark-3 dark:text-light-1">
           Trending Movies For You
         </h1>
         <Primary2Button href="/search" name="View More" />
       </div>
-      <div className={"flex grid gap-3 " + (movies.length > 1 ? "grid-cols-1 xl:grid-cols-7 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2" : "")}>
+      <div
+        className={
+          "flex grid gap-3 " +
+          (movies.length > 1
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7"
+            : "")
+        }
+      >
         {movies}
       </div>
     </div>

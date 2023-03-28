@@ -3,7 +3,9 @@ import GenreButton from "./GenreButton";
 function GenresSection() {
   return (
     <div data-testid="genres-section" className="px-10">
-      <h1 className="mt-20 mb-5 text-2xl font-bold text-light-1">Genres</h1>
+      <h1 className="mt-20 mb-5 text-2xl font-bold text-dark-3 dark:text-light-1">
+        Genres
+      </h1>
       <div className="flex flex-wrap gap-4">
         <GenreButton img="bg-action-image" name="Action" />
         <GenreButton img="bg-adventure-image" name="Adventure" />

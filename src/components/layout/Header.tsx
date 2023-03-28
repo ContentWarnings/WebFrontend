@@ -49,7 +49,7 @@ function Header() {
   return (
     <nav
       data-testid="header"
-      className="fixed left-0 right-0 z-10 flex flex-wrap items-center justify-between bg-primary-2 p-2 text-white"
+      className="fixed left-0 right-0 z-10 flex flex-wrap items-center justify-between bg-primary-2 p-2 text-light-1"
     >
       <div className="justify-left flex flex-shrink items-center lg:ml-20">
         <Link to="/" className="align-middle text-lg font-bold">

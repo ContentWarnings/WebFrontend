@@ -54,7 +54,7 @@ function MyProfileSubmissions() {
         <h1 className="font-bold">My Submissions</h1>
       </div>
       {contentWarnings.length === 0 && warnings.length === 0 && (
-        <p className="text-light-3">
+        <p className="text-dark-1 dark:text-light-3">
           You have not submitted any content warnings for movies yet.
         </p>
       )}
@@ -67,7 +67,7 @@ function MyProfileSubmissions() {
         ))}
       </div>
       {hideMessage.length !== 0 && (
-        <p className="mt-2 text-light-3">{hideMessage}</p>
+        <p className="mt-2 text-dark-1 dark:text-light-3">{hideMessage}</p>
       )}
     </div>
   );
