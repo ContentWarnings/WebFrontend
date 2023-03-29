@@ -36,7 +36,7 @@ function Settings() {
       <div className="relative mb-10 mt-32 h-fit sm:flex lg:mx-20">
         <Tabs page="triggers" />
         <form className="w-full rounded-lg bg-light-2 py-4 px-8 dark:bg-dark-1">
-          <div className="sticky top-20 z-10 flex items-center justify-between bg-light-2 py-2 dark:bg-dark-1">
+          <div className="sticky top-20 z-5 flex items-center justify-between bg-light-2 py-2 dark:bg-dark-1">
             <h2 className="w-full text-xl text-dark-3 dark:text-light-1">
               Name
             </h2>

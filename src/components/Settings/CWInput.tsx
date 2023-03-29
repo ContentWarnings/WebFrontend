@@ -29,7 +29,8 @@ function CWInput(props: any) {
     // Otherwise, convert the localStorage string to an array
     const cwList = existingList ? JSON.parse(existingList) : {};
 
-    setVisibility(cwList[`${props.name}`]);
+    if (cwList[`${props.name}`]) setVisibility(cwList[`${props.name}`]);
+    else setVisibility("show");
   }, [props.name]);
 
   useEffect(() => {
@@ -64,7 +65,9 @@ function CWInput(props: any) {
               {props.name}
             </h2>
           </div>
-          {message.length !== 0 && <p className="text-light-3">{message}</p>}
+          {message.length !== 0 && (
+            <p className="text-dark-1 dark:text-light-3">{message}</p>
+          )}
         </div>
         <div className="flex w-full justify-between">
           <label>
