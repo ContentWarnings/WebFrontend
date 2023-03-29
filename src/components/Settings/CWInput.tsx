@@ -51,18 +51,18 @@ function CWInput(props: any) {
       <div className="flex justify-between">
         <div className="w-full">
           <div className="flex">
-            <h2 className="text-xl text-dark-3 dark:text-light-1">
-              {props.name}
-            </h2>
             <button
               type="button"
               onClick={() => handleClick()}
               className={
-                "ml-2 h-min rounded-full border-primary-2 bg-primary-2 px-3 py-1 italic text-dark-3 transition delay-100 ease-in-out hover:border-primary-1 hover:bg-primary-1"
+                "mr-2 h-min rounded-full border-primary-2 bg-primary-2 px-3 py-1 italic text-dark-3 transition delay-100 ease-in-out hover:border-primary-1 hover:bg-primary-1"
               }
             >
               i
             </button>
+            <h2 className="text-xl text-dark-3 dark:text-light-1">
+              {props.name}
+            </h2>
           </div>
           {message.length !== 0 && <p className="text-light-3">{message}</p>}
         </div>
