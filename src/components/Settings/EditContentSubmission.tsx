@@ -1,7 +1,3 @@
-// References
-// https://mui.com/x/react-date-pickers/time-field/
-// https://day.js.org/docs/en/get-set/minute
-
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsPlusLg } from "react-icons/bs";
@@ -14,6 +10,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { TimeField } from "@mui/x-date-pickers/TimeField";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { FiEdit2 } from "react-icons/fi";
 
 async function getList(setDropdownList: any) {
   let path = "/names";
@@ -28,17 +25,28 @@ async function getList(setDropdownList: any) {
   setDropdownList(dropdownList);
 }
 
-function AddContentWarning(props: any) {
+function EditContentSubmission(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [contentWarningName, setContentWarningName] = useState("");
   const [contentWarningSummary, setContentWarningSummary] = useState("");
-  const [submissionSummary, setSubmissionSummary] = useState("");
+  const [submissionSummary, setSubmissionSummary] = useState(props.cw.desc);
   const [dropdownList, setDropdownList] = useState([]);
   const [error, setError] = useState("");
   const [fromTime, setFromTime] = useState<Dayjs | null>(
     dayjs("2022-04-17T00:00")
   );
   const [toTime, setToTime] = useState<Dayjs | null>(dayjs("2022-04-17T00:00"));
+
+  const getStartAndEnd = (cwTimeObject: any) => {
+    const start = cwTimeObject[0];
+    let hours: number = Math.floor(start / 60);
+    let mins: number = start % 60;
+    setFromTime(dayjs().set("hour", hours).set("minute", mins));
+    const end = cwTimeObject[1];
+    hours = Math.floor(end / 60);
+    mins = end % 60;
+    setToTime(dayjs().set("hour", hours).set("minute", mins));
+  };
 
   useEffect(() => {
     getList(setDropdownList);
@@ -62,7 +70,8 @@ function AddContentWarning(props: any) {
   const openModal = () => {
     setError("");
     setIsOpen(true);
-    handleWarningChange("Abandonment");
+    handleWarningChange(props.cw.name);
+    getStartAndEnd(props.cw.time[0]);
   };
 
   const submitCW = () => {
@@ -106,12 +115,11 @@ function AddContentWarning(props: any) {
 
   return (
     <>
-      <button
-        onClick={() => openModal()}
-        className="text-2xl text-dark-3 transition duration-100 ease-in-out hover:opacity-50 dark:text-light-1"
-      >
-        <BsPlusLg />
-      </button>
+      <Primary2Button
+        handleClick={() => openModal()}
+        name="Edit"
+        icon={<FiEdit2 />}
+      />
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -145,7 +153,7 @@ function AddContentWarning(props: any) {
                   <div className="flex w-full">
                     <div className="w-full rounded-l bg-light-1 p-4 dark:bg-dark-2">
                       <h1 className="ml-1 mb-2 text-lg font-bold">
-                        Submit Content Warning
+                        {props.title}
                       </h1>
                       <div className="flex w-full">
                         <h2 className="p-2">Content</h2>
@@ -153,6 +161,7 @@ function AddContentWarning(props: any) {
                           id="selectedCw"
                           options={dropdownList}
                           handleChange={handleDropdown}
+                          default={props.cw.name}
                         />
                       </div>
                       <div className="flex items-center">
@@ -176,7 +185,7 @@ function AddContentWarning(props: any) {
                       <div className="flex">
                         <h2 className="p-2">Summary</h2>
                         <TextBox
-                          value={submissionSummary}
+                          defaultValue={submissionSummary}
                           handleChange={(newValue: any) =>
                             setSubmissionSummary(newValue.target.value)
                           }
@@ -217,4 +226,4 @@ function AddContentWarning(props: any) {
   );
 }
 
-export default AddContentWarning;
+export default EditContentSubmission;

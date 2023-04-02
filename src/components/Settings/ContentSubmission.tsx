@@ -3,6 +3,9 @@ import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
 import { Fragment, useEffect, useState } from "react";
 import Backend from "../../helpers/Backend";
 import { FaSpinner } from "react-icons/fa";
+import WarningButton from "./WarningButton";
+import { AiFillDelete } from "react-icons/ai";
+import EditContentSubmission from "./EditContentSubmission";
 
 function getTime(time: number): String {
   let hours: number = Math.floor(time / 60);
@@ -48,6 +51,8 @@ function ContentSubmission(props: any) {
   useEffect(() => {
     findMovie(props.cw.movie_id, setTitle);
   }, [props.cw.movie_id]);
+
+  const deleteSubmission = () => {};
 
   return (
     <>
@@ -132,6 +137,14 @@ function ContentSubmission(props: any) {
                         <p className="text-sm">{props.cw.desc}</p>
                       </div>
                     )}
+                  </div>
+                  <div className="my-2 flex w-full justify-center">
+                    <EditContentSubmission cw={props.cw} title={title} />
+                    <WarningButton
+                      name="Delete"
+                      icon={<AiFillDelete />}
+                      handleClick={deleteSubmission}
+                    />
                   </div>
                   <div className="my-2 flex w-full justify-center">
                     <button
