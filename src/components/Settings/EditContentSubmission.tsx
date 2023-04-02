@@ -1,3 +1,6 @@
+// References
+// https://day.js.org/docs/en/get-set/set
+
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsPlusLg } from "react-icons/bs";
@@ -29,15 +32,25 @@ function EditContentSubmission(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [contentWarningName, setContentWarningName] = useState("");
   const [contentWarningSummary, setContentWarningSummary] = useState("");
-  const [submissionSummary, setSubmissionSummary] = useState(props.cw.desc);
+  const [submissionSummary, setSubmissionSummary] = useState("");
   const [dropdownList, setDropdownList] = useState([]);
   const [error, setError] = useState("");
   const [fromTime, setFromTime] = useState<Dayjs | null>(
     dayjs("2022-04-17T00:00")
   );
   const [toTime, setToTime] = useState<Dayjs | null>(dayjs("2022-04-17T00:00"));
+  const [originalContentWarningName, setOriginalContentWarningName] =
+    useState("");
+  const [originalSubmissionSummary, setOriginalSubmissionSummary] =
+    useState("");
+  const [originalFromTime, setOriginalFromTime] = useState<Dayjs | null>(
+    dayjs("2022-04-17T00:00")
+  );
+  const [originalToTime, setOriginalToTime] = useState<Dayjs | null>(
+    dayjs("2022-04-17T00:00")
+  );
 
-  const getStartAndEnd = (cwTimeObject: any) => {
+  const setStartAndEnd = (cwTimeObject: any) => {
     const start = cwTimeObject[0];
     let hours: number = Math.floor(start / 60);
     let mins: number = start % 60;
@@ -70,19 +83,35 @@ function EditContentSubmission(props: any) {
   const openModal = () => {
     setError("");
     setIsOpen(true);
+    setSubmissionSummary(props.cw.desc);
     handleWarningChange(props.cw.name);
-    getStartAndEnd(props.cw.time[0]);
+    setStartAndEnd(props.cw.time[0]);
+    setOriginalContentWarningName(contentWarningName);
+    setOriginalSubmissionSummary(submissionSummary);
+    setOriginalFromTime(fromTime);
+    setOriginalToTime(toTime);
   };
 
-  const submitCW = () => {
+  const editCW = () => {
     if (submissionSummary === "") {
       setError(
         "Please review your content submission, the summary is blank and must be added."
       );
       return;
     }
-    if (fromTime === null || toTime === null) return;
+    // Won't compile unless I check if it's null
+    if (
+      fromTime === null ||
+      toTime === null ||
+      originalFromTime == null ||
+      originalToTime == null
+    )
+      return;
+    const originalFirstTime =
+      originalFromTime.hour() * 60 + originalFromTime.minute();
     const firstTime = fromTime.hour() * 60 + fromTime.minute();
+    const originalLastTime =
+      originalToTime.hour() * 60 + originalToTime.minute();
     const lastTime = toTime.hour() * 60 + toTime.minute();
     if (firstTime > lastTime) {
       setError(
@@ -90,18 +119,29 @@ function EditContentSubmission(props: any) {
       );
       return;
     }
-    const movieInfo = {
+    if (
+      originalContentWarningName === contentWarningName &&
+      originalFirstTime === firstTime &&
+      originalLastTime === lastTime &&
+      originalSubmissionSummary === submissionSummary
+    ) {
+      setError(
+        "It seems as if no edits were made, please either return or change the submission"
+      );
+      return;
+    }
+    const cwInfo = {
       name: contentWarningName,
-      movie_id: props.movieId,
+      movie_id: props.cw.movie_id,
       time: [[firstTime, lastTime]],
       desc: submissionSummary,
     };
-    Backend.postRequest("movie", movieInfo)
+    let path = `cw/${props.cw.id}`;
+    Backend.postRequest(path, cwInfo)
       .then((resp: any) => {
         const data: number = resp.statusCode;
-        console.log(resp);
         if (data < 400) {
-          window.location.pathname = `/movie/${props.movieId}&success=true`;
+          window.location.pathname = `/settings/profile/`;
         } else {
           setError(resp.jsonResponse.detail);
         }
@@ -204,8 +244,8 @@ function EditContentSubmission(props: any) {
                         </button>
                         <Primary2Button
                           icon={<BsPlusLg />}
-                          name="Submit"
-                          handleClick={() => submitCW()}
+                          name="Edit"
+                          handleClick={() => editCW()}
                         />
                       </div>
                     </div>
