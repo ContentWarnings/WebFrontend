@@ -141,7 +141,7 @@ function AddContentWarning(props: any) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-lg align-middle text-dark-3 shadow-xl transition-all dark:text-light-1">
+                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-lg align-middle text-dark-3 shadow-xl transition-all dark:text-light-1">
                   <div className="flex w-full">
                     <div className="w-full rounded-l bg-light-1 p-4 dark:bg-dark-2">
                       <h1 className="ml-1 mb-2 text-lg font-bold">
