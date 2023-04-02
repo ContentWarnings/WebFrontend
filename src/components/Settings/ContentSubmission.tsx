@@ -6,6 +6,7 @@ import { FaSpinner } from "react-icons/fa";
 import WarningButton from "./WarningButton";
 import { AiFillDelete } from "react-icons/ai";
 import EditContentSubmission from "./EditContentSubmission";
+import Toast from "../../helpers/Toast";
 
 function getTime(time: number): String {
   let hours: number = Math.floor(time / 60);
@@ -52,7 +53,29 @@ function ContentSubmission(props: any) {
     findMovie(props.cw.movie_id, setTitle);
   }, [props.cw.movie_id]);
 
-  const deleteSubmission = () => {};
+  const deleteSubmission = () => {
+    const cwInfo = {
+      name: "None",
+      movie_id: props.cw.movie_id,
+      time: props.cw.time,
+      desc: props.cw.desc,
+    };
+    let path = `cw/${props.cw.id}`;
+    Backend.postRequest(path, cwInfo)
+      .then((resp: any) => {
+        const data: number = resp.statusCode;
+        if (data < 400) {
+          window.location.pathname = `/settings/profile/`;
+        } else {
+          Toast.toast(resp.jsonResponse.detail);
+        }
+      })
+      .catch((err: any) => {
+        Toast.toast(
+          "Could not connect to the server. Please try again in a few minutes!"
+        );
+      });
+  };
 
   return (
     <>
