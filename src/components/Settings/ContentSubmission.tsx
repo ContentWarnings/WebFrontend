@@ -46,6 +46,8 @@ function findMovie(movieId: string, setTitle: any) {
 
 function ContentSubmission(props: any) {
   const [isOpen, setIsOpen] = useState(false);
+  const [checkDelete, setCheckDelete] = useState(false);
+  const [warning, setWarning] = useState("");
   const [title, setTitle] = useState("");
   const headerColor = props.flag ? "bg-secondary-3" : "bg-dark-3";
 
@@ -53,7 +55,20 @@ function ContentSubmission(props: any) {
     findMovie(props.cw.movie_id, setTitle);
   }, [props.cw.movie_id]);
 
+  const closeModal = () => {
+    setWarning("");
+    setCheckDelete(false);
+    setIsOpen(false);
+  };
+
   const deleteSubmission = () => {
+    if (checkDelete === false) {
+      setWarning(
+        "Are you sure you want to do this? This action will be permanent?"
+      );
+      setCheckDelete(true);
+      return;
+    }
     const cwInfo = {
       name: "None",
       movie_id: props.cw.movie_id,
@@ -99,11 +114,7 @@ function ContentSubmission(props: any) {
         </div>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-10"
-          onClose={() => setIsOpen(false)}
-        >
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -169,10 +180,15 @@ function ContentSubmission(props: any) {
                       handleClick={deleteSubmission}
                     />
                   </div>
+                  {warning.length !== 0 && (
+                    <div className="my-1 flex w-full text-center text-warning">
+                      {warning}
+                    </div>
+                  )}
                   <div className="my-2 flex w-full justify-center">
                     <button
                       className="flex items-center rounded-lg border border-transparent bg-transparent p-1 text-dark-3 transition delay-100 ease-in-out hover:border-secondary-2 dark:text-light-1 dark:hover:border-light-3"
-                      onClick={() => setIsOpen(false)}
+                      onClick={closeModal}
                     >
                       <IoIosArrowBack className="text-lg" />
                       <div className="pr-1 text-sm">Back</div>
