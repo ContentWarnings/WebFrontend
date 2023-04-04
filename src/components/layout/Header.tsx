@@ -24,7 +24,7 @@ function Header() {
   };
 
   let pfp = (
-    <Link to="/account/signin">
+    <Link to="/settings/profile/">
       <CgProfile className="h-8 w-8 rounded-full ease-in-out hover:opacity-50" />
     </Link>
   );
