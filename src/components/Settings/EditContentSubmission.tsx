@@ -175,7 +175,7 @@ function EditContentSubmission(props: any) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-light-1 bg-opacity-50 dark:bg-dark-3" />
+            <div className="fixed inset-0 bg-light-1 bg-opacity-50 dark:bg-dark-3 dark:bg-opacity-50" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
