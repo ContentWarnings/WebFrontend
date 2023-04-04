@@ -1,6 +1,5 @@
 // References
-// https://mui.com/x/react-date-pickers/time-field/
-// https://day.js.org/docs/en/get-set/minute
+// https://day.js.org/docs/en/get-set/set
 
 import { Dialog, Transition } from "@headlessui/react";
 import { IoIosArrowBack } from "react-icons/io";
@@ -14,6 +13,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { TimeField } from "@mui/x-date-pickers/TimeField";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { FiEdit2 } from "react-icons/fi";
 
 async function getList(setDropdownList: any) {
   let path = "/names";
@@ -28,7 +28,7 @@ async function getList(setDropdownList: any) {
   setDropdownList(dropdownList);
 }
 
-function AddContentWarning(props: any) {
+function EditContentSubmission(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [contentWarningName, setContentWarningName] = useState("");
   const [contentWarningSummary, setContentWarningSummary] = useState("");
@@ -39,6 +39,27 @@ function AddContentWarning(props: any) {
     dayjs("2022-04-17T00:00")
   );
   const [toTime, setToTime] = useState<Dayjs | null>(dayjs("2022-04-17T00:00"));
+  const [originalContentWarningName, setOriginalContentWarningName] =
+    useState("");
+  const [originalSubmissionSummary, setOriginalSubmissionSummary] =
+    useState("");
+  const [originalFromTime, setOriginalFromTime] = useState<Dayjs | null>(
+    dayjs("2022-04-17T00:00")
+  );
+  const [originalToTime, setOriginalToTime] = useState<Dayjs | null>(
+    dayjs("2022-04-17T00:00")
+  );
+
+  const setStartAndEnd = (cwTimeObject: any) => {
+    const start = cwTimeObject[0];
+    let hours: number = Math.floor(start / 60);
+    let mins: number = start % 60;
+    setFromTime(dayjs().set("hour", hours).set("minute", mins));
+    const end = cwTimeObject[1];
+    hours = Math.floor(end / 60);
+    mins = end % 60;
+    setToTime(dayjs().set("hour", hours).set("minute", mins));
+  };
 
   useEffect(() => {
     getList(setDropdownList);
@@ -62,18 +83,35 @@ function AddContentWarning(props: any) {
   const openModal = () => {
     setError("");
     setIsOpen(true);
-    handleWarningChange("Abandonment");
+    setSubmissionSummary(props.cw.desc);
+    handleWarningChange(props.cw.name);
+    setStartAndEnd(props.cw.time[0]);
+    setOriginalContentWarningName(contentWarningName);
+    setOriginalSubmissionSummary(submissionSummary);
+    setOriginalFromTime(fromTime);
+    setOriginalToTime(toTime);
   };
 
-  const submitCW = () => {
+  const editCW = () => {
     if (submissionSummary === "") {
       setError(
         "Please review your content submission, the summary is blank and must be added."
       );
       return;
     }
-    if (fromTime === null || toTime === null) return;
+    // Won't compile unless I check if it's null
+    if (
+      fromTime === null ||
+      toTime === null ||
+      originalFromTime == null ||
+      originalToTime == null
+    )
+      return;
+    const originalFirstTime =
+      originalFromTime.hour() * 60 + originalFromTime.minute();
     const firstTime = fromTime.hour() * 60 + fromTime.minute();
+    const originalLastTime =
+      originalToTime.hour() * 60 + originalToTime.minute();
     const lastTime = toTime.hour() * 60 + toTime.minute();
     if (firstTime > lastTime) {
       setError(
@@ -81,18 +119,29 @@ function AddContentWarning(props: any) {
       );
       return;
     }
-    const movieInfo = {
+    if (
+      originalContentWarningName === contentWarningName &&
+      originalFirstTime === firstTime &&
+      originalLastTime === lastTime &&
+      originalSubmissionSummary === submissionSummary
+    ) {
+      setError(
+        "It seems as if no edits were made, please either return or change the submission"
+      );
+      return;
+    }
+    const cwInfo = {
       name: contentWarningName,
-      movie_id: props.movieId,
+      movie_id: props.cw.movie_id,
       time: [[firstTime, lastTime]],
       desc: submissionSummary,
     };
-    Backend.postRequest("movie", movieInfo)
+    let path = `cw/${props.cw.id}`;
+    Backend.postRequest(path, cwInfo)
       .then((resp: any) => {
         const data: number = resp.statusCode;
-        console.log(resp);
         if (data < 400) {
-          window.location.pathname = `/movie/${props.movieId}&success=true`;
+          window.location.pathname = `/settings/profile/`;
         } else {
           setError(resp.jsonResponse.detail);
         }
@@ -106,12 +155,11 @@ function AddContentWarning(props: any) {
 
   return (
     <>
-      <button
-        onClick={() => openModal()}
-        className="text-2xl text-dark-3 transition duration-100 ease-in-out hover:opacity-50 dark:text-light-1"
-      >
-        <BsPlusLg />
-      </button>
+      <Primary2Button
+        handleClick={() => openModal()}
+        name="Edit"
+        icon={<FiEdit2 />}
+      />
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -145,7 +193,7 @@ function AddContentWarning(props: any) {
                   <div className="flex w-full">
                     <div className="w-full rounded-l bg-light-1 p-4 dark:bg-dark-2">
                       <h1 className="ml-1 mb-2 text-lg font-bold">
-                        Submit Content Warning
+                        {props.title}
                       </h1>
                       <div className="flex w-full">
                         <h2 className="p-2">Content</h2>
@@ -153,6 +201,7 @@ function AddContentWarning(props: any) {
                           id="selectedCw"
                           options={dropdownList}
                           handleChange={handleDropdown}
+                          default={props.cw.name}
                         />
                       </div>
                       <div className="flex items-center">
@@ -176,7 +225,7 @@ function AddContentWarning(props: any) {
                       <div className="flex">
                         <h2 className="p-2">Summary</h2>
                         <TextBox
-                          value={submissionSummary}
+                          defaultValue={submissionSummary}
                           handleChange={(newValue: any) =>
                             setSubmissionSummary(newValue.target.value)
                           }
@@ -195,8 +244,8 @@ function AddContentWarning(props: any) {
                         </button>
                         <Primary2Button
                           icon={<BsPlusLg />}
-                          name="Submit"
-                          handleClick={() => submitCW()}
+                          name="Edit"
+                          handleClick={() => editCW()}
                         />
                       </div>
                     </div>
@@ -217,4 +266,4 @@ function AddContentWarning(props: any) {
   );
 }
 
-export default AddContentWarning;
+export default EditContentSubmission;
