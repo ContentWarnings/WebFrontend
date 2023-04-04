@@ -11,7 +11,7 @@ function DisplaySetting() {
         <FaPalette className="mr-2" />
         <h1 className="font-bold">Display</h1>
       </div>
-      <div className="mt-2 flex w-1/2 justify-between">
+      <div className="mt-2 flex w-1/2 justify-between font-bold">
         <label className="flex items-center">
           <input
             type="radio"
