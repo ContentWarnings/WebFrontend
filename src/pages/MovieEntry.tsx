@@ -206,6 +206,7 @@ function MovieEntry() {
         <div className="my-5 flex justify-between text-dark-3 dark:text-light-1">
           <h1 className="text-3xl font-bold">Content Warnings</h1>
           {localStorage.getItem("token") !== undefined &&
+            localStorage.getItem("token") !== null &&
             localStorage.getItem("token") !== "" && (
               <AddContentWarning movieId={movieId} />
             )}
