@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FaPalette } from "react-icons/fa";
+import { FaPalette, FaSun, FaMoon } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeContext";
 
 function DisplaySetting() {
@@ -17,10 +17,11 @@ function DisplaySetting() {
             type="radio"
             name="display"
             value="light"
-            className="mr-2 h-6 w-6"
+            className="mr-1 h-6 w-6"
             checked={theme === "light"}
             onChange={(e) => setTheme(e.target.value)}
           />
+          <FaSun className="mr-2 h-6 w-6" />
           Light Mode
         </label>
         <label className="flex items-center">
@@ -28,10 +29,11 @@ function DisplaySetting() {
             type="radio"
             name="display"
             value="dark"
-            className="mr-2 h-6 w-6"
+            className="mr-1 h-6 w-6"
             checked={theme === "dark"}
             onChange={(e) => setTheme(e.target.value)}
           />
+          <FaMoon className="mr-2 h-6 w-6" />
           Dark Mode
         </label>
       </div>
