@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FaPalette, FaSun, FaMoon } from "react-icons/fa";
+import { FaPalette, FaSun, FaMoon, FaLaptop } from "react-icons/fa";
 import { ThemeContext } from "../../context/ThemeContext";
 
 function DisplaySetting() {
@@ -11,7 +11,19 @@ function DisplaySetting() {
         <FaPalette className="mr-2" />
         <h1 className="font-bold">Display</h1>
       </div>
-      <div className="mt-2 flex w-1/2 justify-between font-bold">
+      <div className="mt-2 flex w-3/4 justify-between font-bold">
+        <label className="flex items-center">
+          <input
+            type="radio"
+            name="display"
+            value="system"
+            className="mr-1 h-6 w-6"
+            checked={theme === "system"}
+            onChange={(e) => setTheme(e.target.value)}
+          />
+          <FaLaptop className="mr-2 h-6 w-6" />
+          System Settings
+        </label>
         <label className="flex items-center">
           <input
             type="radio"

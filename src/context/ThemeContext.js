@@ -5,7 +5,10 @@ import { createContext, useEffect, useState } from "react";
 
 
 const getInitialTheme = () => {
-  if ((localStorage.getItem("theme") === "dark") || (localStorage.getItem("theme") === null)) {
+  if ((localStorage.getItem("theme") === null) || (localStorage.getItem("theme") === "system")) {
+    return "system";
+  }
+  else if (localStorage.getItem("theme") === "dark") {
     return "dark";
   }
   else {
@@ -22,6 +25,9 @@ export const ThemeProvider = ({children}) => {
 
   const rawSetTheme = (newTheme) => {
     const root = document.documentElement;
+    if (newTheme === "system") {
+      newTheme = ((window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light");
+    }
     const isDark = (newTheme === "dark");
 
     root.classList.remove(isDark ? "light" : "dark");
