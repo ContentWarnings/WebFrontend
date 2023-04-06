@@ -17,15 +17,15 @@ function Tabs(props: any) {
       : "hover:border-dark-1 dark:hover:border-light-3";
 
   return (
-    <div className="mr-4 flex flex-col text-xl font-bold text-light-1">
+    <div className="mx-auto md:mr-4 md:my-2 flex flex-col text-xl font-bold text-light-1">
       <a
-        className={`mb-1 w-max rounded-lg border border-transparent text-center ${buttonColorOne} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverOne}`}
+        className={`md:mb-1 md:w-max sm:rounded-lg border border-transparent text-center ${buttonColorOne} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverOne}`}
         href="/settings/"
       >
         Content Warnings
       </a>
       <a
-        className={`rounded-lg border border-transparent text-center ${buttonColorTwo} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverTwo}`}
+        className={`sm:rounded-lg border border-transparent text-center ${buttonColorTwo} p-1 px-4 transition delay-100 ease-in-out ${buttonHoverTwo}`}
         href="/settings/profile/"
       >
         My Profile

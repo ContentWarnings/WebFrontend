@@ -11,8 +11,8 @@ function AddDevice() {
         <FaLaptopMedical className="mr-2" />
         <h1 className="font-bold">Add Device</h1>
       </div>
-      <div className="mt-2 flex">
-        <div className="mr-2 h-auto w-40 p-2">
+      <div className="mt-2 sm:flex">
+        <div className="mx-auto md:mr-2 h-auto w-40 p-2">
           <QRCode
             bgColor="#313131"
             fgColor="#FFFFFF"

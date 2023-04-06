@@ -16,6 +16,7 @@ class Toast {
         toast.style.left = "20px";
         toast.style.bottom = "20px";
         toast.style.zIndex = "4096";
+        toast.style.fontSize = "16px";
         toast.className = "text-white transition duration-100 ease-in-out bg-secondary-3 fixed w-fit rounded-lg opacity-100";
 
         // Create close button.
@@ -23,6 +24,7 @@ class Toast {
         close.className = "text-md text-light-1 transition duration-100 ease-in-out hover:opacity-50";
         close.style.marginLeft = "10px";
         close.style.fontFamily = "monospace";
+        close.style.fontSize = "21px";
         close.onclick = (evt) => {
             if (evt && evt.target && evt.target) {
                 const eventTarget = evt.target as HTMLElement;
