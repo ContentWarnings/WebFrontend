@@ -10,10 +10,18 @@ function Home() {
     <div className="relative mb-10 h-fit px-6">
       <div className="text-center">
         {/* Header */}
-        <h1 className="mt-48 text-6xl font-bold text-dark-3 dark:text-light-1 md:mt-32">
-          Find movies for
-          <span className="italic"> you</span>
-        </h1>
+        <div className="mt-48justify-center md:mt-32">
+          <h1 className="text-6xl font-bold text-dark-3 dark:text-light-1">
+            Find movies for
+            <span className="italic"> you</span>
+          </h1>
+          <a
+            href="about/"
+            className="text-xs italic text-light-3 underline transition delay-100 ease-in-out hover:text-dark-3 dark:text-light-3 hover:dark:text-light-1"
+          >
+            What is this?
+          </a>
+        </div>
         <SearchBar />
       </div>
       <TrendingMovieSection />

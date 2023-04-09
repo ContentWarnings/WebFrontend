@@ -12,10 +12,10 @@ function NoProfile() {
           <h2 className="text-2xl">Join MovieMentor as a contributor.</h2>
         </div>
         <p className="text-dark-1 dark:text-light-3">
-          (This does not affect, or enchance, searching features.)
+          (This does not affect, or enhance, searching features.)
         </p>
       </div>
-      <div className="lg:flex-initial p-4 m-auto">
+      <div className="m-auto p-4 lg:flex-initial">
         <div className="flex">
           <Primary2Button
             name="Register"

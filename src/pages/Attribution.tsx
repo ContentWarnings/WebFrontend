@@ -35,6 +35,11 @@ function AttributionPage() {
         .
         <br />
         <br />
+        <img
+          className="mb-4 w-1/6 md:w-1/12"
+          src={`/tmdb_logo.svg`}
+          alt="TMDB Logo"
+        />
       </div>
       <div className="my-2 flex items-center">
         <Primary2Button href="/" name="Return Home" icon={<AiFillHome />} />
