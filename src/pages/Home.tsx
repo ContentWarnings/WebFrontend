@@ -10,7 +10,7 @@ function Home() {
     <div className="relative mb-10 h-fit px-6">
       <div className="text-center">
         {/* Header */}
-        <div className="mt-48justify-center md:mt-32">
+        <div className="mt-48 justify-center md:mt-32">
           <h1 className="text-6xl font-bold text-dark-3 dark:text-light-1">
             Find movies for
             <span className="italic"> you</span>
