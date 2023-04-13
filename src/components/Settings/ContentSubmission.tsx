@@ -64,7 +64,7 @@ function ContentSubmission(props: any) {
   const deleteSubmission = () => {
     if (checkDelete === false) {
       setWarning(
-        "Are you sure you want to do this? This action will be permanent?"
+        "Are you sure you want to do this? This action will be permanent."
       );
       setCheckDelete(true);
       return;
