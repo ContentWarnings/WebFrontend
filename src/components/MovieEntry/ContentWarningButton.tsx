@@ -6,6 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { IoIosWarning, IoIosArrowBack } from "react-icons/io";
 import { BsCheckLg } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
+import { FaChevronRight } from "react-icons/fa";
 import { Fragment, useState } from "react";
 import Backend from "../../helpers/Backend";
 import Toast from "../../helpers/Toast";
@@ -74,7 +75,10 @@ function ContentWarningButton(props: any) {
             )}
             <div className="my-5 ml-1 text-lg font-bold">{props.cw.name}</div>
           </div>
-          <div className="text-dark-1 dark:text-light-3">{time}</div>
+          <div className="flex items-center">
+            <div className="text-dark-1 dark:text-light-3">{time}</div>
+            <FaChevronRight className="ml-1 text-2xl" />
+          </div>
         </div>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
