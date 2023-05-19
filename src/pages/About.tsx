@@ -7,14 +7,14 @@ function AboutPage() {
       <div className="mt-5 text-dark-3 dark:text-light-1">
         <h1 className="text-3xl font-bold">About</h1>
         <br />
-        <p className="text-1xl">
+        <p>
           MovieMentor is an application developed by Jeffrey DiVincent, Adam
           Fernandes, Jacob Franz, Nathanael Gaulke, Lauren Morris, and Garrett
           Spears as part of our Senior Design Project for Computer Science at
           the University of Central Florida.
         </p>
         <br />
-        <p className="text-1xl">
+        <p>
           We wanted to create a place where users could gain more detailed
           information on potential trauma and content sensitivities found in
           certain movies. The MPAA rating system has a general guideline for
@@ -32,14 +32,47 @@ function AboutPage() {
           might be on the fence about.
         </p>
         <br />
-        <p className="text-1xl">
+        <p>
           We hope that you find this application useful in your search for new
           movies to watch that are interesting and trauma-free to you.
         </p>
         <br />
-        <p className="text-1xl">
-          Enjoy browsing and have a good day! -- MovieMentor Team
+        <h1 className="text-3xl font-bold">How to Use MovieMentor</h1>
+        <br />
+        <h2 className="text-xl font-bold">Browsing</h2>
+        <p>
+          Before looking for movies, we recommend going to Settings &gt; Content
+          Warnings. There you can choose whether to filter content warnings by
+          choosing to show, warn, or hide them. To see the warnings for a
+          specific movie, first search it up. If the movie does not appear, this
+          could mean that the movie contains content that you have chosen to
+          "hide" in settings. Otherwise, click on the desired result. If the
+          movie contains material that you want to be warned about, a warning
+          will appear near the top of the page and all warnings associated with
+          that content will be highlighted. All content warnings submitted for
+          the movie are at the bottom of the page. Clicking the warning, opens a
+          popup with a description of the content. If you have watched the
+          movie, we kindly ask that you confirm or refute the warning using the
+          respective buttons.
         </p>
+        <br />
+        <h2 className="text-xl font-bold">Contributing</h2>
+        <p>
+          To contribute, create an account in Settings &gt; My Profile. You will
+          need an email address to verify your account. If you would like to
+          submit content warnings for a movie you have recently watched, first
+          search it up. If the movie does not appear, this could mean that the
+          movie contains content that you have chosen to "hide" in settings.
+          Otherwise, click on the desired result. Once you have created your
+          account, you will notice a "+" (plus symbol) near the bottom next to
+          the "Content Warnings" heading. Clicking the button will open a popup
+          to submit a warning. Please make sure that a warning for your
+          submission has not already been posted and that the information is
+          accurate. Then, submit the warning. All submissions are anonymous.
+        </p>
+        <br />
+        <br />
+        <p>Enjoy browsing and have a good day! -- MovieMentor Team</p>
         <br />
       </div>
       <div className="my-2 flex items-center">
